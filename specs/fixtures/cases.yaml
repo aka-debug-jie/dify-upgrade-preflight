@@ -1,0 +1,183 @@
+schema_version: '1.0'
+purpose: test_design_not_executed
+cases:
+- id: V01
+  family: verdict
+  setup: supported=true, blocker=true, required_unknown=true
+  expected: BLOCKED；保留 unknown
+- id: V02
+  family: verdict
+  setup: supported=true, blocker=false, required_unknown=true
+  expected: INCOMPLETE
+- id: V03
+  family: verdict
+  setup: supported=false, no matching rules
+  expected: UNSUPPORTED，不放行
+- id: V04
+  family: verdict
+  setup: catalog content digest corrupted
+  expected: ERROR
+- id: V05
+  family: verdict
+  setup: all required passed; only out-of-scope live state absent
+  expected: NO_KNOWN_BLOCKERS；列 excluded_checks
+- id: V06
+  family: verdict
+  setup: untrusted custom catalog and otherwise all passed
+  expected: INCOMPLETE，不放行
+- id: F01
+  family: fact
+  setup: known=false vs unknown=null
+  expected: 不混同；eq(true)分别FALSE/UNKNOWN
+- id: F02
+  family: fact
+  setup: API/Web declared image versions disagree
+  expected: conflicted，关键版本INCOMPLETE
+- id: F03
+  family: fact
+  setup: latest/custom tag cannot be pinned
+  expected: UNSUPPORTED
+- id: F04
+  family: fact
+  setup: current version known; historical origin not known
+  expected: history 保持 unknown
+- id: R01
+  family: rule
+  setup: applies FALSE, assertion UNKNOWN
+  expected: not_applicable
+- id: R02
+  family: rule
+  setup: applies UNKNOWN, assertion FALSE
+  expected: unknown，不伪造 failed
+- id: R03
+  family: rule
+  setup: version 1.9 vs 1.10
+  expected: 按版本比较而非字符串
+- id: R04
+  family: rule
+  setup: rule needs bundled; ownership external
+  expected: not_applicable
+- id: R05
+  family: rule
+  setup: new official rule supersedes old only in one target edge
+  expected: 其它旧边仍保留旧规则
+- id: R06
+  family: rule
+  setup: rule sets status approved but no matching approval digest
+  expected: ERROR/目录拒绝
+- id: R07
+  family: rule
+  setup: duplicate rule id or empty ALL
+  expected: 目录拒绝，ERROR
+- id: R08
+  family: rule
+  setup: expression depth=9 or nodes=65
+  expected: 目录拒绝，ERROR
+- id: D01
+  family: diff
+  setup: A=B=C
+  expected: unchanged
+- id: D02
+  family: diff
+  setup: A=B != C
+  expected: upstream_only
+- id: D03
+  family: diff
+  setup: A=C != B
+  expected: local_only
+- id: D04
+  family: diff
+  setup: B=C != A
+  expected: same_change
+- id: D05
+  family: diff
+  setup: A/B/C distinct with no target D
+  expected: divergent_change；不自动 blocker
+- id: D06
+  family: diff
+  setup: MISSING vs empty string vs null vs false vs 0
+  expected: 保持类型和缺失区别
+- id: D07
+  family: diff
+  setup: two secret fields both rendered REDACTED
+  expected: unknown_comparison，不当相等
+- id: C01
+  family: compose
+  setup: ${X-default} with X unset and empty; ${X:-default}
+  expected: 与冻结 Compose oracle 一致
+- id: C02
+  family: compose
+  setup: two -f files conflicting entrypoint/volumes
+  expected: 顺序和唯一键与 oracle 一致
+- id: C03
+  family: compose
+  setup: no Docker daemon but compose config installed
+  expected: snapshot 不访问 daemon
+- id: C04
+  family: compose
+  setup: compose CLI missing
+  expected: snapshot ERROR；合法 check(snapshot)仍可运行
+- id: C05
+  family: compose
+  setup: profile changes active service set
+  expected: 记录实际 profile，不把未启用服务算必需在线
+- id: S01
+  family: security
+  setup: symlink env_file escapes project root
+  expected: 采集拒绝，文件不读取
+- id: S02
+  family: security
+  setup: remote include/extends or OCI reference
+  expected: 采集拒绝，网络调用0
+- id: S03
+  family: security
+  setup: YAML duplicate key/custom tag/alias expansion
+  expected: 受控拒绝，不执行
+- id: S04
+  family: security
+  setup: FIFO/device path instead of config
+  expected: 拒绝，不阻塞
+- id: S05
+  family: security
+  setup: canary in unknown env key, DSN, URL query, PEM
+  expected: 所有格式与错误输出无 canary
+- id: S06
+  family: security
+  setup: secret emitted by subprocess stderr on failure
+  expected: 脱敏后输出，无原文落盘
+- id: S07
+  family: security
+  setup: output path equals input or existing file
+  expected: 拒绝覆盖，输入 hash 不变
+- id: S08
+  family: security
+  setup: input contains $(cmd), backticks, malicious entrypoint
+  expected: 只按数据处理，无 shell 执行
+- id: S09
+  family: security
+  setup: subprocess emits over 32MiB or hangs >15s
+  expected: 终止回收，脱敏ERROR
+- id: S10
+  family: security
+  setup: core check run under deny socket and deny subprocess
+  expected: 正常通过全部纯核心测试
+- id: I01
+  family: install
+  setup: wheel installed in empty venv then demo/check
+  expected: 接口/退出码与源码一致
+- id: I02
+  family: install
+  setup: invalid CLI arguments
+  expected: exit64，不与 BLOCKED 的2混淆
+- id: I03
+  family: install
+  setup: same report text/json/markdown
+  expected: 同 verdict/exitcode；JSON stdout单文档
+- id: I04
+  family: install
+  setup: same normalized input; timestamp changed
+  expected: decision_digest一致
+- id: P01
+  family: performance
+  setup: medium/stress fixed datasets and 30 measured runs
+  expected: 保存原始样本；按验收预算判断

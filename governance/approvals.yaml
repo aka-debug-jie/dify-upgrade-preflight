@@ -1,0 +1,102 @@
+schema_version: '1.0'
+approvals:
+- id: APR-PUBLIC-REPOSITORY-20260913-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-13T13:45:00Z'
+  message_ref: user_message_2026-09-13_public_github_publication_authorization
+  scope: Create and publicly push the initial main branch to aka-debug-jie/dify-upgrade-preflight with only the reviewed public source set; no tag, GitHub Release, package upload, phase completion, support-edge approval, production access, or GitHub settings change beyond repository creation and description
+- id: APR-CR-P00-P04-20260913-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-13T13:00:00Z'
+  message_ref: user_message_2026-09-13_change_request_implementation_authorization
+  objects:
+  - path: artifacts/P05/20260913T125134Z/CHANGE_REQUEST.md
+    sha256: b8ddd16d9a3edd4ef9bfc699802b8e11527e5ef96eb27cc7361ed0f94b91f94e
+    purpose: bounded_recovery_change_request
+  - path: artifacts/P05/20260913T125134Z/REVIEW_BUNDLE.sha256
+    sha256: 08b0ee8611a56b4e83dcea43836f8e086a5cf253c315609446e9f36569fb4fce
+    purpose: bounded_recovery_review_bundle
+  scope: Bounded P00-P04 recovery implementation and tests only: fixed evidence/baselines, fixed-key attestations and private relations, declared topology facts, proposed target D evaluation/provenance, catalog source-digest binding and duplicate-edge rejection, and pending-case repairs; no approval or promotion of support edges, root taxonomy, case outcomes, real rules, P05 completion, production access, experiment, Git, release, or publication authority
+- id: APR-P00-P04-REVIEW-20260913-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-13T12:51:34Z'
+  message_ref: user_message_2026-09-13_bounded_p00_p04_review_authorization
+  objects:
+  - path: artifacts/P05/20260913T123039Z/REVIEW_BUNDLE.sha256
+    sha256: 8920449ddcd4e5f2d40b25b049b2b87c330cafaff11bdb17d982ef2996ff2f20
+    purpose: P05_recovery_input_for_bounded_review
+  scope: Read-only bounded P00-P04 review for replacement candidate edges, required facts, proposed target D, attestation, baselines, and catalog impact only; no implementation, contract change, rule or support-edge approval, phase completion, production access, experiment, Git, release, or publication authority
+- id: APR-P04-20260913-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-13T11:30:00Z'
+  message_ref: user_message_2026-09-13_p05_implementation_authorization
+  objects:
+  - path: artifacts/P04/20260913T111800Z/HANDOFF.md
+    sha256: 05139c77c341ac48b61f7ebadcc0c70b7c5054e91de7fb2c54a2a80a06817ecb
+    purpose: P04_revised_handoff
+  scope: P04 acceptance and P05 candidate-rule evidence work only; no rule or support-edge promotion, new dependencies, production access, experiment, release, or publication authority
+- id: APR-P00-20260913-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-13T09:18:33Z'
+  message_ref: user_message_2026-09-13_p01_implementation_authorization
+  objects:
+  - path: artifacts/P00/20260913T075059Z/REVIEW_BUNDLE.sha256
+    sha256: 186ba70fd8e9ca4ac287e7c3df16138a53a84e23ae5ddc53473e6b471a828d3c
+    purpose: P00_review_bundle
+  - path: governance/dependencies.yaml
+    sha256: 938b72474d4409145060768c160c7d5ddbaabec77a96b8687bd855d0c68f9703
+    purpose: P01_dependency_boundary
+  scope: P00 acceptance and project-local P01 dependency installation only
+- id: APR-P01-20260913-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-13T09:36:35Z'
+  message_ref: user_message_2026-09-13_p02_implementation_authorization
+  objects:
+  - path: artifacts/P01/20260913T091746Z/HANDOFF.md
+    sha256: 78989f8b89074df4b3033c20bef2dcc40b71cc5ba587a4f43efdf65ce9fbacd4
+    purpose: P01_handoff
+  - path: artifacts/P01/20260913T091746Z/VALIDATION.md
+    sha256: fe9a756767e0489d363b79bc91a5e738509bc8f2bf23d0f1a1fe1f9a702c6ad0
+    purpose: P01_validation_record
+  scope: P01 acceptance and P02 implementation only; no additional dependencies or production access
+- id: APR-P02-20260913-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-13T10:15:00Z'
+  message_ref: user_message_2026-09-13_p03_implementation_authorization
+  objects:
+  - path: artifacts/P02/20260913T094236Z/COMPOSE_CAPABILITY.md
+    sha256: 7841c4476f1d248eadd41df0cfd5f83f6819f9d125959e97a44fcac4680191ed
+    purpose: P02_compose_capability
+  - path: artifacts/P02/20260913T094236Z/VALIDATION.md
+    sha256: 63e5a8e83547a591ec4e5d3b5d04c15242a80d8ddcf28d00ebdaff07fe144b92
+    purpose: P02_validation_record
+  - path: artifacts/P02/20260913T094236Z/HANDOFF.md
+    sha256: 90c49a503384eede79e5f57566dedb85031432deaca3463302dff43edee74138
+    purpose: P02_initial_handoff
+  - path: artifacts/P02/20260913T095456Z/HANDOFF.md
+    sha256: 17ab50d8804529c918d87799f79fc1820908307a705d574e5475eadbc34ee416
+    purpose: P02_merge_anchor_repair_handoff
+  - path: artifacts/P02/20260913T100131Z/HANDOFF.md
+    sha256: 1493e7c28f937d18b52bba00263aec3ba3c57edb43acaee43eda1837a3b316cd
+    purpose: P02_environment_repair_handoff
+  scope: P02 acceptance and P03 implementation only; no new dependencies, support edges, rules, production access, or release authority
+- id: APR-P03-20260913-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-13T10:30:00Z'
+  message_ref: user_message_2026-09-13_p04_implementation_authorization
+  objects:
+  - path: artifacts/P03/20260913T102400Z/BASELINE_PROVENANCE.md
+    sha256: c0f84f9088b55e9efc241474ed999ce82b96c2ce55edc1fe5c2f37e01cf7d5c1
+    purpose: P03_candidate_baseline_provenance
+  - path: artifacts/P03/20260913T102700Z/HANDOFF.md
+    sha256: d088777e8a45932413e2b5a4b0339401055398978d8792db18d40120257485b8
+    purpose: P03_handoff
+  scope: P03 acceptance and P04 implementation only; no new dependencies, support edges, rules, production access, experiments, or release authority

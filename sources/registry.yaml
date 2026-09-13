@@ -1,0 +1,123 @@
+schema_version: '1.0'
+purpose: discovery_only_not_production_evidence
+sources:
+- id: S01
+  title: Dify Docker README / env sync
+  url: https://github.com/langgenius/dify/blob/main/docker/README.md
+  source_class: official_mutable
+  access_observation: read
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 官方已有 env 同步能力；本项目不重复做自动 env 修复。
+- id: S02
+  title: Docker Compose config
+  url: https://docs.docker.com/reference/cli/docker/compose/config/
+  source_class: official_mutable
+  access_observation: read
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 原生归一化入口；实际 flags 与版本须在 P02 实测。
+- id: S03
+  title: Compose interpolation
+  url: https://docs.docker.com/reference/compose-file/interpolation/
+  source_class: official_mutable
+  access_observation: read
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 区分插值、未设置与空值；不要用字符串替换自制解释器。
+- id: S04
+  title: Compose merge
+  url: https://docs.docker.com/reference/compose-file/merge/
+  source_class: official_mutable
+  access_observation: read
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 多文件 merge 包含特殊规则，不能等价于 dict.update。
+- id: S05
+  title: Dify releases index
+  url: https://github.com/langgenius/dify/releases
+  source_class: official_mutable
+  access_observation: read
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 仅用于发现候选 release；列表页面缓存/拼接可能不同，不用于固定规则。
+- id: S06
+  title: Dify 1.13.3 release
+  url: https://github.com/langgenius/dify/releases/tag/1.13.3
+  source_class: official_mutable
+  access_observation: read
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 升级说明涉及持久化 Sandbox 配置路径；需固定源码核验适用边。
+- id: S07
+  title: Dify 1.16.1 release
+  url: https://github.com/langgenius/dify/releases/tag/1.16.1
+  source_class: official_mutable
+  access_observation: read
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 可核验服务鉴权、配置和迁移差异；不能泛化为其它 release 的行为。
+- id: S08
+  title: Codex AGENTS.md guidance
+  url: https://developers.openai.com/codex/guides/agents-md
+  source_class: official_mutable
+  access_observation: read
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 仓库级指令用于持久开发约束；主文件保持短小，其余按需读。
+- id: S09
+  title: Codex security
+  url: https://developers.openai.com/codex/security
+  source_class: official_mutable
+  access_observation: read
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 权限与 sandbox 边界；本包不自动修改用户全局设置。
+- id: S10
+  title: Dify 1.14.2 release
+  url: https://github.com/langgenius/dify/releases/tag/1.14.2
+  source_class: official_mutable
+  access_observation: read
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 升级说明提到 docker/envs 目录布局；需结合 source/target 文件核验。
+- id: S11
+  title: Dify 1.17.1 release candidate entry
+  url: https://github.com/langgenius/dify/releases/tag/1.17.1
+  source_class: official_mutable
+  access_observation: index_only_direct_fetch_failed
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 列表检索出现 bundled Weaviate 分阶段升级警告；本次单页获取失败，必须重新固定核验。
+- id: S12
+  title: Weaviate upgrade guide discovery
+  url: https://docs.weaviate.io/deploy/installation-guides/upgrading
+  source_class: unverified_locator
+  access_observation: fetch_failed
+  checked_on: '2026-09-13'
+  verification_status: discovered_not_pinned
+  commit_sha: null
+  content_sha256: null
+  note: 路径未成功读取；P00 应从官方站点找到有效指南，不把此 URL 当已核验证据。

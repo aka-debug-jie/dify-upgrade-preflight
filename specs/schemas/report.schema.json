@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "scope": {
+      "const": "static_upgrade_plan"
+    },
+    "source_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verdict": {
+      "enum": [
+        "NO_KNOWN_BLOCKERS",
+        "BLOCKED",
+        "INCOMPLETE",
+        "UNSUPPORTED",
+        "ERROR"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "result": {
+            "enum": [
+              "passed",
+              "failed",
+              "unknown",
+              "not_applicable"
+            ]
+          },
+          "severity": {
+            "enum": [
+              "blocker",
+              "warning",
+              "info"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fact_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "fact_evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "fact": {"type": "string", "minLength": 1},
+                "origin": {"enum": ["declared", "observed", "attested", "derived", "synthetic", "unknown"]},
+                "source_ref": {"type": "string", "minLength": 1}
+              },
+              "required": ["fact", "origin", "source_ref"]
+            },
+            "minItems": 0
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "remediation_phase": {
+            "enum": [
+              "before_upgrade",
+              "during_upgrade",
+              "after_upgrade",
+              "manual_review"
+            ]
+          }
+        },
+        "required": [
+          "rule_id",
+          "result",
+          "severity",
+          "message",
+          "fact_refs",
+          "fact_evidence",
+          "evidence_refs",
+          "remediation_phase"
+        ]
+      },
+      "minItems": 0
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "unchanged",
+              "upstream_only",
+              "local_only",
+              "same_change",
+              "divergent_change",
+              "unknown_comparison"
+            ]
+          },
+          "comparability": {
+            "enum": [
+              "public",
+              "relation_only",
+              "unknown"
+            ]
+          },
+          "base": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          },
+          "local": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          },
+          "target": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          },
+          "proposed": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "path",
+          "kind",
+          "comparability",
+          "base",
+          "local",
+          "target",
+          "proposed",
+          "reason"
+        ]
+      },
+      "minItems": 0
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "support_edge_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "required_rule_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evaluated_rule_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unknown_required_rules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "excluded_checks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "support_edge_id",
+        "required_rule_count",
+        "evaluated_rule_count",
+        "unknown_required_rules",
+        "excluded_checks"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "catalog_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "snapshot_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "proposed_snapshot_digest": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "tool_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "canonicalization_version": {
+          "const": "1"
+        },
+        "catalog_trust": {
+          "enum": [
+            "bundled",
+            "owner_approved_local",
+            "untrusted",
+            "synthetic"
+          ]
+        }
+      },
+      "required": [
+        "catalog_digest",
+        "snapshot_digest",
+        "proposed_snapshot_digest",
+        "tool_version",
+        "canonicalization_version",
+        "catalog_trust"
+      ]
+    },
+    "decision_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "synthetic",
+    "scope",
+    "source_version",
+    "target_version",
+    "verdict",
+    "findings",
+    "changes",
+    "coverage",
+    "provenance",
+    "decision_digest"
+  ]
+}

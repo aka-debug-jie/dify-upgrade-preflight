@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "kind": {
+      "const": "deployment_snapshot"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "capture": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "enum": [
+            "synthetic",
+            "compose_declared",
+            "live_opt_in"
+          ]
+        },
+        "collector_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "compose_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "captured_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "mode",
+        "collector_version",
+        "compose_version",
+        "captured_at"
+      ]
+    },
+    "facts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "enum": [
+              "known",
+              "unknown",
+              "conflicted"
+            ]
+          },
+          "value": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          },
+          "origin": {
+            "enum": [
+              "declared",
+              "observed",
+              "attested",
+              "derived",
+              "synthetic"
+            ]
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "value",
+          "origin",
+          "source_ref",
+          "reason"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "known"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "value": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ]
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "value": {
+                  "type": "null"
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      "propertyNames": {
+        "not": {
+          "pattern": "^private\\."
+        }
+      }
+    },
+    "public_config": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    "private_relations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "affects": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "required_for_scope": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "reason",
+          "affects",
+          "required_for_scope"
+        ]
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "synthetic",
+    "snapshot_id",
+    "capture",
+    "facts",
+    "public_config",
+    "private_relations",
+    "gaps"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "synthetic": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "capture": {
+            "properties": {
+              "mode": {
+                "const": "synthetic"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "capture": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "compose_declared",
+                  "live_opt_in"
+                ]
+              }
+            }
+          },
+          "facts": {
+            "additionalProperties": {
+              "properties": {
+                "origin": {
+                  "not": {
+                    "const": "synthetic"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

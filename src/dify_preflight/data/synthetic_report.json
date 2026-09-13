@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "synthetic": true,
+  "scope": "static_upgrade_plan",
+  "source_version": "0.0.1",
+  "target_version": "0.0.2",
+  "verdict": "BLOCKED",
+  "findings": [
+    {
+      "rule_id": "SYN-RULE-001",
+      "result": "failed",
+      "severity": "blocker",
+      "message": "DEMO: a synthetic prerequisite is unresolved. This is not a Dify upgrade finding.",
+      "fact_refs": [
+        "vector.ownership",
+        "demo.condition_resolved"
+      ],
+      "fact_evidence": [
+        {
+          "fact": "vector.ownership",
+          "origin": "synthetic",
+          "source_ref": "synthetic:config"
+        },
+        {
+          "fact": "demo.condition_resolved",
+          "origin": "synthetic",
+          "source_ref": "synthetic:scenario"
+        }
+      ],
+      "evidence_refs": [
+        "synthetic:SYN-SOURCE-001"
+      ],
+      "remediation_phase": "manual_review"
+    }
+  ],
+  "changes": [],
+  "coverage": {
+    "support_edge_id": "SYN-EDGE-001",
+    "required_rule_count": 1,
+    "evaluated_rule_count": 1,
+    "unknown_required_rules": [],
+    "excluded_checks": [
+      "running_images",
+      "database_state",
+      "backup_restore_validity"
+    ]
+  },
+  "provenance": {
+    "catalog_digest": "5516f283bda882f9fd59993a423b5aa43c441419642df9cb7903e9ce73856060",
+    "snapshot_digest": "d33274f414e51dd6f340afc9653f9ded93efa0c23fb1b6d962a300dce55750bf",
+    "proposed_snapshot_digest": null,
+    "tool_version": "0.0.0-demo",
+    "canonicalization_version": "1",
+    "catalog_trust": "synthetic"
+  },
+  "decision_digest": "c563e4968c20be5fdd3517c245f29ce800b1852c8c867848049d42002155f039"
+}

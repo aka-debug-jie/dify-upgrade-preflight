@@ -1,0 +1,467 @@
+schema_version: '1.0'
+project: dify-upgrade-preflight
+plan_version: 0.1.0
+current_phase: P05
+updated_at: '2026-09-13T13:32:00Z'
+product_implementation_started: true
+default_authority:
+  production_access: false
+  commit: false
+  push: false
+  tag: false
+  publish: false
+  change_acceptance: false
+phases:
+- id: P00
+  title: 事实、支持边与开发环境核验
+  depends_on: []
+  release_track: v0.1
+  prompt: prompts/P00_discovery.md
+  goal: 不写业务代码，确认两类以上机器可检测的真实痛点，提出两条可固定的候选升级边及最小环境方案。
+  acceptance:
+  - 实际已获得的来源和未获得的来源分开；关键来源无法固定则不能完成本阶段。
+  - 候选路径/事实足以支持一个小闭环，且依赖/名称/许可风险被记录。
+  - 你审核范围提案后才解锁 P01；没有批准不得先写业务实现。
+  status: done
+  approval_ref: APR-P00-20260913-01
+  artifacts:
+  - artifacts/P00/20260913T075059Z/HANDOFF.md
+  tasks:
+  - id: P00.T1
+    title: 核查工作区与权限
+    action: 检查已有目录、Git 状态、Python/Compose 可用性与是否有独立实验环境；不连接 daemon、不安装系统软件。
+    acceptance: ENVIRONMENT 明确已有/缺失/未验证；没有任何生产读写和全局设置变更。
+    status: done
+    artifacts:
+    - artifacts/P00/20260913T075059Z/ENVIRONMENT.md
+  - id: P00.T2
+    title: 固定候选事实
+    action: 从官方 release、固定源码和组件指南提取至少两类根因；记录完整 SHA/内容 digest、反例和来源冲突；失败可作为 blocked_external
+      保留。
+    acceptance: 每项事实能从固定来源重查；fetch 失败不出现假 SHA，不用 bot 回复当裁决。
+    status: done
+    artifacts:
+    - artifacts/P00/20260913T075059Z/DISCOVERY.md
+  - id: P00.T3
+    title: 作出范围提案
+    action: 选择最多两条首版 exact edge、必要 facts、六类候选根因、依赖选择；核查名称/再分发但不注册或发布。
+    acceptance: 支持提案说明可测/不可测；与普通 env sync 的区别成立；若不足则给 NO-GO/PIVOT 而非造代码。
+    status: done
+    artifacts:
+    - artifacts/P00/20260913T075059Z/SUPPORT_PROPOSAL.md
+- id: P01
+  title: 最小可运行闭环与核心契约
+  depends_on:
+  - P00
+  release_track: v0.1
+  prompt: prompts/P01_walking_skeleton.md
+  goal: 先让一个合成快照经过纯规则判定输出正确 JSON 和退出码，再建立可安装的小包。
+  acceptance:
+  - 一个可安装的端到端 synthetic 演示成立。
+  - 纯 evaluator 无网络/子进程；schema/退出码与冻结数据一致。
+  - 类型/包装/初始快测试通过；无真实 Dify 支持声明。
+  status: done
+  approval_ref: APR-P01-20260913-01
+  artifacts:
+  - artifacts/P01/20260913T091746Z/HANDOFF.md
+  tasks:
+  - id: P01.T1
+    title: 把数据与判定规格转为失败测试
+    action: 按 schema 定义最小类型，锁定 examples 和全部 verdict-cases；测试在功能未实现时应失败。
+    acceptance: known false != unknown；32种 verdict 组合和目标退出码精确一致。
+    status: done
+    artifacts:
+    - artifacts/P01/20260913T091746Z/VALIDATION.md
+  - id: P01.T2
+    title: 实现单条合成路径
+    action: 实现规则 applies/assertion、纯 evaluator、小型 argparse demo；true/false/unknown
+      三个输入都走完整输出。
+    acceptance: 原始样例输出 BLOCKED；改变条件为 true 不再失败；未知给 INCOMPLETE；三个结果都 synthetic。
+    status: done
+    artifacts:
+    - artifacts/P01/20260913T091746Z/VALIDATION.md
+  - id: P01.T3
+    title: 打包并保护契约
+    action: 只安装 P00 批准依赖，定义 .[dev]，建立本地验证命令与 governance 校验器；创建新的虚拟环境验证导入。
+    acceptance: --help/demo 可运行；拒绝被改的受保护文件；没有空框架冒充完成；记录首个未达标也真实的性能 baseline。
+    status: done
+    artifacts:
+    - artifacts/P01/20260913T091746Z/HANDOFF.md
+- id: P02
+  title: 受限配置采集与脱敏快照
+  depends_on:
+  - P01
+  release_track: v0.1
+  prompt: prompts/P02_safe_snapshot.md
+  goal: 把明确指定的 Compose 配置安全转换成声明态快照，而不访问生产服务。
+  acceptance:
+  - 合成原始 Compose 能形成 schema 合法快照，安全拒绝也可解释。
+  - 冻结版本上的 Compose 行为有真实执行；缺环境不计通过。
+  - raw stdout/stderr 不落盘，私密值不进入报告或日志。
+  status: done
+  approval_ref: APR-P02-20260913-01
+  artifacts:
+  - artifacts/P02/20260913T094236Z/HANDOFF.md
+  - artifacts/P02/20260913T095456Z/HANDOFF.md
+  - artifacts/P02/20260913T100131Z/HANDOFF.md
+  tasks:
+  - id: P02.T1
+    title: 建立输入边界测试
+    action: 先测试越界 symlink、include、FIFO、重复键、未知变量秘密、output覆盖；允许路径清单外不得读取。
+    acceptance: S01–S09 相关安全场景得到预期拒绝/脱敏，不能执行 command 或连接网络。
+    status: done
+    artifacts:
+    - artifacts/P02/20260913T094236Z/VALIDATION.md
+  - id: P02.T2
+    title: 接原生 Compose
+    action: 在独立合成 fixture 上记录固定 CLI 功能；实现版本检查和受限 config JSON调用；不继承完整 shell env。
+    acceptance: C01–C05 插值/merge/profile 与 oracle 一致；没有 daemon 仍完成 config；无解析器报 ERROR。
+    status: done
+    artifacts:
+    - artifacts/P02/20260913T094236Z/COMPOSE_CAPABILITY.md
+  - id: P02.T3
+    title: 归一化为声明态
+    action: 提取版本/拓扑/类型化公开配置，区分 declared/observed；加入秘密关系检测接口而不保存值。
+    acceptance: API/Web版本冲突不猜；历史未知保留；所有格式和异常无 canary；输入 hash 前后不变。
+    status: done
+    artifacts:
+    - artifacts/P02/20260913T094236Z/HANDOFF.md
+- id: P03
+  title: 官方基线与三方差异分析
+  depends_on:
+  - P02
+  release_track: v0.1
+  prompt: prompts/P03_three_way_diff.md
+  goal: 正确区分上游变化、本地定制和分歧，避免把自定义配置误判成升级错误。
+  acceptance:
+  - 公开字段差异准确且可追溯；处理新增/删除/类型差别。
+  - 真实基线已固定，不能用 main 作为版本事实。
+  - 不执行自动合并或写回源文件。
+  status: done
+  approval_ref: APR-P03-20260913-01
+  artifacts:
+  - artifacts/P03/20260913T102400Z/BASELINE_PROVENANCE.md
+  - artifacts/P03/20260913T102700Z/HANDOFF.md
+  tasks:
+  - id: P03.T1
+    title: 锁定差异真值与边界
+    action: 先写 D01–D07 的具体输入/预期，包含列表顺序、port/volume唯一键和私密遮罩。
+    acceptance: 六类差异和 unknown 比较全部符合契约；不能用 REDACTED=REDACTED 证明相等。
+    status: done
+    artifacts:
+    - artifacts/P03/20260913T102700Z/HANDOFF.md
+  - id: P03.T2
+    title: 生成固定公开基线
+    action: 从 P00固定 source/target 的允许文件，以固定 Compose 和显式非秘密上下文生成公开视图；保存来源记录。
+    acceptance: 同样输入基线重复生成一致；不将 raw 第三方目录全部打包；缺资料则 blocked_external。
+    status: done
+    artifacts:
+    - artifacts/P03/20260913T102400Z/BASELINE_PROVENANCE.md
+  - id: P03.T3
+    title: 实现可解释差异
+    action: 实现字段索引和三方/可选目标 D 分析，输出每项来源和推断界限。
+    acceptance: 本地正常定制不自动 blocker；没有 D 时不声称最终目标配置已验证。
+    status: done
+    artifacts:
+    - artifacts/P03/20260913T102700Z/HANDOFF.md
+- id: P04
+  title: 规则目录、证据信任与完整性判定
+  depends_on:
+  - P03
+  release_track: v0.1
+  prompt: prompts/P04_catalog_engine.md
+  goal: 让规则目录和支持边成为有验证边界的数据，而不是加载任意 YAML 后自称安全。
+  acceptance:
+  - 固定schema、来源、审批、支持边和目录信任一起被验证。
+  - 引擎仍是纯函数；不为无法判断的状态补默认安全值。
+  - 规则文件不能携带可执行恢复动作。
+  status: done
+  approval_ref: APR-P04-20260913-01
+  artifacts:
+  - artifacts/P04/20260913T111800Z/HANDOFF.md
+  tasks:
+  - id: P04.T1
+    title: 先拒绝坏目录
+    action: 测试错哈希、无审批、重复ID、未知schema、脚本键、深度超限、空ALL和来源缺失。
+    acceptance: 不读取目录外文件、不执行任何规则内容；结构损坏统一 ERROR。
+    status: done
+    artifacts:
+    - artifacts/P04/20260913T111800Z/HANDOFF.md
+  - id: P04.T2
+    title: 完成三值与生命周期
+    action: 实现限定操作符、applies/assertion、显式 exact-edge、supersedes 作用域和 source/target一致性。
+    acceptance: 正反未知及版本边界测试全过；A→B+B→C不推导A→C；旧边不被新规则误退休。
+    status: done
+    artifacts:
+    - artifacts/P04/20260913T111800Z/HANDOFF.md
+  - id: P04.T3
+    title: 聚合 coverage 与 verdict
+    action: 按契约处理无支持边、关键缺口、blocked+unknown、范围外未检查；固定decision_digest。
+    acceptance: V01–V06和32组合通过；不会因为没有规则匹配就放行；时间变化不影响判定摘要。
+    status: done
+    artifacts:
+    - artifacts/P04/20260913T111800Z/HANDOFF.md
+- id: P05
+  title: 真实升级案例与首批规则
+  depends_on:
+  - P04
+  release_track: v0.1
+  prompt: prompts/P05_real_rules.md
+  goal: 用真实固定证据验证产品价值，形成首批经过人工批准的规则与精确支持边。
+  acceptance:
+  - 不能达到有效检测目标就申请缩范围或停止，不堆泛化warning。
+  - 两条批准边和真实规则须有owner审阅，阶段必须停在规则审核门。
+  - 当前版本与历史迁移、bundled与external、新部署与持久数据被区分。
+  status: blocked_review
+  approval_ref: null
+  artifacts:
+  - artifacts/P05/20260913T113500Z/RULE_REVIEW_SET.md
+  - artifacts/P05/20260913T114500Z/RULE_REVIEW_SET_REVISED.md
+  - artifacts/P05/20260913T114500Z/HANDOFF.md
+  - artifacts/P05/20260913T123039Z/RECOVERY_REVIEW_SET_REVISED.md
+  - artifacts/P05/20260913T123039Z/SOURCE_MANIFEST.json
+  - artifacts/P05/20260913T123039Z/REVIEW_BUNDLE.sha256
+  - artifacts/P05/20260913T123039Z/HANDOFF.md
+  - artifacts/P05/20260913T125134Z/P00_P04_BOUNDED_REVIEW.md
+  - artifacts/P05/20260913T125134Z/CHANGE_REQUEST.md
+  - artifacts/P05/20260913T125134Z/REVIEW_BUNDLE.sha256
+  - artifacts/P05/20260913T125134Z/HANDOFF.md
+  - artifacts/P05/20260913T132634Z/HANDOFF.md
+  - artifacts/P05/20260913T133200Z/HANDOFF.md
+  tasks:
+  - id: P05.T1
+    title: 逐项裁决根因
+    action: 为候选规则写审核卡，区分before/during/after和已知/未知历史，建立不适用画像。
+    acceptance: 至少6个独立根因家族，不凑版本变体；关键事实有固定官方来源，冲突明确保留。
+    status: blocked_review
+    artifacts:
+    - artifacts/P05/20260913T113500Z/RULE_REVIEW_SET.md
+    - artifacts/P05/20260913T114500Z/RULE_REVIEW_SET_REVISED.md
+    - catalog/candidates/P05-recovery-candidates.yaml
+    - artifacts/P05/20260913T123039Z/RECOVERY_REVIEW_SET_REVISED.md
+    - artifacts/P05/20260913T123039Z/SOURCE_MANIFEST.json
+    - artifacts/P05/20260913T125134Z/P00_P04_BOUNDED_REVIEW.md
+    - artifacts/P03/20260913T130500Z/BASELINE_PROVENANCE.md
+    - artifacts/P03/20260913T133200Z/BASELINE_PROVENANCE.md
+    - artifacts/P05/20260913T133200Z/HANDOFF.md
+  - id: P05.T2
+    title: 先写真实与holdout预期
+    action: 由来源和人工裁决定义正例/反例/未知/边界；另外留 heldout，不从实现生成答案。
+    acceptance: 至少30个边界/反例/未知；没有“新部署也要迁移”等误报；审查者能重查每个expected。
+    status: blocked_review
+    artifacts:
+    - artifacts/P05/20260913T113500Z/RULE_REVIEW_SET.md
+    - artifacts/P05/20260913T114500Z/RULE_REVIEW_SET_REVISED.md
+    - tests/fixtures/pending_adjudication/P05-recovery-cases.yaml
+    - artifacts/P05/20260913T123039Z/RECOVERY_REVIEW_SET_REVISED.md
+    - artifacts/P05/20260913T125134Z/P00_P04_BOUNDED_REVIEW.md
+    - tests/fixtures/pending_adjudication/P05-recovery-cases.yaml
+  - id: P05.T3
+    title: 实现并申请规则晋升
+    action: 逐条实现 candidate，跑全套并做关键变异；准备两条支持边审批，未经owner批准不放approved。
+    acceptance: 测试集 false-safe=0；多余blocker=0；每条approved有实际审批digest；批准前保持零或已有真实支持。
+    status: blocked_review
+    artifacts:
+    - artifacts/P05/20260913T113500Z/RULE_REVIEW_SET.md
+    - artifacts/P05/20260913T114500Z/RULE_REVIEW_SET_REVISED.md
+    - artifacts/P05/20260913T123039Z/HANDOFF.md
+    - artifacts/P05/20260913T125134Z/CHANGE_REQUEST.md
+    - artifacts/P05/20260913T132634Z/HANDOFF.md
+- id: P06
+  title: CLI 产品化与可安装分发
+  depends_on:
+  - P05
+  release_track: v0.1
+  prompt: prompts/P06_cli_delivery.md
+  goal: 让新用户能按清晰输入得到稳定且脱敏的报告，而非只能运行开发样例。
+  acceptance:
+  - 干净环境安装成功；CLI与schema/退出码一致。
+  - 报告能让维护者指出下一项人工行动，不靠大段模糊建议。
+  - 仅本地构建，尚未发布或push。
+  status: blocked_review
+  approval_ref: null
+  artifacts: []
+  tasks:
+  - id: P06.T1
+    title: 固定黑盒协议
+    action: 编写参数错误、各种verdict、输出冲突、JSON stdout干净、NO_COLOR、中断的黑盒测试。
+    acceptance: 参数错exit64；BLOCKED exit2；格式切换不改业务结果；没有隐藏skip-required。
+    status: blocked_review
+    artifacts: []
+  - id: P06.T2
+    title: 完善报告与安装
+    action: 展示关键风险、官方证据、declared/observed区别、人工步骤和excluded；构建wheel/sdist并隔离安装。
+    acceptance: 新环境能运行帮助/demo/check；包内不含未批准规则、raw配置、日志和大来源包。
+    status: blocked_review
+    artifacts: []
+  - id: P06.T3
+    title: 写真实用户路径
+    action: 写最短示例和限制，解释准备脱敏快照、指定版本、处理INCOMPLETE和UNSUPPORTED。
+    acceptance: 文档命令逐条以存在的合成/审核数据执行；不写未发布pip命令为已上线。
+    status: blocked_review
+    artifacts: []
+- id: P07
+  title: 安全、边界和性能硬化
+  depends_on:
+  - P06
+  release_track: v0.1
+  prompt: prompts/P07_hardening_performance.md
+  goal: 用敌意输入、独立反例与原始基准数据检验首版是否达到工程验收。
+  acceptance:
+  - 关键已裁决数据false-safe=0、额外blocker=0；全部secret canary为0泄露。
+  - 验收中的性能指标有实际证据并达标；未测不得通过。
+  - 性能改动没有减少required checks或放宽输入保护。
+  status: blocked_review
+  approval_ref: null
+  artifacts: []
+  tasks:
+  - id: P07.T1
+    title: 安全负控与变异
+    action: 运行所有输出的secret canary、路径/进程/网络禁止测试，并手动或工具变异关键版本/UNKNOWN/approval条件。
+    acceptance: 关键变异被杀死；输入未改；无 secret 泄露；无非授权I/O。
+    status: blocked_review
+    artifacts: []
+  - id: P07.T2
+    title: 真实性能基准
+    action: 固定medium/stress和参考环境，5预热+30正式样本，分别记录纯check和Compose采集。
+    acceptance: 原始数据完整；满足p95/RSS/超时阈值或明确未通过，不以平均值替代。
+    status: blocked_review
+    artifacts: []
+  - id: P07.T3
+    title: 基于profile优化
+    action: 定位重复parse/扫描/进程，做最小优化并回归；审查错误路径/输出限额。
+    acceptance: 所有正确性/隐私保持；无新增核心依赖；快测试在预算内或有审批后的拆分方案。
+    status: blocked_review
+    artifacts: []
+- id: P08
+  title: 独立环境重演与 beta 验收
+  depends_on:
+  - P07
+  release_track: v0.1
+  prompt: prompts/P08_lab_beta.md
+  goal: 在明确授权的独立实验环境中，用合成数据验证实际采集和至少一条真实升级案例。
+  acceptance:
+  - 独立实验许可与真实执行证据存在。
+  - 至少一个已批准升级边重演、三个不同部署画像，结果与报告可核对。
+  - beta说明不超过已测范围；有错误放行立即冻结。
+  status: blocked_review
+  approval_ref: null
+  artifacts: []
+  tasks:
+  - id: P08.T1
+    title: 准备可审查实验
+    action: 列明独立资源、合成数据、固定镜像/版本、命令副作用和回收方法；验证不是生产context。
+    acceptance: 未批准前不启动服务；无环境记blocked_external；无需读取真实凭据。
+    status: blocked_review
+    artifacts: []
+  - id: P08.T2
+    title: 验证三种画像与重演
+    action: 覆盖bundled持久数据、fresh、external/不适用等至少三画像；独立跑已批准检查和一条真正升级重演。
+    acceptance: 报告与实际观察对应；不把启动成功等同向量检索/迁移成功；相应不变量有具体验证。
+    status: blocked_review
+    artifacts: []
+  - id: P08.T3
+    title: beta质量裁决
+    action: 核对误报/未知比例、安装/性能/隐私和未支持项；形成只限矩阵的beta声明。
+    acceptance: 不满足就保持blocked；真实升级测试与synthetic明确分开；不自动发布。
+    status: blocked_review
+    artifacts: []
+- id: P09
+  title: 发布审批、真实反馈与稳定版判断
+  depends_on:
+  - P08
+  release_track: v0.1
+  prompt: prompts/P09_release_feedback.md
+  goal: 交付可审阅的发布产物，并在明确授权后发布和用真实使用反馈决定稳定化。
+  acceptance:
+  - 实际发布需要独立授权；未授权可交付候选，但本阶段不得伪完成。
+  - 两位独立维护者和三个画像的证据达到目标，否则稳定版门未通过。
+  - 发生false-safe/泄密按事件流程处理，不继续营销。
+  status: blocked_review
+  approval_ref: null
+  artifacts: []
+  tasks:
+  - id: P09.T1
+    title: 准备发布而非自动上传
+    action: 构建校验包、许可归属、支持矩阵、真实demo、隐私/已知局限；输出精确待发布digest和命令计划。
+    acceptance: 无秘密/未批准规则；发行说明不承诺安全；没有凭据也能完成本地候选。
+    status: blocked_review
+    artifacts: []
+  - id: P09.T2
+    title: 授权后执行指定发布
+    action: 仅在owner明确授权对应渠道/内容时才commit/push/tag/upload；否则停ready_for_review。
+    acceptance: 实际发布结果可核对；禁止把计划或本地build当已上线。
+    status: blocked_review
+    artifacts: []
+  - id: P09.T3
+    title: 收集复用证据
+    action: 获得至少3画像、2独立维护者的脱敏使用反馈，记录有效发现/误报/unknown/复用；写继续、收缩或停止结论。
+    acceptance: 没有足够反馈保持beta；不使用星标数或下载噪声替代实际价值。
+    status: blocked_review
+    artifacts: []
+- id: P10
+  title: 可选运行事实探测（后续版本）
+  depends_on:
+  - P09
+  release_track: optional_post_v0.1
+  prompt: prompts/P10_optional_runtime.md
+  goal: 仅在首版被复用后，补充声明态与实际容器版本的差异；不开启数据库业务访问。
+  acceptance:
+  - 需求和权限扩展先批准，才能写新I/O。
+  - 观察值可证明来自指定对象，错误时不回退为声明值冒充观测。
+  - 数据库探测仍需另一个设计/审批，不顺便加进去。
+  status: deferred
+  approval_ref: null
+  artifacts: []
+  tasks:
+  - id: P10.T1
+    title: 验证需求并申请权限扩展
+    action: 从真实反馈证明运行差异是主要缺口；设计只读API允许集、对象范围、输出脱敏和默认关闭。
+    acceptance: 没有用户价值或权限审批就保持deferred；socket ro挂载不当成权限控制。
+    status: deferred
+    artifacts: []
+  - id: P10.T2
+    title: 实现受限容器元数据读取
+    action: 限定显式项目/容器和只读操作；比较tag/digest与声明，不exec、不生命周期控制。
+    acceptance: 权限失败变unknown；实际image与配置不同能检测；无任意container遍历和秘密Env导出。
+    status: deferred
+    artifacts: []
+  - id: P10.T3
+    title: 回归默认离线行为
+    action: 验证未启用时不存在任何Docker调用；新能力需要独立矩阵和安装测试。
+    acceptance: v0.1行为/性能不倒退；新增字段schema版本和兼容性有审批。
+    status: deferred
+    artifacts: []
+- id: P11
+  title: 规则维护机制与上游协作
+  depends_on:
+  - P09
+  release_track: optional_post_v0.1
+  prompt: prompts/P11_maintenance.md
+  goal: 建立可重复的新版本审查流程，保持旧支持边可靠，而不是无限扩展范围。
+  acceptance:
+  - 完成一次真实或清楚标注的维护演练，不声称维护工作永久完成。
+  - 新规则审查与旧路径回归机制存在。
+  - 公开贡献/自动化仍需单独授权。
+  status: deferred
+  approval_ref: null
+  artifacts: []
+  tasks:
+  - id: P11.T1
+    title: 建立手动更新闭环
+    action: 输入显式release，固定内容、列出diff/潜在supersession，生成候选审查材料，不运行第三方内容。
+    acceptance: 新候选不自动进入approved；已批准旧边不因目录更新失效。
+    status: deferred
+    artifacts: []
+  - id: P11.T2
+    title: 做一次维护演练
+    action: 模拟新手工步骤被自动化、来源变更、旧规则撤回与false-safe修复；回归旧fixtures。
+    acceptance: 所有变更有审批digest；未经批准的规则不能影响产品放行。
+    status: deferred
+    artifacts: []
+  - id: P11.T3
+    title: 评估可持续性
+    action: 记录一次更新的人工作业、检测价值和风险；准备上游issue/PR草稿，仅授权后发送。
+    acceptance: 维护成本超过收益时冻结支持范围；自动定时任务/发PR不默认启用。
+    status: deferred
+    artifacts: []

@@ -1,0 +1,544 @@
+schema_version: '1.0'
+status: proposed_not_approved
+approval_ref: null
+python_local: 3.12.7
+compose_observed: 2.33.0
+strategy: P01 stdlib argparse/dataclasses/json/hashlib first; add candidate packages
+  only after owner approval. No runtime dependency installed in P00.
+limitations:
+- PyPI metadata and advertised wheels verified; resolver, transitive dependencies
+  and Python matrix installs not tested.
+- Pydantic optional until schema implementation needs it; packaging only when actual
+  version parsing requires it.
+dependencies:
+- name: pydantic
+  candidate_version: 2.13.5
+  group: runtime_candidate
+  requires_python: '>=3.9'
+  license_metadata: MIT
+  metadata_artifact: artifacts/P00/20260913T075059Z/upstream/pypi/pydantic.json
+  wheel_metadata:
+  - filename: pydantic-2.13.5-py3-none-any.whl
+    sha256: 346a034f080da3755d8e9cb5e00e8b07de1d39e4f6e2c87d8ab7cafa0b269a73
+  status: proposed_not_installed
+  approval_ref: null
+- name: PyYAML
+  candidate_version: 6.0.3
+  group: runtime_candidate
+  requires_python: '>=3.8'
+  license_metadata: MIT
+  metadata_artifact: artifacts/P00/20260913T075059Z/upstream/pypi/PyYAML.json
+  wheel_metadata:
+  - filename: pyyaml-6.0.3-cp310-cp310-macosx_10_13_x86_64.whl
+    sha256: 214ed4befebe12df36bcc8bc2b64b396ca31be9304b8f59e25c11cf94a4c033b
+  - filename: pyyaml-6.0.3-cp310-cp310-macosx_11_0_arm64.whl
+    sha256: 02ea2dfa234451bbb8772601d7b8e426c2bfa197136796224e50e35a78777956
+  - filename: pyyaml-6.0.3-cp310-cp310-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: b30236e45cf30d2b8e7b3e85881719e98507abed1011bf463a8fa23e9c3e98a8
+  - filename: pyyaml-6.0.3-cp310-cp310-manylinux2014_s390x.manylinux_2_17_s390x.manylinux_2_28_s390x.whl
+    sha256: 66291b10affd76d76f54fad28e22e51719ef9ba22b29e1d7d03d6777a9174198
+  - filename: pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: 9c7708761fccb9397fe64bbc0395abcae8c4bf7b0eac081e12b809bf47700d0b
+  - filename: pyyaml-6.0.3-cp310-cp310-musllinux_1_2_aarch64.whl
+    sha256: 418cf3f2111bc80e0933b2cd8cd04f286338bb88bdc7bc8e6dd775ebde60b5e0
+  - filename: pyyaml-6.0.3-cp310-cp310-musllinux_1_2_x86_64.whl
+    sha256: 5e0b74767e5f8c593e8c9b5912019159ed0533c70051e9cce3e8b6aa699fcd69
+  - filename: pyyaml-6.0.3-cp310-cp310-win32.whl
+    sha256: 28c8d926f98f432f88adc23edf2e6d4921ac26fb084b028c733d01868d19007e
+  - filename: pyyaml-6.0.3-cp310-cp310-win_amd64.whl
+    sha256: bdb2c67c6c1390b63c6ff89f210c8fd09d9a1217a465701eac7316313c915e4c
+  - filename: pyyaml-6.0.3-cp311-cp311-macosx_10_13_x86_64.whl
+    sha256: 44edc647873928551a01e7a563d7452ccdebee747728c1080d881d68af7b997e
+  - filename: pyyaml-6.0.3-cp311-cp311-macosx_11_0_arm64.whl
+    sha256: 652cb6edd41e718550aad172851962662ff2681490a8a711af6a4d288dd96824
+  - filename: pyyaml-6.0.3-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: 10892704fc220243f5305762e276552a0395f7beb4dbf9b14ec8fd43b57f126c
+  - filename: pyyaml-6.0.3-cp311-cp311-manylinux2014_s390x.manylinux_2_17_s390x.manylinux_2_28_s390x.whl
+    sha256: 850774a7879607d3a6f50d36d04f00ee69e7fc816450e5f7e58d7f17f1ae5c00
+  - filename: pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: b8bb0864c5a28024fac8a632c443c87c5aa6f215c0b126c449ae1a150412f31d
+  - filename: pyyaml-6.0.3-cp311-cp311-musllinux_1_2_aarch64.whl
+    sha256: 1d37d57ad971609cf3c53ba6a7e365e40660e3be0e5175fa9f2365a379d6095a
+  - filename: pyyaml-6.0.3-cp311-cp311-musllinux_1_2_x86_64.whl
+    sha256: 37503bfbfc9d2c40b344d06b2199cf0e96e97957ab1c1b546fd4f87e53e5d3e4
+  - filename: pyyaml-6.0.3-cp311-cp311-win32.whl
+    sha256: 8098f252adfa6c80ab48096053f512f2321f0b998f98150cea9bd23d83e1467b
+  - filename: pyyaml-6.0.3-cp311-cp311-win_amd64.whl
+    sha256: 9f3bfb4965eb874431221a3ff3fdcddc7e74e3b07799e0e84ca4a0f867d449bf
+  - filename: pyyaml-6.0.3-cp312-cp312-macosx_10_13_x86_64.whl
+    sha256: 7f047e29dcae44602496db43be01ad42fc6f1cc0d8cd6c83d342306c32270196
+  - filename: pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl
+    sha256: fc09d0aa354569bc501d4e787133afc08552722d3ab34836a80547331bb5d4a0
+  - filename: pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: 9149cad251584d5fb4981be1ecde53a1ca46c891a79788c0df828d2f166bda28
+  - filename: pyyaml-6.0.3-cp312-cp312-manylinux2014_s390x.manylinux_2_17_s390x.manylinux_2_28_s390x.whl
+    sha256: 5fdec68f91a0c6739b380c83b951e2c72ac0197ace422360e6d5a959d8d97b2c
+  - filename: pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc
+  - filename: pyyaml-6.0.3-cp312-cp312-musllinux_1_2_aarch64.whl
+    sha256: 8dc52c23056b9ddd46818a57b78404882310fb473d63f17b07d5c40421e47f8e
+  - filename: pyyaml-6.0.3-cp312-cp312-musllinux_1_2_x86_64.whl
+    sha256: 41715c910c881bc081f1e8872880d3c650acf13dfa8214bad49ed4cede7c34ea
+  - filename: pyyaml-6.0.3-cp312-cp312-win32.whl
+    sha256: 96b533f0e99f6579b3d4d4995707cf36df9100d67e0c8303a0c55b27b5f99bc5
+  - filename: pyyaml-6.0.3-cp312-cp312-win_amd64.whl
+    sha256: 5fcd34e47f6e0b794d17de1b4ff496c00986e1c83f7ab2fb8fcfe9616ff7477b
+  - filename: pyyaml-6.0.3-cp312-cp312-win_arm64.whl
+    sha256: 64386e5e707d03a7e172c0701abfb7e10f0fb753ee1d773128192742712a98fd
+  - filename: pyyaml-6.0.3-cp313-cp313-macosx_10_13_x86_64.whl
+    sha256: 8da9669d359f02c0b91ccc01cac4a67f16afec0dac22c2ad09f46bee0697eba8
+  - filename: pyyaml-6.0.3-cp313-cp313-macosx_11_0_arm64.whl
+    sha256: 2283a07e2c21a2aa78d9c4442724ec1eb15f5e42a723b99cb3d822d48f5f7ad1
+  - filename: pyyaml-6.0.3-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: ee2922902c45ae8ccada2c5b501ab86c36525b883eff4255313a253a3160861c
+  - filename: pyyaml-6.0.3-cp313-cp313-manylinux2014_s390x.manylinux_2_17_s390x.manylinux_2_28_s390x.whl
+    sha256: a33284e20b78bd4a18c8c2282d549d10bc8408a2a7ff57653c0cf0b9be0afce5
+  - filename: pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: 0f29edc409a6392443abf94b9cf89ce99889a1dd5376d94316ae5145dfedd5d6
+  - filename: pyyaml-6.0.3-cp313-cp313-musllinux_1_2_aarch64.whl
+    sha256: f7057c9a337546edc7973c0d3ba84ddcdf0daa14533c2065749c9075001090e6
+  - filename: pyyaml-6.0.3-cp313-cp313-musllinux_1_2_x86_64.whl
+    sha256: eda16858a3cab07b80edaf74336ece1f986ba330fdb8ee0d6c0d68fe82bc96be
+  - filename: pyyaml-6.0.3-cp313-cp313-win32.whl
+    sha256: d0eae10f8159e8fdad514efdc92d74fd8d682c933a6dd088030f3834bc8e6b26
+  - filename: pyyaml-6.0.3-cp313-cp313-win_amd64.whl
+    sha256: 79005a0d97d5ddabfeeea4cf676af11e647e41d81c9a7722a193022accdb6b7c
+  - filename: pyyaml-6.0.3-cp313-cp313-win_arm64.whl
+    sha256: 5498cd1645aa724a7c71c8f378eb29ebe23da2fc0d7a08071d89469bf1d2defb
+  - filename: pyyaml-6.0.3-cp314-cp314-macosx_10_13_x86_64.whl
+    sha256: 8d1fab6bb153a416f9aeb4b8763bc0f22a5586065f86f7664fc23339fc1c1fac
+  - filename: pyyaml-6.0.3-cp314-cp314-macosx_11_0_arm64.whl
+    sha256: 34d5fcd24b8445fadc33f9cf348c1047101756fd760b4dacb5c3e99755703310
+  - filename: pyyaml-6.0.3-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: 501a031947e3a9025ed4405a168e6ef5ae3126c59f90ce0cd6f2bfc477be31b7
+  - filename: pyyaml-6.0.3-cp314-cp314-manylinux2014_s390x.manylinux_2_17_s390x.manylinux_2_28_s390x.whl
+    sha256: b3bc83488de33889877a0f2543ade9f70c67d66d9ebb4ac959502e12de895788
+  - filename: pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: c458b6d084f9b935061bc36216e8a69a7e293a2f1e68bf956dcd9e6cbcd143f5
+  - filename: pyyaml-6.0.3-cp314-cp314-musllinux_1_2_aarch64.whl
+    sha256: 7c6610def4f163542a622a73fb39f534f8c101d690126992300bf3207eab9764
+  - filename: pyyaml-6.0.3-cp314-cp314-musllinux_1_2_x86_64.whl
+    sha256: 5190d403f121660ce8d1d2c1bb2ef1bd05b5f68533fc5c2ea899bd15f4399b35
+  - filename: pyyaml-6.0.3-cp314-cp314t-macosx_10_13_x86_64.whl
+    sha256: 02893d100e99e03eda1c8fd5c441d8c60103fd175728e23e431db1b589cf5ab3
+  - filename: pyyaml-6.0.3-cp314-cp314t-macosx_11_0_arm64.whl
+    sha256: c1ff362665ae507275af2853520967820d9124984e0f7466736aea23d8611fba
+  - filename: pyyaml-6.0.3-cp314-cp314t-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: 6adc77889b628398debc7b65c073bcb99c4a0237b248cacaf3fe8a557563ef6c
+  - filename: pyyaml-6.0.3-cp314-cp314t-manylinux2014_s390x.manylinux_2_17_s390x.manylinux_2_28_s390x.whl
+    sha256: a80cb027f6b349846a3bf6d73b5e95e782175e52f22108cfa17876aaeff93702
+  - filename: pyyaml-6.0.3-cp314-cp314t-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: 00c4bdeba853cc34e7dd471f16b4114f4162dc03e6b7afcc2128711f0eca823c
+  - filename: pyyaml-6.0.3-cp314-cp314t-musllinux_1_2_aarch64.whl
+    sha256: 66e1674c3ef6f541c35191caae2d429b967b99e02040f5ba928632d9a7f0f065
+  - filename: pyyaml-6.0.3-cp314-cp314t-musllinux_1_2_x86_64.whl
+    sha256: 16249ee61e95f858e83976573de0f5b2893b3677ba71c9dd36b9cf8be9ac6d65
+  - filename: pyyaml-6.0.3-cp314-cp314t-win_amd64.whl
+    sha256: 4ad1906908f2f5ae4e5a8ddfce73c320c2a1429ec52eafd27138b7f1cbe341c9
+  - filename: pyyaml-6.0.3-cp314-cp314t-win_arm64.whl
+    sha256: ebc55a14a21cb14062aa4162f906cd962b28e2e9ea38f9b4391244cd8de4ae0b
+  - filename: pyyaml-6.0.3-cp314-cp314-win_amd64.whl
+    sha256: 4a2e8cebe2ff6ab7d1050ecd59c25d4c8bd7e6f400f5f82b96557ac0abafd0ac
+  - filename: pyyaml-6.0.3-cp314-cp314-win_arm64.whl
+    sha256: 93dda82c9c22deb0a405ea4dc5f2d0cda384168e466364dec6255b293923b2f3
+  - filename: PyYAML-6.0.3-cp38-cp38-macosx_10_13_x86_64.whl
+    sha256: c2514fceb77bc5e7a2f7adfaa1feb2fb311607c9cb518dbc378688ec73d8292f
+  - filename: PyYAML-6.0.3-cp38-cp38-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: 9c57bb8c96f6d1808c030b1687b9b5fb476abaa47f0db9c0101f5e9f394e97f4
+  - filename: PyYAML-6.0.3-cp38-cp38-manylinux2014_s390x.manylinux_2_17_s390x.manylinux_2_28_s390x.whl
+    sha256: efd7b85f94a6f21e4932043973a7ba2613b059c4a000551892ac9f1d11f5baf3
+  - filename: PyYAML-6.0.3-cp38-cp38-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: 22ba7cfcad58ef3ecddc7ed1db3409af68d023b7f940da23c6c2a1890976eda6
+  - filename: PyYAML-6.0.3-cp38-cp38-musllinux_1_2_x86_64.whl
+    sha256: 6344df0d5755a2c9a276d4473ae6b90647e216ab4757f8426893b5dd2ac3f369
+  - filename: PyYAML-6.0.3-cp38-cp38-win32.whl
+    sha256: 3ff07ec89bae51176c0549bc4c63aa6202991da2d9a6129d7aef7f1407d3f295
+  - filename: PyYAML-6.0.3-cp38-cp38-win_amd64.whl
+    sha256: 5cf4e27da7e3fbed4d6c3d8e797387aaad68102272f8f9752883bc32d61cb87b
+  - filename: pyyaml-6.0.3-cp39-cp39-macosx_10_13_x86_64.whl
+    sha256: b865addae83924361678b652338317d1bd7e79b1f4596f96b96c77a5a34b34da
+  - filename: pyyaml-6.0.3-cp39-cp39-macosx_11_0_arm64.whl
+    sha256: c3355370a2c156cffb25e876646f149d5d68f5e0a3ce86a5084dd0b64a994917
+  - filename: pyyaml-6.0.3-cp39-cp39-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: 3c5677e12444c15717b902a5798264fa7909e41153cdf9ef7ad571b704a63dd9
+  - filename: pyyaml-6.0.3-cp39-cp39-manylinux2014_s390x.manylinux_2_17_s390x.manylinux_2_28_s390x.whl
+    sha256: 5ed875a24292240029e4483f9d4a4b8a1ae08843b9c54f43fcc11e404532a8a5
+  - filename: pyyaml-6.0.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: 0150219816b6a1fa26fb4699fb7daa9caf09eb1999f3b70fb6e786805e80375a
+  - filename: pyyaml-6.0.3-cp39-cp39-musllinux_1_2_aarch64.whl
+    sha256: fa160448684b4e94d80416c0fa4aac48967a969efe22931448d853ada8baf926
+  - filename: pyyaml-6.0.3-cp39-cp39-musllinux_1_2_x86_64.whl
+    sha256: 27c0abcb4a5dac13684a37f76e701e054692a9b2d3064b70f5e4eb54810553d7
+  - filename: pyyaml-6.0.3-cp39-cp39-win32.whl
+    sha256: 1ebe39cb5fc479422b83de611d14e2c0d3bb2a18bbcb01f229ab3cfbd8fee7a0
+  - filename: pyyaml-6.0.3-cp39-cp39-win_amd64.whl
+    sha256: 2e71d11abed7344e42a8849600193d15b6def118602c4c176f748e4583246007
+  status: proposed_not_installed
+  approval_ref: null
+- name: packaging
+  candidate_version: '26.3'
+  group: runtime_candidate
+  requires_python: '>=3.9'
+  license_metadata: Apache-2.0 OR BSD-2-Clause
+  metadata_artifact: artifacts/P00/20260913T075059Z/upstream/pypi/packaging.json
+  wheel_metadata:
+  - filename: packaging-26.3-py3-none-any.whl
+    sha256: d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c
+  status: proposed_not_installed
+  approval_ref: null
+- name: pytest
+  candidate_version: 9.1.1
+  group: development_candidate
+  requires_python: '>=3.10'
+  license_metadata: MIT
+  metadata_artifact: artifacts/P00/20260913T075059Z/upstream/pypi/pytest.json
+  wheel_metadata:
+  - filename: pytest-9.1.1-py3-none-any.whl
+    sha256: 37a86b45efb9a47a61a36449063e8e18d0cab3161329fc099eb21783169c4f0c
+  status: proposed_not_installed
+  approval_ref: null
+- name: pytest-cov
+  candidate_version: 7.1.0
+  group: development_candidate
+  requires_python: '>=3.9'
+  license_metadata: MIT
+  metadata_artifact: artifacts/P00/20260913T075059Z/upstream/pypi/pytest-cov.json
+  wheel_metadata:
+  - filename: pytest_cov-7.1.0-py3-none-any.whl
+    sha256: a0461110b7865f9a271aa1b51e516c9a95de9d696734a2f71e3e78f46e1d4678
+  status: proposed_not_installed
+  approval_ref: null
+- name: hypothesis
+  candidate_version: 6.168.0
+  group: development_candidate
+  requires_python: '>=3.10'
+  license_metadata: MPL-2.0
+  metadata_artifact: artifacts/P00/20260913T075059Z/upstream/pypi/hypothesis.json
+  wheel_metadata:
+  - filename: hypothesis-6.168.0-cp310-abi3-macosx_10_12_x86_64.whl
+    sha256: 47b89491ff02e3ae9b302c440457938e87b47a45b9a1d98ff5575b6910d779e2
+  - filename: hypothesis-6.168.0-cp310-abi3-macosx_11_0_arm64.whl
+    sha256: 1f4cd0ff11bd470a1a846296ed5fe55e84214194850370994fd1370fe73d3099
+  - filename: hypothesis-6.168.0-cp310-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    sha256: 732ae5d47482f99d8028cca096729625f05690a83f5e7ce31466e266155792f4
+  - filename: hypothesis-6.168.0-cp310-abi3-manylinux_2_17_armv7l.manylinux2014_armv7l.whl
+    sha256: 2085ee74ac3ab6b70e2f7ffae9b4cb74c246da2f574b2de81a0818a8a30f659f
+  - filename: hypothesis-6.168.0-cp310-abi3-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl
+    sha256: 1894782fae5d9a7bb44e6dcf848ccb09ccb5babab48d8b5c31a0a7fc025b82a1
+  - filename: hypothesis-6.168.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    sha256: ecf0ab13cef899efb816ffdd7963e0679f372520884ce06756c7642f3df94213
+  - filename: hypothesis-6.168.0-cp310-abi3-manylinux_2_31_riscv64.whl
+    sha256: 3f6dcf66270278d078bed01b401f47db4e26456cd909d8e23c6b9366a6c0b131
+  - filename: hypothesis-6.168.0-cp310-abi3-manylinux_2_5_i686.manylinux1_i686.whl
+    sha256: bfef4d46dbf1704a7b8fa3a78778651a2cb18870ca0a70da19c381646822b149
+  - filename: hypothesis-6.168.0-cp310-abi3-musllinux_1_2_aarch64.whl
+    sha256: 1d1aa5b3484e329295d88488a5ba06243909e65c2ab616513c2d36721de4ed1d
+  - filename: hypothesis-6.168.0-cp310-abi3-musllinux_1_2_armv7l.whl
+    sha256: 3bc00fd8cda04b58e37a1163e8a65389b247b4f5ee547ae37d244a4960995517
+  - filename: hypothesis-6.168.0-cp310-abi3-musllinux_1_2_ppc64le.whl
+    sha256: 990026952d5b2eca290c88f639ac639233f47e13dae338c6dfb6e4774bcab349
+  - filename: hypothesis-6.168.0-cp310-abi3-musllinux_1_2_riscv64.whl
+    sha256: a74b0945acbbd552c7c2d0a99a3b5232962b8848c8eed1829451800a9bfcf00b
+  - filename: hypothesis-6.168.0-cp310-abi3-musllinux_1_2_x86_64.whl
+    sha256: 2a380b521b5a76a9e8917d64adcf7f861a45a4360a34b1579af14c5df8eb0377
+  - filename: hypothesis-6.168.0-cp310-abi3-win32.whl
+    sha256: 2264f15a1c80329e3ad48e39c44bd5c9429b7b04c9ee62cdd72f4b10aaac9f29
+  - filename: hypothesis-6.168.0-cp310-abi3-win_amd64.whl
+    sha256: 5b54769033b84477931d2072e7133a7555e0de5c53fd5ca3bbde960762d7d31b
+  - filename: hypothesis-6.168.0-cp310-abi3-win_arm64.whl
+    sha256: 112b0900059bf9d7d6528ed729770629ab146e0d133c4143b9bd4a01dc002bcc
+  - filename: hypothesis-6.168.0-cp310-cp310-macosx_10_12_x86_64.whl
+    sha256: cb10aa59b0af45badca76911f5323f40d24fdbe00d01b7b67fef8648c99411b5
+  - filename: hypothesis-6.168.0-cp310-cp310-macosx_11_0_arm64.whl
+    sha256: e21e30b76b6d3adb87c550576132a3204f4c257ec43353f6c09b9d59bb762abc
+  - filename: hypothesis-6.168.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    sha256: 527452b43e79e6dfbf9cb69145a940547a3cd177c556698a3fc939ed2354c4b3
+  - filename: hypothesis-6.168.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    sha256: 489d5c060f49f495b64215cae627c71730cffd5ef59dc4d7f431932e6e6d2e67
+  - filename: hypothesis-6.168.0-cp310-cp310-musllinux_1_2_aarch64.whl
+    sha256: c3af200b322f710c76c2189866246cdcff2039165dd77edff1a7bf1157162fb0
+  - filename: hypothesis-6.168.0-cp310-cp310-musllinux_1_2_x86_64.whl
+    sha256: 73084b76e4a79cd0f7883ce80fc60c9f374ce7dcad8f520b39db40470ce1852f
+  - filename: hypothesis-6.168.0-cp310-cp310-win_amd64.whl
+    sha256: 8067e6b4b48e5cfdc849a1a20c9d4972b3f532b3e3edb5e2b5dfd106045a5236
+  - filename: hypothesis-6.168.0-cp311-cp311-macosx_10_12_x86_64.whl
+    sha256: 4d7d29dd63ad9fdc4aa1d65fa272449e14aaf6c6bb8451091818c2945533a43a
+  - filename: hypothesis-6.168.0-cp311-cp311-macosx_11_0_arm64.whl
+    sha256: 9a72ed7afa1f7e30488b8a5754fca0ad9755518bdb77d6f0b003cadf7437a5f9
+  - filename: hypothesis-6.168.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    sha256: fcc5bad4300a751804ce41f0e10d77f85272668160708ce39ec579bca8984843
+  - filename: hypothesis-6.168.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    sha256: 53469a1a7c4861b12c9a8622f762d7d1fd7bcf171884e1018ed5a8f063a5c063
+  - filename: hypothesis-6.168.0-cp311-cp311-musllinux_1_2_aarch64.whl
+    sha256: a9650c4882fdbdd8e90bdae602a8bfa8c6f09dc5d06afec5b9b23982e8f60a04
+  - filename: hypothesis-6.168.0-cp311-cp311-musllinux_1_2_x86_64.whl
+    sha256: 348d9b93fd4129f67f9bab94f3d70709a9372bbe0e0d22731325ce85d5eb409f
+  - filename: hypothesis-6.168.0-cp311-cp311-win_amd64.whl
+    sha256: 719b45b0512e3535a6a0077c2f7c6053b02ac0e72d60693f66f98790a33855b2
+  - filename: hypothesis-6.168.0-cp312-cp312-macosx_10_12_x86_64.whl
+    sha256: 6b750390dac4429da0cb70ab3fe758457f0cea3d9c843d48c59d0690d1189fda
+  - filename: hypothesis-6.168.0-cp312-cp312-macosx_11_0_arm64.whl
+    sha256: 8e4b2d434e0dd134f3d31ac1efc1825bf99730dfe70fec005ff66d7211836d79
+  - filename: hypothesis-6.168.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    sha256: 76d4d36ed2fd62de11382f1d608169c1ffa9a49d3b9351146d8ff87cb81a66f7
+  - filename: hypothesis-6.168.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    sha256: 5920d267f7d8cfd376672f2bde5905cdf284d47519582e41ce7c142d48ee46c4
+  - filename: hypothesis-6.168.0-cp312-cp312-musllinux_1_2_aarch64.whl
+    sha256: fb8cdf45361e259df86e19f8cd042ce2d6c7e6ad88fa631b78a4e3a83c2e572d
+  - filename: hypothesis-6.168.0-cp312-cp312-musllinux_1_2_x86_64.whl
+    sha256: 3b3ce1cce70b25a37ed1a38a53ce7204785726c675c0f41a0f83c338a7e47b3d
+  - filename: hypothesis-6.168.0-cp312-cp312-win_amd64.whl
+    sha256: f62bdabf278db9ff61df5f3203d608949f0d893d0e30cdac3f2330e67e41ae68
+  - filename: hypothesis-6.168.0-cp313-cp313-macosx_10_12_x86_64.whl
+    sha256: 7d55562bf8d41cfa18559c33f30cadf44ceac8e517509d7a022a9feace621f28
+  - filename: hypothesis-6.168.0-cp313-cp313-macosx_11_0_arm64.whl
+    sha256: 92cff497b92e2285ff6a94193fdee04aba483a4115d501c1f9a570bd103fcd20
+  - filename: hypothesis-6.168.0-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    sha256: 6ff259260015f9be3756dcd4bc11c08e007314dec6b43d9a89084c4f34f94475
+  - filename: hypothesis-6.168.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    sha256: 35f1262831b5acc74ded15f629965daffcd657f6016ee04fc9605f6eb2b334c0
+  - filename: hypothesis-6.168.0-cp313-cp313-musllinux_1_2_aarch64.whl
+    sha256: 046fe4bcfce2a2fa186ba9d96bbb62c25c2f6c2e4071f0783ed6b5cc481d0669
+  - filename: hypothesis-6.168.0-cp313-cp313-musllinux_1_2_x86_64.whl
+    sha256: 24b52a2b1c8db6e1e516f9295c8e4ef7ef63303ff24fbbc5b35f4ff71dcd732c
+  - filename: hypothesis-6.168.0-cp313-cp313-win_amd64.whl
+    sha256: ec0886fe0be9091669937989f9a662beca42ae14a4a6dab25491c2c63365f88d
+  - filename: hypothesis-6.168.0-cp314-cp314-macosx_10_12_x86_64.whl
+    sha256: e2df8afacf9261070795db36db4a394e3ccdbb663fd2d38c7a9fba0c836dcecc
+  - filename: hypothesis-6.168.0-cp314-cp314-macosx_11_0_arm64.whl
+    sha256: 9ba679f183c67adcb6f4ad93694beafb6da99fe691757f4e57b04ae77e581ba8
+  - filename: hypothesis-6.168.0-cp314-cp314-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    sha256: 9d9a8574f80fc859313aee56167d202e8625c0eedd200971130f0839f06d1c93
+  - filename: hypothesis-6.168.0-cp314-cp314-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    sha256: deb02de608268928d779aa889b0a9d67794b1cc0c54a322cf19e386be8a46ca7
+  - filename: hypothesis-6.168.0-cp314-cp314-musllinux_1_2_aarch64.whl
+    sha256: 076a2096c34448931c3cfeb2eb7a6b843a56ffdce5e4e3a025bfdf8f935666d9
+  - filename: hypothesis-6.168.0-cp314-cp314-musllinux_1_2_x86_64.whl
+    sha256: 5f099b1c8fc49ec2d9d7944e661addb97d7c38e818fb8d1f78073c43895a87f6
+  - filename: hypothesis-6.168.0-cp314-cp314-pyemscripten_2026_0_wasm32.whl
+    sha256: 93413d1b0af50a7b165d66278c529174bf2fd1773c78027735dc0b50d1d3fd27
+  - filename: hypothesis-6.168.0-cp314-cp314t-macosx_10_12_x86_64.whl
+    sha256: cd0c1dcf308e919c8ae708054d0ad61921ae87634a9aea574a9851da584cebc1
+  - filename: hypothesis-6.168.0-cp314-cp314t-macosx_11_0_arm64.whl
+    sha256: d0bdb77f976740b8cd5ec697327ea343d02d052b9916d213b5d4c65d823415cd
+  - filename: hypothesis-6.168.0-cp314-cp314t-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    sha256: 3f7486bed33225d02f6aa78a4c4ba2b6f84992a82571cdda1bf08dce41d13507
+  - filename: hypothesis-6.168.0-cp314-cp314t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    sha256: 0ba3838c4a92e0b9730d1ed7e67e4950c152ad79d0a0c7594065262db84c55c4
+  - filename: hypothesis-6.168.0-cp314-cp314t-musllinux_1_2_aarch64.whl
+    sha256: 891b2d281ede45130e7fa0a22fd65336cc77ef2f780ec3792e8de6fc274a02c8
+  - filename: hypothesis-6.168.0-cp314-cp314t-musllinux_1_2_x86_64.whl
+    sha256: e86820053afad84677f301c0b892a226be1df49790800a65668ae7cc8a1ac571
+  - filename: hypothesis-6.168.0-cp314-cp314t-win_amd64.whl
+    sha256: a4956f41ab1ec6e6ef9262a35970e9f3e2caaaa1cdafe0d413156c6934dd99d8
+  - filename: hypothesis-6.168.0-cp314-cp314-win_amd64.whl
+    sha256: db2751c27bffc8491a96d72969649089d5400115e4b7c49bf7167ebbdcc84193
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-macosx_10_12_x86_64.whl
+    sha256: 754016594fe78cef91790e0922f60d183c52f531255fbfa30dac495b813e2128
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-macosx_11_0_arm64.whl
+    sha256: 6f0dd437ec01140676192422b61f2f833b3ce6a3213da9b7e196ad6b3777e795
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    sha256: f77af7721ff35a58fa8797decd14c932c350a2548686c6e9b844db710a3a2441
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-manylinux_2_17_armv7l.manylinux2014_armv7l.whl
+    sha256: a0d28418c104d7268fdebcc09bc49f7b6569b5eb942430c6859f53ec8d4edf63
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl
+    sha256: 812a84c4cc7f7ae4fcb39a5647cc2698e6c18254f8423126425578f1dcdac782
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    sha256: 6de30e559eb151de14a5f74bceb4d97792a9315ada2a1816b5da825cd7d28edc
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-manylinux_2_31_riscv64.whl
+    sha256: 9018b20acdb061b2ef4b2fa7f558ca5db97ffea316e0a528bc003a24b2ac996e
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-manylinux_2_5_i686.manylinux1_i686.whl
+    sha256: bc935a5d5f86fd8f5af951b8fbe00307f6f7c596f82a9a27c17d974f6ab0a26c
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-musllinux_1_2_aarch64.whl
+    sha256: 45fcfa05f746e253350f55f216bcef59754f5f2b85745f1fc2bb8ba81dd517a9
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-musllinux_1_2_armv7l.whl
+    sha256: f89d8e998d3c936ffbbd1c3686c96f0378f6558aecc5967a3035a857f2bab0ad
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-musllinux_1_2_ppc64le.whl
+    sha256: d0620fa320fa66649e6bfd71e94f3f86115fffebb7e3c6dcece19d1aaff8e07f
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-musllinux_1_2_riscv64.whl
+    sha256: 4085b61e25d3dcc6c9151d4115269870aee8cdb921611ee5c989b2786449be09
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-musllinux_1_2_x86_64.whl
+    sha256: b5449a64eb37d9a4aa6ac9cd2ab0fd1a24145adf421ef1536884f73f39824887
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-win32.whl
+    sha256: 91e3de666a6c4f7543000d1710e25055d63ef3032c98bd2ab338b3087bdaa780
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-win_amd64.whl
+    sha256: 9a2079cd09919956dd388f1a1f8ea5a79f2b2437650fbeda31d8661217ffefef
+  - filename: hypothesis-6.168.0-cp315-abi3.abi3t-win_arm64.whl
+    sha256: 085c9aa246487c56a40ca89003d285cbffdbb5be4097ba6d0139f9c21003c04a
+  - filename: hypothesis-6.168.0-pp311-pypy311_pp73-macosx_10_12_x86_64.whl
+    sha256: 16864797de4b024e4c6cebd44598af932f870aad811341bc5bc24c738801ff76
+  - filename: hypothesis-6.168.0-pp311-pypy311_pp73-macosx_11_0_arm64.whl
+    sha256: 283eda952bcb1987ccba1c8b634db0e8a960e1e92e2daa7003bc2392f19cea01
+  - filename: hypothesis-6.168.0-pp311-pypy311_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    sha256: 5427a3c951080c18170486f775df6a82153882b819eca6b8e7ed77693634e5ab
+  - filename: hypothesis-6.168.0-pp311-pypy311_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    sha256: 2a838218ff1eab8d7b4bf66b96037fce0a802f61f2fa5fd4b784696cac365ce7
+  - filename: hypothesis-6.168.0-pp311-pypy311_pp73-win_amd64.whl
+    sha256: 34e3c8b66047ba92f8b8df5e427074058d92db58038f007da4bf9d14e934ad3c
+  status: proposed_not_installed
+  approval_ref: null
+- name: ruff
+  candidate_version: 0.16.7
+  group: development_candidate
+  requires_python: '>=3.7'
+  license_metadata: MIT
+  metadata_artifact: artifacts/P00/20260913T075059Z/upstream/pypi/ruff.json
+  wheel_metadata:
+  - filename: ruff-0.16.7-py3-none-linux_armv6l.whl
+    sha256: 727307773e7c7f9181d3ed3a2484186e56c1fa1874255911c74585eb2c7c19f9
+  - filename: ruff-0.16.7-py3-none-macosx_10_12_x86_64.whl
+    sha256: 9d61c258deabf58f34c67bd4bb4d939c7f2e6b5f0e59c1cdd1cf771b11cde929
+  - filename: ruff-0.16.7-py3-none-macosx_11_0_arm64.whl
+    sha256: 7ab81118df8945e0193d0240712aa4496573595b75185c3636ed825592a0f728
+  - filename: ruff-0.16.7-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    sha256: 4c196c968874fc8019da8e7163de7a1a370f111e2309b4b7dfea0fce950198d0
+  - filename: ruff-0.16.7-py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl
+    sha256: ac8c3bd0a7e10ad31e6ce51e7a99f3cb772e69aecdd6b9ea7e99b362f62a62c0
+  - filename: ruff-0.16.7-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl
+    sha256: 398d3988edde000b5c75dc1b3f584708da9bc990de069c18909142580fec1af9
+  - filename: ruff-0.16.7-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl
+    sha256: ce05b62b770a8217c4646a9c4139fca00efe8fe5d71f87df2b243ff20d4584d1
+  - filename: ruff-0.16.7-py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl
+    sha256: af1b576fddb9d9ef2ececfb5fadcd6a624b25070ed85e3cfcfe449fc3ff6a7b9
+  - filename: ruff-0.16.7-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    sha256: 9ce7f8f22df67c93ed96c717f9128eadb797144ac2bad475cf536f31d6100c55
+  - filename: ruff-0.16.7-py3-none-manylinux_2_31_riscv64.whl
+    sha256: 06d0e93d04f392996435ebd600c153f65b47d73fbec2415aa99c5ee5756b3a5f
+  - filename: ruff-0.16.7-py3-none-musllinux_1_2_aarch64.whl
+    sha256: 142151a5e7b93c1b11111337142f89dd2fbfee92161225c99a97222f22e32656
+  - filename: ruff-0.16.7-py3-none-musllinux_1_2_armv7l.whl
+    sha256: e6651f97a342d8b35d54d8991544ca22169b86dc54111cb604666940c431b750
+  - filename: ruff-0.16.7-py3-none-musllinux_1_2_i686.whl
+    sha256: ef140c6eb935fa9a84c9c607dfb2cb1b85843c192e79265b0c54f35f557ea8e5
+  - filename: ruff-0.16.7-py3-none-musllinux_1_2_x86_64.whl
+    sha256: 53e39506a730fadeee0d998ed5946f30671f0db240c6c7c73bdabbe33604bb6f
+  - filename: ruff-0.16.7-py3-none-win32.whl
+    sha256: 2ea3470fcebcbc5df2fb0c6f3b90333fa9084c534e0111c038fa4a6ab9f1c4b7
+  - filename: ruff-0.16.7-py3-none-win_amd64.whl
+    sha256: 7ac26aca826e9e21d0f1cb25b54ac660760a9fdd094d3e4df9848232be98cfc6
+  - filename: ruff-0.16.7-py3-none-win_arm64.whl
+    sha256: aab7f39e2c9df6c596216070f98eef1207b94f8516cca20c808826974971855b
+  status: proposed_not_installed
+  approval_ref: null
+- name: mypy
+  candidate_version: 2.3.1
+  group: development_candidate
+  requires_python: '>=3.10'
+  license_metadata: MIT
+  metadata_artifact: artifacts/P00/20260913T075059Z/upstream/pypi/mypy.json
+  wheel_metadata:
+  - filename: mypy-2.3.1-cp310-cp310-macosx_11_0_arm64.whl
+    sha256: 57a936373fc690c43a8cd7e7e12a35148e4ec5aa7698ad7fc0a9f918bdc5be41
+  - filename: mypy-2.3.1-cp310-cp310-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: d00d769056bde2f4e69c175071eba45cfb44fa1ed92bdfbfe64a93e0543b0cf0
+  - filename: mypy-2.3.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: 2166b29228835e1f88ff411e96639e6ca3c7fdde84b62ec211f70f86b4051167
+  - filename: mypy-2.3.1-cp310-cp310-musllinux_1_2_x86_64.whl
+    sha256: 83d36c2924df7426333abe7faf4724a7e1aab0d9fd41625e81b4683034b80c13
+  - filename: mypy-2.3.1-cp310-cp310-win_amd64.whl
+    sha256: f12fdb70459d0060dea40b29e52163a961b156106d68d57882a6a9f648983a53
+  - filename: mypy-2.3.1-cp310-cp310-win_arm64.whl
+    sha256: e099200a1b1b1223a4951f0a90cbff1b8c91b250ba599dab1f7217a628144d90
+  - filename: mypy-2.3.1-cp311-cp311-macosx_11_0_arm64.whl
+    sha256: 94f04929f1c44c35fb0061e912087edaf504acede963a4a7d00680bd089d8531
+  - filename: mypy-2.3.1-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: f5d716048611e85ca9eefb2e1baa5d73ede389b5820ded260ea27c757d667af8
+  - filename: mypy-2.3.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: b091a455111214cb5c9d54a57b9618e9a49f9fe2a42e4e1ac86e9d104ed96ce8
+  - filename: mypy-2.3.1-cp311-cp311-musllinux_1_2_x86_64.whl
+    sha256: df12e20c9efd614738c71b390007ecd0181125afc4ccafca04d78a1d2eed2c01
+  - filename: mypy-2.3.1-cp311-cp311-win_amd64.whl
+    sha256: 52eaf3a155f35cf80b40220288c861eb45f14a2340c1f6cbfbdb0feff32879d1
+  - filename: mypy-2.3.1-cp311-cp311-win_arm64.whl
+    sha256: 9b4eacbee8a69836c06eff6d0dd4e134a07c2b047755b30c08625fe214f322c6
+  - filename: mypy-2.3.1-cp312-cp312-macosx_11_0_arm64.whl
+    sha256: a32bbbb940af990d3be0b8af321c7b6815bb1b3b48142fe7459b9cc5f58959ff
+  - filename: mypy-2.3.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: ff715e45b2231a8e85de1d163d1b42791e4d7aab8f5145f85fee1b710b735aff
+  - filename: mypy-2.3.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: 858fc57d3d91fa728e33e7ad71def60fc6272694607b306cd3292db53ae39080
+  - filename: mypy-2.3.1-cp312-cp312-musllinux_1_2_x86_64.whl
+    sha256: 851833db876e7b650f93719c74b7879a08e338979c96054fdfc3bfd90a486355
+  - filename: mypy-2.3.1-cp312-cp312-win_amd64.whl
+    sha256: 4c5095a327483591c94e0c8d3ef9e50d4ab1369b541eae007c1f23bc2a41f6bb
+  - filename: mypy-2.3.1-cp312-cp312-win_arm64.whl
+    sha256: bbfe022634a2a195406bd469e888d2eaf193b02ba7e607391cd7640374aaae3b
+  - filename: mypy-2.3.1-cp313-cp313-macosx_11_0_arm64.whl
+    sha256: 114dff494000f18bd10d5d95d84b8567b26da60279ecbe838131841df20e635d
+  - filename: mypy-2.3.1-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: c8637731bb5eee3671eb2c3200827aa3564ed8a9309ecee4d1afe77e6d031bdb
+  - filename: mypy-2.3.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: 1c80fbc405ed8020f5ff3802dc18cf060197bcdd3fbdd6a26ef2fd34dfdd5226
+  - filename: mypy-2.3.1-cp313-cp313-musllinux_1_2_x86_64.whl
+    sha256: 84081f538ce27375045c02e3d7f81bd11d853400621ae245d87ce7b6c420ec74
+  - filename: mypy-2.3.1-cp313-cp313-win_amd64.whl
+    sha256: e9144ac16fde007096f9563eb2041b4433c2d705c4218edeb79e7e9d01035ee6
+  - filename: mypy-2.3.1-cp313-cp313-win_arm64.whl
+    sha256: 77ad9529e67dca28e511f5cd5671436584ce91f6d3bac159a353158187b986ac
+  - filename: mypy-2.3.1-cp314-cp314-macosx_11_0_arm64.whl
+    sha256: 192abaedf75da1bc0b1cef104927e70ec49c1ef0031cc4825c7ee10a438ed24d
+  - filename: mypy-2.3.1-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: bf678dffd16efcda2c15cbd30e9ecc0081388e29ea23687a88e686ed92638dc3
+  - filename: mypy-2.3.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: 8e036f06b41630f4c8a1d48f9ac6aa26acc65f8be089973f5519da643318f03f
+  - filename: mypy-2.3.1-cp314-cp314-musllinux_1_2_x86_64.whl
+    sha256: 71af9c8a894e862b58e92abb08e53b05a384a1e5e5d6dc7cda59126211a53d82
+  - filename: mypy-2.3.1-cp314-cp314-pyemscripten_2026_0_wasm32.whl
+    sha256: 3c80cd23d85368bdd9f37d5231dfd97d35bcbf5bf41af96ef3a9b078ad1957f9
+  - filename: mypy-2.3.1-cp314-cp314t-macosx_11_0_arm64.whl
+    sha256: e5f1c50bb05b64e2026b52867e8d21106f01313c744a2c4ecc34c90d12e8d6e2
+  - filename: mypy-2.3.1-cp314-cp314t-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: 667196b352f4cf304ded4c10f90cfc179263a1acfb3cdcfa984bdfd340d498bc
+  - filename: mypy-2.3.1-cp314-cp314t-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: b9c53e395c12cad2c6d4b67d5da7c6057638a132d85c08b73646b18f802a0045
+  - filename: mypy-2.3.1-cp314-cp314t-musllinux_1_2_x86_64.whl
+    sha256: 18162b128c3f9c703cd35f5537446900b0d21a2549aa7a95d21380d2ef643fb0
+  - filename: mypy-2.3.1-cp314-cp314t-win_amd64.whl
+    sha256: 30c0477d4aab7b7f39c8397dc877f2c96b9fe5588ec379f372c56eb63d599f63
+  - filename: mypy-2.3.1-cp314-cp314t-win_arm64.whl
+    sha256: 6941ab3619377bc3f32ca02876b07d27f216f5201604b664d3937ea0fdd23bb4
+  - filename: mypy-2.3.1-cp314-cp314-win_amd64.whl
+    sha256: 4956f34d145e145562a0a0bf367f642bbc85c04ec2baf47ae015947c3169a85d
+  - filename: mypy-2.3.1-cp314-cp314-win_arm64.whl
+    sha256: cfb12e360242d23d91f5e978d94f58ea66acf5804c4fb6f2f794a20d4cb1b595
+  - filename: mypy-2.3.1-cp315-cp315-macosx_11_0_arm64.whl
+    sha256: 6f041a6de52c9217ca125e78ba0a335cb7fd98a1c0580978e49ab2b126f70b57
+  - filename: mypy-2.3.1-cp315-cp315-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: 5159ae60f5dbc3a498af5ba8365505808ac8031bc63f9e00304ad545d40bdd9b
+  - filename: mypy-2.3.1-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: 47a8a7a0a7f6f6e63995c0ac36fa0c07b127413fdc81f0439b7f3dccafd33561
+  - filename: mypy-2.3.1-cp315-cp315-musllinux_1_2_x86_64.whl
+    sha256: 2329c0501293d4e1f33bc15d04d6304d65a1cdda967ee93a05c1e681a3923133
+  - filename: mypy-2.3.1-cp315-cp315-pyemscripten_2026_5_wasm32.whl
+    sha256: bb26deed807bdb0457cf3e3f1cd7c4a1cf9d66864eaf1b4a61e06805d4c6b1f9
+  - filename: mypy-2.3.1-cp315-cp315t-macosx_11_0_arm64.whl
+    sha256: ef0c6335cda9d807f8193d8ff6204a72bc909fa9882aacbca14f43cdb7188306
+  - filename: mypy-2.3.1-cp315-cp315t-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+    sha256: e598c8c66401d26b150872154a286e6d484cf2789c3bb28a7556806298423021
+  - filename: mypy-2.3.1-cp315-cp315t-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: eda22fd4efa9dcd39331d1dede9b5b8b8a7fd69af07592e778433da98610d29e
+  - filename: mypy-2.3.1-cp315-cp315t-musllinux_1_2_x86_64.whl
+    sha256: 2a0ba2e57847849fb0d1fcdabb32786d223095ed8bc121dfe322bcdb3d9c46bc
+  - filename: mypy-2.3.1-cp315-cp315t-win_amd64.whl
+    sha256: 3f7e865dd51f235f60a2dbcd8728a1c095f5ca28f095d48a725b84cd935735c4
+  - filename: mypy-2.3.1-cp315-cp315t-win_arm64.whl
+    sha256: 8ad80807dc3ab8ea978b1b2b6e4a657194ace1d4ef03e0e731aff1abd517da29
+  - filename: mypy-2.3.1-cp315-cp315-win_amd64.whl
+    sha256: 375d7013876a8233b2d05be185bfa09f689696cd999ce8b1cfe6acac5c80e8a3
+  - filename: mypy-2.3.1-cp315-cp315-win_arm64.whl
+    sha256: 586b3612214cceabb3c0f588c97e7d1e535393f06a60e912e994f6b3ace97523
+  - filename: mypy-2.3.1-py3-none-any.whl
+    sha256: 6ed5c7e3419083268e5c9258bd1c1ef91af44a9e89374dbcaf37b775716e72eb
+  status: proposed_not_installed
+  approval_ref: null
+- name: build
+  candidate_version: 1.6.1
+  group: development_candidate
+  requires_python: '>=3.10'
+  license_metadata: MIT
+  metadata_artifact: artifacts/P00/20260913T075059Z/upstream/pypi/build.json
+  wheel_metadata:
+  - filename: build-1.6.1-py3-none-any.whl
+    sha256: ecd351a4be9d35a9eaaba244a7687143c9c7d4aea6ac964e7e7ddab20cbcf4e7
+  status: proposed_not_installed
+  approval_ref: null

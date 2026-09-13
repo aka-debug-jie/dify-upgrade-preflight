@@ -1,0 +1,76 @@
+schema_version: '1.0'
+executable: false
+candidates:
+- id: C01
+  topic: Sandbox 持久化配置与目标运行路径
+  source_refs:
+  - S06
+  candidate_edge:
+  - 1.13.2
+  - 1.13.3
+  questions:
+  - 旧挂载配置是否存在且可读取？
+  - 新部署是否无需该修改？
+  - 目标源码实际路径与说明一致吗？
+  status: needs_pin_and_review
+- id: C02
+  topic: env 文件布局与本地定制
+  source_refs:
+  - S10
+  - S01
+  candidate_edge:
+  - 1.14.1
+  - 1.14.2
+  questions:
+  - 源目标固定文件布局实际差异是什么？
+  - 未复制示例文件是否本来允许？
+  - 原生 Compose 如何处理缺失可选文件？
+  status: needs_pin_and_review
+- id: C03
+  topic: bundled 向量库升级边界
+  source_refs:
+  - S05
+  - S11
+  - S12
+  candidate_edge:
+  - 1.17.0
+  - 1.17.1
+  questions:
+  - 固定 release 是否确认对应镜像版本？
+  - 厂商实际升级路径要求是什么？
+  - external/新部署/已有数据/未知数据如何区别？
+  status: needs_pin_and_review
+- id: C04
+  topic: 旧模型类型迁移的人工或自动生命周期
+  source_refs:
+  - S05
+  - S07
+  - S11
+  candidate_edge: null
+  questions:
+  - 具体目标源码是否自动运行？
+  - 需要什么历史状态才能确定适用？
+  - 是否存在缓存列表和单页文本冲突？
+  status: needs_pin_and_review
+- id: C05
+  topic: 服务间认证默认值与对应关系
+  source_refs:
+  - S07
+  candidate_edge: null
+  questions:
+  - 哪些组件/配置画像需要此检查？
+  - 能否只导出安全的布尔关系？
+  - 默认弱值属于升级 blocker 还是部署 warning？
+  status: needs_pin_and_review
+- id: C06
+  topic: 目标配置中的引用关系和本地漂移
+  source_refs:
+  - S01
+  - S02
+  - S04
+  candidate_edge: null
+  questions:
+  - 有无实际目标 D，还是只有上游基线 C？
+  - 该引用是否允许指向外部服务？
+  - 差异的严重级别能否由真实证据确定？
+  status: needs_pin_and_review

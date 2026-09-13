@@ -1,0 +1,294 @@
+{
+  "schema_version": "1.0",
+  "synthetic": true,
+  "cases": [
+    {
+      "fatal_error": false,
+      "supported": false,
+      "failed_blocker": false,
+      "required_unknown": false,
+      "has_warning": false,
+      "expected_verdict": "UNSUPPORTED",
+      "expected_exit_code": 4
+    },
+    {
+      "fatal_error": false,
+      "supported": false,
+      "failed_blocker": false,
+      "required_unknown": false,
+      "has_warning": true,
+      "expected_verdict": "UNSUPPORTED",
+      "expected_exit_code": 4
+    },
+    {
+      "fatal_error": false,
+      "supported": false,
+      "failed_blocker": false,
+      "required_unknown": true,
+      "has_warning": false,
+      "expected_verdict": "UNSUPPORTED",
+      "expected_exit_code": 4
+    },
+    {
+      "fatal_error": false,
+      "supported": false,
+      "failed_blocker": false,
+      "required_unknown": true,
+      "has_warning": true,
+      "expected_verdict": "UNSUPPORTED",
+      "expected_exit_code": 4
+    },
+    {
+      "fatal_error": false,
+      "supported": false,
+      "failed_blocker": true,
+      "required_unknown": false,
+      "has_warning": false,
+      "expected_verdict": "UNSUPPORTED",
+      "expected_exit_code": 4
+    },
+    {
+      "fatal_error": false,
+      "supported": false,
+      "failed_blocker": true,
+      "required_unknown": false,
+      "has_warning": true,
+      "expected_verdict": "UNSUPPORTED",
+      "expected_exit_code": 4
+    },
+    {
+      "fatal_error": false,
+      "supported": false,
+      "failed_blocker": true,
+      "required_unknown": true,
+      "has_warning": false,
+      "expected_verdict": "UNSUPPORTED",
+      "expected_exit_code": 4
+    },
+    {
+      "fatal_error": false,
+      "supported": false,
+      "failed_blocker": true,
+      "required_unknown": true,
+      "has_warning": true,
+      "expected_verdict": "UNSUPPORTED",
+      "expected_exit_code": 4
+    },
+    {
+      "fatal_error": false,
+      "supported": true,
+      "failed_blocker": false,
+      "required_unknown": false,
+      "has_warning": false,
+      "expected_verdict": "NO_KNOWN_BLOCKERS",
+      "expected_exit_code": 0
+    },
+    {
+      "fatal_error": false,
+      "supported": true,
+      "failed_blocker": false,
+      "required_unknown": false,
+      "has_warning": true,
+      "expected_verdict": "NO_KNOWN_BLOCKERS",
+      "expected_exit_code": 1
+    },
+    {
+      "fatal_error": false,
+      "supported": true,
+      "failed_blocker": false,
+      "required_unknown": true,
+      "has_warning": false,
+      "expected_verdict": "INCOMPLETE",
+      "expected_exit_code": 3
+    },
+    {
+      "fatal_error": false,
+      "supported": true,
+      "failed_blocker": false,
+      "required_unknown": true,
+      "has_warning": true,
+      "expected_verdict": "INCOMPLETE",
+      "expected_exit_code": 3
+    },
+    {
+      "fatal_error": false,
+      "supported": true,
+      "failed_blocker": true,
+      "required_unknown": false,
+      "has_warning": false,
+      "expected_verdict": "BLOCKED",
+      "expected_exit_code": 2
+    },
+    {
+      "fatal_error": false,
+      "supported": true,
+      "failed_blocker": true,
+      "required_unknown": false,
+      "has_warning": true,
+      "expected_verdict": "BLOCKED",
+      "expected_exit_code": 2
+    },
+    {
+      "fatal_error": false,
+      "supported": true,
+      "failed_blocker": true,
+      "required_unknown": true,
+      "has_warning": false,
+      "expected_verdict": "BLOCKED",
+      "expected_exit_code": 2
+    },
+    {
+      "fatal_error": false,
+      "supported": true,
+      "failed_blocker": true,
+      "required_unknown": true,
+      "has_warning": true,
+      "expected_verdict": "BLOCKED",
+      "expected_exit_code": 2
+    },
+    {
+      "fatal_error": true,
+      "supported": false,
+      "failed_blocker": false,
+      "required_unknown": false,
+      "has_warning": false,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": false,
+      "failed_blocker": false,
+      "required_unknown": false,
+      "has_warning": true,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": false,
+      "failed_blocker": false,
+      "required_unknown": true,
+      "has_warning": false,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": false,
+      "failed_blocker": false,
+      "required_unknown": true,
+      "has_warning": true,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": false,
+      "failed_blocker": true,
+      "required_unknown": false,
+      "has_warning": false,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": false,
+      "failed_blocker": true,
+      "required_unknown": false,
+      "has_warning": true,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": false,
+      "failed_blocker": true,
+      "required_unknown": true,
+      "has_warning": false,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": false,
+      "failed_blocker": true,
+      "required_unknown": true,
+      "has_warning": true,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": true,
+      "failed_blocker": false,
+      "required_unknown": false,
+      "has_warning": false,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": true,
+      "failed_blocker": false,
+      "required_unknown": false,
+      "has_warning": true,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": true,
+      "failed_blocker": false,
+      "required_unknown": true,
+      "has_warning": false,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": true,
+      "failed_blocker": false,
+      "required_unknown": true,
+      "has_warning": true,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": true,
+      "failed_blocker": true,
+      "required_unknown": false,
+      "has_warning": false,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": true,
+      "failed_blocker": true,
+      "required_unknown": false,
+      "has_warning": true,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": true,
+      "failed_blocker": true,
+      "required_unknown": true,
+      "has_warning": false,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    },
+    {
+      "fatal_error": true,
+      "supported": true,
+      "failed_blocker": true,
+      "required_unknown": true,
+      "has_warning": true,
+      "expected_verdict": "ERROR",
+      "expected_exit_code": 5
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+schema_version: '1.0'
+id: SYN-RULE-001
+revision: 1
+synthetic: true
+status: candidate
+title: Synthetic unresolved prerequisite — not a Dify compatibility rule
+scope: static_upgrade_plan
+support_edge_ids:
+- SYN-EDGE-001
+applies:
+  fact: vector.ownership
+  op: eq
+  value: bundled
+assertion:
+  fact: demo.condition_resolved
+  op: eq
+  value: true
+severity: blocker
+evidence_refs:
+- synthetic:SYN-SOURCE-001
+review_ref: null
+supersedes: []
+remediation:
+  phase: manual_review
+  summary: 'Demo only: change synthetic fact to test TRUE/FALSE/UNKNOWN behavior;
+    do not run production commands.'
+  docs_refs:
+  - synthetic:SYN-SOURCE-001
+  executable: false

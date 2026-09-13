@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "kind": "deployment_snapshot",
+  "synthetic": true,
+  "snapshot_id": "SYN-DEPLOYMENT-001",
+  "capture": {
+    "mode": "synthetic",
+    "collector_version": "0.0.0-demo",
+    "compose_version": null,
+    "captured_at": "2026-09-13T00:00:00Z"
+  },
+  "facts": {
+    "dify.declared_version": {
+      "status": "known",
+      "value": "0.0.1",
+      "origin": "synthetic",
+      "source_ref": "synthetic:config",
+      "reason": null
+    },
+    "dify.observed_version": {
+      "status": "unknown",
+      "value": null,
+      "origin": "synthetic",
+      "source_ref": "synthetic:unobserved",
+      "reason": "No runtime observation in static demo"
+    },
+    "vector.ownership": {
+      "status": "known",
+      "value": "bundled",
+      "origin": "synthetic",
+      "source_ref": "synthetic:config",
+      "reason": null
+    },
+    "demo.condition_resolved": {
+      "status": "known",
+      "value": false,
+      "origin": "synthetic",
+      "source_ref": "synthetic:scenario",
+      "reason": null
+    }
+  },
+  "public_config": {
+    "services.api.image_tag": "0.0.1"
+  },
+  "private_relations": {},
+  "gaps": []
+}

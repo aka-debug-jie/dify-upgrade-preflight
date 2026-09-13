@@ -1,0 +1,78 @@
+schema_version: '1.0'
+status: pending_owner_adjudication
+executable: false
+purpose: P05_recovery_proposal_not_rule_dsl
+candidate_edges:
+- id: P05-EDGE-A
+  source_version: 1.16.0
+  source_commit: 5c6372d2f76d240265b92fd27c16bc772ffcb107
+  target_version: 1.16.1
+  target_commit: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+  approval_ref: null
+- id: P05-EDGE-B
+  source_version: 1.17.0
+  source_commit: 09a855dcef24c0edc7431c46c0cfaa494481daf5
+  target_version: 1.17.1
+  target_commit: 8387590ace4a094de812b7847fc6a4c3a27cd52b
+  approval_ref: null
+root_causes:
+- id: P05-R01
+  candidate_edge_id: P05-EDGE-A
+  title: Agent API authentication uses the published development default
+  independence_claim: Credential strength is independent from whether peer tokens match.
+  source_refs: [P05.S004, P05.S005, P05.S006]
+  required_facts: [agent_backend.declared, private.agent_api_token_is_published_default]
+  collection_gap: The collector does not yet emit the approved boolean default relation.
+  proposed_severity: blocker
+  proposed_phase: before_upgrade
+  approval_ref: null
+- id: P05-R02
+  candidate_edge_id: P05-EDGE-A
+  title: API and agent backend authentication tokens do not match
+  independence_claim: Peer mismatch causes authentication failure even when both values are non-default.
+  source_refs: [P05.S004, P05.S005]
+  required_facts: [agent_backend.declared, private.agent_api_tokens_same_as_peer, agent_auth_wiring_complete]
+  collection_gap: The collector does not yet emit peer equality or target wiring facts.
+  proposed_severity: blocker
+  proposed_phase: before_upgrade
+  approval_ref: null
+- id: P05-R03
+  candidate_edge_id: P05-EDGE-A
+  title: Local agent sandbox bypasses the target proxy isolation topology
+  independence_claim: Network exposure remains unsafe even when authentication tokens are correct.
+  source_refs: [P05.S002, P05.S004, P05.S005]
+  required_facts: [agent_runtime.backend, agent_sandbox.target_network_topology]
+  collection_gap: The collector does not yet retain service-network and proxy topology.
+  proposed_severity: blocker
+  proposed_phase: before_upgrade
+  approval_ref: null
+- id: P05-R04
+  candidate_edge_id: P05-EDGE-A
+  title: External plugin installation cannot invalidate enabled provider cache
+  independence_claim: Stale provider discovery is separate from agent authentication and sandbox networking.
+  source_refs: [P05.S004, P05.S013, P05.S014]
+  required_facts: [plugins.installation_ownership, plugins.provider_cache_enabled, plugins.cache_invalidation_available]
+  collection_gap: External installation ownership and invalidation capability need explicit attestation.
+  proposed_severity: warning
+  proposed_phase: manual_review
+  approval_ref: null
+- id: P05-R05
+  candidate_edge_id: P05-EDGE-A
+  title: Legacy model-type migration is required but not attested complete
+  independence_claim: Historical model records are unrelated to current Compose authentication or networks.
+  source_refs: [P05.S004]
+  required_facts: [history.upgraded_from_before_1_15, migration.legacy_model_types_completed]
+  collection_gap: Both facts require explicit user attestation; Compose cannot prove database history.
+  proposed_severity: warning
+  proposed_phase: after_upgrade
+  approval_ref: null
+- id: P05-R06
+  candidate_edge_id: P05-EDGE-B
+  title: Existing bundled Weaviate data would cross minor versions in one restart
+  independence_claim: Persistent vector-server migration is unrelated to the 1.16 agent and plugin changes.
+  source_refs: [P05.S008, P05.S010, P05.S011, P05.S012]
+  required_facts: [vector.ownership, vector.persisted_data, vector.staged_upgrade_completed]
+  collection_gap: Persisted data and staged completion remain unknown without explicit attestation.
+  proposed_severity: blocker
+  proposed_phase: before_upgrade
+  approval_ref: null
