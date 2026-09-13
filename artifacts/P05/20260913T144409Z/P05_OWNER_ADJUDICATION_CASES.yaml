@@ -1,0 +1,391 @@
+schema_version: '1.0'
+status: pending_owner_adjudication
+purpose: P05_owner_review_copy_not_executable_not_product_fixture
+independently_adjudicated: false
+cases:
+- case_id: P05-R01-01
+  root_cause_id: P05-R01
+  scenario: Agent backend declared and token equals the published development default.
+  proposed_expected:
+    result: failed
+    verdict_effect: blocked
+  evidence_basis: &id001
+  - P05.S004
+  - P05.S005
+  - P05.S006
+  reasoning: Candidate-only scenario for P05-R01. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005,
+    P05.S006; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R01-02
+  root_cause_id: P05-R01
+  scenario: Agent backend declared and token is explicitly non-default.
+  proposed_expected:
+    result: passed
+    verdict_effect: none
+  evidence_basis: *id001
+  reasoning: Candidate-only scenario for P05-R01. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005,
+    P05.S006; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R01-03
+  root_cause_id: P05-R01
+  scenario: Agent backend declared but default relation was not captured.
+  proposed_expected:
+    result: unknown
+    verdict_effect: incomplete
+  evidence_basis: *id001
+  reasoning: Candidate-only scenario for P05-R01. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005,
+    P05.S006; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R01-04
+  root_cause_id: P05-R01
+  scenario: Target deployment does not declare agent backend.
+  proposed_expected:
+    result: not_applicable
+    verdict_effect: none
+  evidence_basis: *id001
+  reasoning: Candidate-only scenario for P05-R01. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005,
+    P05.S006; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R01-05
+  root_cause_id: P05-R01
+  scenario: Same token facts presented for a different source-target edge.
+  proposed_expected:
+    result: not_evaluated
+    verdict_effect: unsupported_edge
+  evidence_basis: *id001
+  reasoning: Candidate-only scenario for P05-R01. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005,
+    P05.S006; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R02-01
+  root_cause_id: P05-R02
+  scenario: API and agent backend tokens are both non-default but differ.
+  proposed_expected:
+    result: failed
+    verdict_effect: blocked
+  evidence_basis: &id002
+  - P05.S004
+  - P05.S005
+  reasoning: Candidate-only scenario for P05-R02. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005;
+    it is not product test truth.
+  owner_decision: null
+- case_id: P05-R02-02
+  root_cause_id: P05-R02
+  scenario: API and agent backend tokens match and target wiring is complete.
+  proposed_expected:
+    result: passed
+    verdict_effect: none
+  evidence_basis: *id002
+  reasoning: Candidate-only scenario for P05-R02. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005;
+    it is not product test truth.
+  owner_decision: null
+- case_id: P05-R02-03
+  root_cause_id: P05-R02
+  scenario: One peer token is unavailable after redaction.
+  proposed_expected:
+    result: unknown
+    verdict_effect: incomplete
+  evidence_basis: *id002
+  reasoning: Candidate-only scenario for P05-R02. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005;
+    it is not product test truth.
+  owner_decision: null
+- case_id: P05-R02-04
+  root_cause_id: P05-R02
+  scenario: Agent backend is absent from the target deployment.
+  proposed_expected:
+    result: not_applicable
+    verdict_effect: none
+  evidence_basis: *id002
+  reasoning: Candidate-only scenario for P05-R02. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005;
+    it is not product test truth.
+  owner_decision: null
+- case_id: P05-R02-05
+  root_cause_id: P05-R02
+  scenario: Tokens match but a customized API service does not wire the peer token.
+  proposed_expected:
+    result: failed
+    verdict_effect: blocked
+  evidence_basis: *id002
+  reasoning: Candidate-only scenario for P05-R02. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005;
+    it is not product test truth.
+  owner_decision: null
+- case_id: P05-R02-06
+  root_cause_id: P05-R02
+  scenario: API token matches agent backend but worker token differs.
+  proposed_expected:
+    result: failed
+    verdict_effect: blocked
+  evidence_basis: *id002
+  reasoning: Candidate-only scenario for P05-R02. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005;
+    it is not product test truth.
+  owner_decision: null
+- case_id: P05-R02-07
+  root_cause_id: P05-R02
+  scenario: Agent backend is declared but one required peer token is explicitly empty.
+  proposed_expected:
+    result: unknown
+    verdict_effect: incomplete
+  evidence_basis: *id002
+  reasoning: Candidate-only scenario for P05-R02. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S005;
+    it is not product test truth.
+  owner_decision: null
+- case_id: P05-R03-01
+  root_cause_id: P05-R03
+  scenario: Local sandbox remains on the default network without the dedicated proxy.
+  proposed_expected:
+    result: failed
+    verdict_effect: blocked
+  evidence_basis: &id003
+  - P05.S002
+  - P05.S004
+  - P05.S005
+  reasoning: Candidate-only scenario for P05-R03. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S002, P05.S004,
+    P05.S005; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R03-02
+  root_cause_id: P05-R03
+  scenario: Local sandbox uses both target internal networks and the dedicated proxy.
+  proposed_expected:
+    result: passed
+    verdict_effect: none
+  evidence_basis: *id003
+  reasoning: Candidate-only scenario for P05-R03. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S002, P05.S004,
+    P05.S005; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R03-03
+  root_cause_id: P05-R03
+  scenario: Agent functionality is disabled and agent_backend plus local_sandbox are
+    omitted.
+  proposed_expected:
+    result: not_applicable
+    verdict_effect: none
+  evidence_basis: *id003
+  reasoning: Candidate-only scenario for P05-R03. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S002, P05.S004,
+    P05.S005; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R03-04
+  root_cause_id: P05-R03
+  scenario: A custom network driver prevents safe topology normalization.
+  proposed_expected:
+    result: unknown
+    verdict_effect: incomplete
+  evidence_basis: *id003
+  reasoning: Candidate-only scenario for P05-R03. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S002, P05.S004,
+    P05.S005; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R03-05
+  root_cause_id: P05-R03
+  scenario: Networks are present but agent_ssrf_proxy service is missing.
+  proposed_expected:
+    result: failed
+    verdict_effect: blocked
+  evidence_basis: *id003
+  reasoning: Candidate-only scenario for P05-R03. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S002, P05.S004,
+    P05.S005; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R04-01
+  root_cause_id: P05-R04
+  scenario: Plugins are installed externally, provider cache is enabled, and invalidation
+    is unavailable.
+  proposed_expected:
+    result: failed
+    verdict_effect: warning
+  evidence_basis: &id004
+  - P05.S004
+  - P05.S013
+  - P05.S014
+  reasoning: Candidate-only scenario for P05-R04. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S013,
+    P05.S014; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R04-02
+  root_cause_id: P05-R04
+  scenario: Plugins are installed externally and provider cache is disabled.
+  proposed_expected:
+    result: passed
+    verdict_effect: none
+  evidence_basis: *id004
+  reasoning: Candidate-only scenario for P05-R04. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S013,
+    P05.S014; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R04-03
+  root_cause_id: P05-R04
+  scenario: Dify manages plugin installation and cache invalidation.
+  proposed_expected:
+    result: not_applicable
+    verdict_effect: none
+  evidence_basis: *id004
+  reasoning: Candidate-only scenario for P05-R04. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S013,
+    P05.S014; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R04-04
+  root_cause_id: P05-R04
+  scenario: External plugin ownership is known but invalidation capability is unknown.
+  proposed_expected:
+    result: unknown
+    verdict_effect: incomplete
+  evidence_basis: *id004
+  reasoning: Candidate-only scenario for P05-R04. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S013,
+    P05.S014; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R04-05
+  root_cause_id: P05-R04
+  scenario: External installer provides a verified invalidation mechanism while cache
+    stays enabled.
+  proposed_expected:
+    result: passed
+    verdict_effect: none
+  evidence_basis: *id004
+  reasoning: Candidate-only scenario for P05-R04. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004, P05.S013,
+    P05.S014; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R05-01
+  root_cause_id: P05-R05
+  scenario: Deployment history predates 1.15 and the legacy migration is attested
+    incomplete.
+  proposed_expected:
+    result: failed
+    verdict_effect: warning
+  evidence_basis: &id005
+  - P05.S004
+  reasoning: Candidate-only scenario for P05-R05. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004; it is not
+    product test truth.
+  owner_decision: null
+- case_id: P05-R05-02
+  root_cause_id: P05-R05
+  scenario: Deployment history predates 1.15 and migration completion is attested.
+  proposed_expected:
+    result: passed
+    verdict_effect: none
+  evidence_basis: *id005
+  reasoning: Candidate-only scenario for P05-R05. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004; it is not
+    product test truth.
+  owner_decision: null
+- case_id: P05-R05-03
+  root_cause_id: P05-R05
+  scenario: Fresh deployment began at 1.15 or later.
+  proposed_expected:
+    result: not_applicable
+    verdict_effect: none
+  evidence_basis: *id005
+  reasoning: Candidate-only scenario for P05-R05. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004; it is not
+    product test truth.
+  owner_decision: null
+- case_id: P05-R05-04
+  root_cause_id: P05-R05
+  scenario: Earliest deployment version is unknown.
+  proposed_expected:
+    result: unknown
+    verdict_effect: incomplete
+  evidence_basis: *id005
+  reasoning: Candidate-only scenario for P05-R05. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004; it is not
+    product test truth.
+  owner_decision: null
+- case_id: P05-R05-05
+  root_cause_id: P05-R05
+  scenario: Pre-1.15 history is attested but migration completion is unknown.
+  proposed_expected:
+    result: unknown
+    verdict_effect: incomplete
+  evidence_basis: *id005
+  reasoning: Candidate-only scenario for P05-R05. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004; it is not
+    product test truth.
+  owner_decision: null
+- case_id: P05-R05-06
+  root_cause_id: P05-R05
+  scenario: Target is 1.17.1, where the manual legacy-model migration is not evaluated
+    because the target migration is automatic.
+  proposed_expected:
+    result: not_evaluated
+    verdict_effect: unsupported_edge
+  evidence_basis: *id005
+  reasoning: Candidate-only scenario for P05-R05. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S004; it is not
+    product test truth.
+  owner_decision: null
+- case_id: P05-R06-01
+  root_cause_id: P05-R06
+  scenario: Bundled Weaviate has existing data and staged-upgrade completion is explicitly
+    attested false.
+  proposed_expected:
+    result: failed
+    verdict_effect: blocked
+  evidence_basis: &id006
+  - P05.S008
+  - P05.S010
+  - P05.S011
+  - P05.S012
+  reasoning: Candidate-only scenario for P05-R06. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S008, P05.S010,
+    P05.S011, P05.S012; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R06-02
+  root_cause_id: P05-R06
+  scenario: Bundled persisted Weaviate completed every approved staged upgrade.
+  proposed_expected:
+    result: passed
+    verdict_effect: none
+  evidence_basis: *id006
+  reasoning: Candidate-only scenario for P05-R06. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S008, P05.S010,
+    P05.S011, P05.S012; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R06-03
+  root_cause_id: P05-R06
+  scenario: Fresh bundled Weaviate deployment has no existing volume data.
+  proposed_expected:
+    result: not_applicable
+    verdict_effect: none
+  evidence_basis: *id006
+  reasoning: Candidate-only scenario for P05-R06. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S008, P05.S010,
+    P05.S011, P05.S012; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R06-04
+  root_cause_id: P05-R06
+  scenario: Vector store is external Weaviate or another external backend.
+  proposed_expected:
+    result: not_applicable
+    verdict_effect: none
+  evidence_basis: *id006
+  reasoning: Candidate-only scenario for P05-R06. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S008, P05.S010,
+    P05.S011, P05.S012; it is not product test truth.
+  owner_decision: null
+- case_id: P05-R06-05
+  root_cause_id: P05-R06
+  scenario: Bundled ownership is known but persisted-data or staged-completion evidence
+    is unknown.
+  proposed_expected:
+    result: unknown
+    verdict_effect: incomplete
+  evidence_basis: *id006
+  reasoning: Candidate-only scenario for P05-R06. It is derived from the proposed
+    root condition and must be independently reviewed against P05.S008, P05.S010,
+    P05.S011, P05.S012; it is not product test truth.
+  owner_decision: null
