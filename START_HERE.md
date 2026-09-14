@@ -16,7 +16,7 @@
 
 1. 将压缩包解压到一个**新的开发目录**。不要解压进现有生产 Dify 目录，不覆盖已有 `AGENTS.md`。
 2. 在 Codex 中打开这个开发目录，把根目录 `CODEX_START_PROMPT.md` 全文作为第一条任务。
-3. 先读取 `roadmap.yaml`。当前 P00–P04 已完成；P05 停在 `blocked_review`，approved catalog 已建立但仍需最终阶段验收，不能直接开始后续阶段。
+3. 先读取 `roadmap.yaml`。当前 P00–P04 已完成；P05 为 `ready_for_review`，approved catalog 已建立并等待 owner stage acceptance，不能直接开始后续阶段。
 4. 你审阅后明确批准当前阶段。下一轮发送对应的 `prompts/Pxx_*.md`。每次只推进一个阶段，阶段完成后停在 `ready_for_review`。
 5. 换会话使用 `prompts/RESUME.md`。存在错误、安全事件或来源冲突时使用专用提示词，不重写整个项目。
 

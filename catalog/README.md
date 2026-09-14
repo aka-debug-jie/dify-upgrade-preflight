@@ -1,7 +1,7 @@
 # Catalog 状态
 
 当前有两条 owner 审批的 exact support edge 与六条 approved rule，范围以
-`support-matrix.yaml` 为准，并由 `approval-manifest.yaml` 绑定。P05 仍待最终阶段验收。
+`support-matrix.yaml` 为准，并由 `approval-manifest.yaml` 绑定。P05 为 `ready_for_review`，等待 owner stage acceptance。
 
 candidates.yaml 不是 rule DSL，不能被 evaluator 加载。它用于 P00 选题/核验。
 

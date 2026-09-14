@@ -2,7 +2,7 @@ schema_version: '1.0'
 project: dify-upgrade-preflight
 plan_version: 0.1.0
 current_phase: P05
-updated_at: '2026-09-14T08:50:00Z'
+updated_at: '2026-09-14T09:15:00Z'
 product_implementation_started: true
 default_authority:
   production_access: false
@@ -212,7 +212,7 @@ phases:
   - 不能达到有效检测目标就申请缩范围或停止，不堆泛化warning。
   - 两条批准边和真实规则须有owner审阅，阶段必须停在规则审核门。
   - 当前版本与历史迁移、bundled与external、新部署与持久数据被区分。
-  status: blocked_review
+  status: ready_for_review
   approval_ref: null
   artifacts:
   - artifacts/P05/20260913T113500Z/RULE_REVIEW_SET.md
@@ -279,6 +279,13 @@ phases:
   - artifacts/P05/20260914T085000Z/VALIDATION.md
   - artifacts/P05/20260914T085000Z/HANDOFF.md
   - artifacts/P05/20260914T085000Z/REVIEW_BUNDLE.sha256
+  - artifacts/P05/20260914T091500Z/P05_APPROVED_CATALOG_AUDIT.md
+  - artifacts/P05/20260914T091500Z/P05_PUBLIC_CLONE_VALIDATION.md
+  - artifacts/P05/20260914T091500Z/P05_FINAL_ACCEPTANCE_CHECKLIST.md
+  - artifacts/P05/20260914T091500Z/PUBLIC_STATUS_CONSISTENCY.md
+  - artifacts/P05/20260914T091500Z/VALIDATION.md
+  - artifacts/P05/20260914T091500Z/HANDOFF.md
+  - artifacts/P05/20260914T091500Z/REVIEW_BUNDLE.sha256
   tasks:
   - id: P05.T1
     title: 逐项裁决根因

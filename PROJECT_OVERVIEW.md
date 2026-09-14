@@ -24,7 +24,7 @@ Codex实现和测试，整理证据；你批准规则/范围/风险和发布。r
 
 ## 下一步怎么做
 
-当前实现已完成 P00–P04；P05 已建立 owner 审批的两条 exact edge 和六条 catalog rule，但仍停在 `blocked_review` 等待最终阶段验收。继续前先读取 `roadmap.yaml` 和 `prompts/RESUME.md`，只在取得新的阶段授权后推进；不能将 candidate 材料或范围外版本当作已批准能力。
+当前实现已完成 P00–P04；P05 已建立 owner 审批的两条 exact edge 和六条 catalog rule，并为 `ready_for_review`，等待 owner stage acceptance。继续前先读取 `roadmap.yaml` 和 `prompts/RESUME.md`，只在取得新的阶段授权后推进；不能将 candidate 材料或范围外版本当作已批准能力。
 
 ## 当前状态
 
