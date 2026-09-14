@@ -1,6 +1,6 @@
 # 支持矩阵与范围声明
 
-机器真相：`catalog/support-matrix.yaml`。当前 owner 审批的 exact edge 为 `1.16.0 → 1.16.1` 与 `1.13.1 → 1.13.2`，并由 `catalog/approval-manifest.yaml` 绑定。P05 为 `ready_for_review`，等待 owner stage acceptance；尚未完成独立真实升级重演或真实维护者反馈，不能声称 production-grade 或升级安全保证。
+机器真相：`catalog/support-matrix.yaml`。当前 owner 审批的 exact edge 为 `1.16.0 → 1.16.1` 与 `1.13.1 → 1.13.2`，并由 `catalog/approval-manifest.yaml` 绑定。P00–P08 已完成，P09.T1 正在准备本地候选。P08 的独立实验 beta 证据只覆盖 `1.16.0 → 1.16.1` 的核心服务范围；尚未完成真实维护者反馈，不能声称 production-grade 或升级安全保证。
 
 每条批准边必须精确指定：source release、target release、source/target commit、deployment profile、Compose 解析器版本、scope、所需 facts、规则集合、测试案例、审批。
 

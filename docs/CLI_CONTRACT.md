@@ -1,6 +1,6 @@
-# CLI 契约（未来产品接口）
+# CLI 契约
 
-以下命令是实现目标，目前启动包中没有该 CLI。正式文档必须随已实现状态更新，不预先声称可安装。
+`dify-preflight` 已实现为本地、离线、只读 CLI。它只读取调用者指定的输入和本地 owner-approved catalog；不会连接 Docker daemon、数据库或网络。当前是 beta，`NO_KNOWN_BLOCKERS` 不能作为升级安全保证。
 
 ## 1. 命令面
 
@@ -8,16 +8,16 @@
 dify-preflight --help
 dify-preflight demo --case blocked --format text
 dify-preflight snapshot --project-dir ./dify/docker \
-  -f docker-compose.yaml --env-file .env --catalog ./catalog/approved \
+  -f docker-compose.yaml --env-file .env --catalog ./catalog \
   --output ./reports/deployment.json
 dify-preflight check --snapshot ./reports/deployment.json \
-  --from 1.17.0 --to 1.17.1 --catalog ./catalog/approved --format json
+  --from 1.16.0 --to 1.16.1 --catalog ./catalog --format json
 dify-preflight check --snapshot ./reports/deployment.json \
-  --from 1.17.0 --to 1.17.1 --catalog ./catalog/approved \
+  --from 1.16.0 --to 1.16.1 --catalog ./catalog \
   --proposed-snapshot ./reports/proposed.json --format markdown
 ```
 
-版本数字仅展示接口，当前真实支持矩阵为空，执行这些版本并不应得到支持结论。路径必须由用户调整为实际存在且明确授权的目录。
+示例版本对应当前 matrix 中的一条 approved exact edge。当前仅支持 `catalog/support-matrix.yaml` 中的两条 exact edge；范围外版本返回 `UNSUPPORTED`。路径必须由用户调整为实际存在且明确授权的目录。
 
 `snapshot` 明确授权读取提供的路径并调用受限解析器；`check` 绝不访问 Docker、数据库和网络。
 `demo` 只使用包内合成数据，始终标记 synthetic=true、DEMO，不得拿来证明真实兼容性。

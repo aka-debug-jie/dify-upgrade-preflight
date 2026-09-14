@@ -4,9 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dify-upgrade-preflight"
-version = "0.0.0"
-description = "Synthetic-only walking skeleton for Dify Upgrade Preflight"
+version = "0.1.0b0"
+description = "Offline, read-only, evidence-driven Dify upgrade preflight tool"
 requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = ["PyYAML==6.0.3"]
 
 [project.optional-dependencies]

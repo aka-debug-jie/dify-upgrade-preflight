@@ -1,5 +1,161 @@
 schema_version: '1.0'
 approvals:
+- id: APR-P09-PUBLIC-BETA-20260915-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T16:53:00Z'
+  message_ref: user_message_2026-09-15_owner_delegated_P09_public_beta_decision
+  objects:
+  - path: artifacts/P09/20260914T165300Z/P09_T2_AUTHORIZATION.md
+    sha256: d471b6d9f25d876eed2d263e0d47ee631ef96bac166cc2897215718e1b0778de
+    purpose: delegated_public_beta_authorization
+  - path: LICENSE
+    sha256: 84db8338b29aa963fcd020646abaca520209115e37bc65ddf52e5c9d7fd6223b
+    purpose: selected_project_license
+  - path: pyproject.toml
+    sha256: 74d4c543eb3e6460ae57db60572fffebb2fd7cbf51ce85898213c363c1bb7cd5
+    purpose: selected_public_beta_metadata
+  - path: docs/CLI_CONTRACT.md
+    sha256: 82e88fc38fff2c5f475df38d5a5000c59c1ea0c2c4505c02c0cb528bf7b85848
+    purpose: approved_current_cli_contract_correction
+  - path: governance/acceptance-lock.json
+    sha256: 8405c3ad37561fbb05f271b3cbbf7ab641941b1a623c576dc306103ee5444ba0
+    purpose: approved_cli_contract_lock_rebind
+  - path: artifacts/P09/20260914T165300Z/dist/dify_upgrade_preflight-0.1.0b0-py3-none-any.whl
+    sha256: 9377bb3bef61b4880b53840d01a9e31ea8e75ccf3ca435b48c850b06352db8e6
+    purpose: authorized_public_beta_wheel
+  - path: artifacts/P09/20260914T165300Z/dist/dify_upgrade_preflight-0.1.0b0.tar.gz
+    sha256: 388ae759e376eb11d8d3ead25c34ec97916771c77eb46c5ee43cb7e8818a044d
+    purpose: authorized_public_beta_sdist
+  scope: Select MIT and public beta version 0.1.0b0 with annotated tag v0.1.0b0; correct the protected CLI contract and its lock binding; create one local commit of the reviewed public source set; push it to aka-debug-jie/dify-upgrade-preflight main; and push the exact annotated tag. No GitHub Release, package-registry upload, issue/discussion outreach, maintainer-feedback collection, production access, Docker, database, volume, rule, support-edge, schema or acceptance-threshold change is authorized.
+- id: APR-P09-T1-20260915-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T16:25:00Z'
+  message_ref: user_message_2026-09-15_p09_t1_local_candidate_authorization
+  scope: Authorize P09.T1 local-only release-candidate preparation: inspect the current project state, build and validate local candidate artifacts, prepare release authorization materials, and update only P09 status/artifact fields plus local documentation needed for accurate public status and contribution/security guidance. No Git, GitHub, commit, push, tag, upload, repository/settings change, external feedback collection, production access, Docker, database, volume, contract, schema, support-edge, rule, or acceptance-threshold change.
+- id: APR-P08-STAGE-ACCEPTANCE-20260915-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T16:19:39Z'
+  message_ref: user_message_2026-09-15_p08_stage_acceptance
+  objects:
+  - path: artifacts/P08/20260914T144311Z/REVIEW_BUNDLE.sha256
+    sha256: ca7d100ce2582d5da30bf9108d6ecb48e3d07b5a49c36523166faeb8a8f3af8e
+    purpose: accepted_P08_limited_scope_review_bundle
+  scope: Accept P08 only for the owner-approved Edge A core-services laboratory scope and authorize its transition from ready_for_review to done. Nginx, SSRF proxy, worker edge, production, release, Git and P09 execution remain outside this approval.
+- id: APR-P08-T2-FRESH-CORE-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T14:20:00Z'
+  message_ref: user_message_2026-09-14_continue_fix_P08_T2_T3
+  scope: Create and execute only p08f fresh Edge A core-services source-to-target rehearsal within the existing P08 VM. Use p08f-prefixed resources, immutable core image bindings, shared source/target lab data path, no Nginx/SSRF proxy, no production/default Docker context, Git, release or publication action.
+- id: APR-P08-LIMITED-SCOPE-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T14:00:00Z'
+  message_ref: user_message_2026-09-14_limited_p08_scope_approval
+  objects:
+  - path: artifacts/P08/20260914T134221Z/LIMITED_SCOPE_REBIND.md
+    sha256: 1395c90cac0fcd8c6c32b4422a17b5617ee2aea6cf748d9f9d521c6bec0d818f
+    purpose: approved_limited_P08_Edge_A_scope
+  scope: Approve only the limited P08 Edge A core-services lab claim in the referenced scope object. Exclude Nginx/SSRF proxy, p08a/p08b, worker edge, production and release claims. Authorize evidence export and bounded rerun verification within the existing P08 lab VM only.
+- id: APR-P08-COMPLETE-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T13:30:00Z'
+  message_ref: user_message_2026-09-14_complete_p08_without_further_prompts
+  scope: Complete P08 rehearsals autonomously within VM 9619408b-a154-492a-8d5e-b62676e63215 only. May create p08c and p08d synthetic Docker resources, start/stop approved-image containers, generate synthetic persisted data, run source-to-target Edge A switches, capture redacted snapshots and execute approved checks. No production access, default Docker context, unapproved external endpoint, Git, release or publication action.
+- id: APR-P08-T2-IMAGE-SUPPLEMENT-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T11:45:00Z'
+  message_ref: user_message_2026-09-14_p08_execution_authorization
+  objects:
+  - path: artifacts/P08/20260914T111856Z/EXECUTION_IMAGE_SUPPLEMENT.md
+    sha256: d7d65b96d3d895208f416235fe7a037cdb19c76a757279e9f42fba72aca6c7ae
+    purpose: exact_init_permissions_image_binding
+  scope: Extend only the approved P08 Edge A execution image list with the fixed busybox init_permissions binding. All other P08 T2 boundaries remain unchanged.
+- id: APR-P08-T2-EDGE-A-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T11:35:00Z'
+  message_ref: user_message_2026-09-14_p08_execution_authorization
+  objects:
+  - path: artifacts/P08/20260914T111856Z/EXECUTION_MANIFEST.md
+    sha256: 00320f0b8cf50658bf974ebdffd9271d531fc60873227eee0215b1023142b9d7
+    purpose: exact_edge_A_lab_execution_manifest
+  scope: Execute only the P08 Edge A rehearsal within VM 9619408b-a154-492a-8d5e-b62676e63215 and network aad29b56-282a-460f-b95d-a4ee1fa2f08e using the immutable bindings and p08a resource prefix in the approved manifest. Synthetic data only. No default Docker context, production resource, unlisted image, Git, release or publication action.
+- id: APR-P08-BOOTSTRAP-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T11:25:00Z'
+  message_ref: user_message_2026-09-14_p08_bootstrap_authorization
+  scope: Start only p08-lab-20260914 and its dedicated p08-lab-20260914 network; bootstrap guest Docker/Compose and resolve immutable Dify image digests. Synthetic lab VM only. No Dify container, database, volume, migration, upgrade, default Docker context, Git, release or production action.
+- id: APR-P08-VM-CREATION-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T11:18:56Z'
+  message_ref: user_message_2026-09-14_disposable_linux_vm_creation_authorization
+  objects:
+  - path: artifacts/P08/20260914T111856Z/REVIEW_BUNDLE.sha256
+    sha256: 773514db4a9d9a5c01929d7e5f3bb7e287a01c54adafc22b03f69a00a8ddbe36
+    purpose: disposable_vm_creation_record
+  scope: Create only the shut-off p08-lab-20260914 Linux VM definition, its dedicated inactive NAT network, copy-on-write disk, cloud-init seed and verified Ubuntu base image. No VM boot, Docker, image pull, container, database, volume, migration, P08.T2 execution, Git, release or production action.
+- id: APR-P08-T1-PLANNING-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T11:10:00Z'
+  message_ref: user_message_2026-09-14_start_after_P07_review
+  scope: Accept P07 review and authorize P08.T1 laboratory-plan preparation and read-only environment audit only. No image pull, container create/start/stop, Compose lifecycle, migration, network, Docker daemon, database, volume, production, Git, release or publication action.
+- id: APR-P07-STAGE-ACCEPTANCE-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T11:10:00Z'
+  message_ref: user_message_2026-09-14_start_after_P07_review
+  objects:
+  - path: artifacts/P07/20260914T105719Z/REVIEW_BUNDLE.sha256
+    sha256: db0629a5b9485266256813b38cce6d5478a720673807f46aaa4a508cd82387fa
+    purpose: accepted_P07_review_bundle
+  scope: Accept P07 stage delivery and authorize only its transition from ready_for_review to done. P08 execution remains separately gated.
+- id: APR-P07-REFERENCE-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T11:00:00Z'
+  message_ref: user_message_2026-09-14_isolated_reference_environment_approval
+  scope: Authorize only P07 benchmark execution in a transient user-systemd service constrained with CPUQuota=200% and MemoryMax=8G on the project local ext4 NVMe filesystem. Synthetic fixtures only; no production inputs, Docker daemon, database, volume, P08, Git, release or publication authority.
+- id: APR-P07-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T10:50:00Z'
+  message_ref: user_message_2026-09-14_p07_implementation_authorization
+  scope: P07 security, boundary and performance hardening only. Do not alter contracts, acceptance thresholds, approved rules or support edges; do not access production, Docker daemon, databases or volumes; do not enter P08, commit, push, tag, release or publish.
+- id: APR-P06-STAGE-ACCEPTANCE-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T10:44:10Z'
+  message_ref: user_message_2026-09-14_p06_stage_acceptance
+  objects:
+  - path: artifacts/P06/20260914T102732Z/VALIDATION.md
+    sha256: 76d8a1e616aa229a9c424c393050d73b8b135b08c15aa657cedd99d76b192b32
+    purpose: P06_validation_record
+  - path: artifacts/P06/20260914T102732Z/HANDOFF.md
+    sha256: 521a80cea115b42a5921fbeed49a83e470c9febac9137cb80c114623dce30d6c
+    purpose: P06_handoff
+  - path: artifacts/P06/20260914T102732Z/REVIEW_BUNDLE.sha256
+    sha256: ea6e79e4f0e8d182e1475afe9d3b1446501e656b966d42f992e96693fe3acab0
+    purpose: P06_review_bundle
+  scope: Accept P06 stage delivery and authorize only its transition from ready_for_review to done. This approval does not authorize P07 implementation, Git, publication, production access, Docker, database, volume, rule, support-edge or contract changes.
+- id: APR-P06-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T09:30:00Z'
+  message_ref: user_message_2026-09-14_continue_after_P05_ready_for_review
+  scope: P05 stage acceptance and P06 CLI productization only. Do not add core dependencies, alter approved rule semantics or support edges, publish, tag, push, access production, Docker, databases or volumes.
+  objects:
+  - path: artifacts/P05/20260914T091500Z/REVIEW_BUNDLE.sha256
+    sha256: 0453f7b98012715564a4c607a7e1e32264d20b4301cee9ef69184a0473d65fdc
+    purpose: accepted_P05_stage_review_bundle
 - id: APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01
   decision: approved
   owner_role: product_and_rule_owner

@@ -1,8 +1,8 @@
 schema_version: '1.0'
 project: dify-upgrade-preflight
 plan_version: 0.1.0
-current_phase: P05
-updated_at: '2026-09-14T09:15:00Z'
+current_phase: P09
+updated_at: '2026-09-14T16:42:16Z'
 product_implementation_started: true
 default_authority:
   production_access: false
@@ -212,8 +212,8 @@ phases:
   - 不能达到有效检测目标就申请缩范围或停止，不堆泛化warning。
   - 两条批准边和真实规则须有owner审阅，阶段必须停在规则审核门。
   - 当前版本与历史迁移、bundled与external、新部署与持久数据被区分。
-  status: ready_for_review
-  approval_ref: null
+  status: done
+  approval_ref: APR-P06-20260914-01
   artifacts:
   - artifacts/P05/20260913T113500Z/RULE_REVIEW_SET.md
   - artifacts/P05/20260913T114500Z/RULE_REVIEW_SET_REVISED.md
@@ -370,28 +370,34 @@ phases:
   - 干净环境安装成功；CLI与schema/退出码一致。
   - 报告能让维护者指出下一项人工行动，不靠大段模糊建议。
   - 仅本地构建，尚未发布或push。
-  status: blocked_review
-  approval_ref: null
-  artifacts: []
+  status: done
+  approval_ref: APR-P06-STAGE-ACCEPTANCE-20260914-01
+  artifacts:
+  - artifacts/P06/20260914T102732Z/VALIDATION.md
+  - artifacts/P06/20260914T102732Z/HANDOFF.md
+  - artifacts/P06/20260914T102732Z/REVIEW_BUNDLE.sha256
   tasks:
   - id: P06.T1
     title: 固定黑盒协议
     action: 编写参数错误、各种verdict、输出冲突、JSON stdout干净、NO_COLOR、中断的黑盒测试。
     acceptance: 参数错exit64；BLOCKED exit2；格式切换不改业务结果；没有隐藏skip-required。
-    status: blocked_review
-    artifacts: []
+    status: done
+    artifacts:
+    - artifacts/P06/20260914T102732Z/VALIDATION.md
   - id: P06.T2
     title: 完善报告与安装
     action: 展示关键风险、官方证据、declared/observed区别、人工步骤和excluded；构建wheel/sdist并隔离安装。
     acceptance: 新环境能运行帮助/demo/check；包内不含未批准规则、raw配置、日志和大来源包。
-    status: blocked_review
-    artifacts: []
+    status: done
+    artifacts:
+    - artifacts/P06/20260914T102732Z/VALIDATION.md
   - id: P06.T3
     title: 写真实用户路径
     action: 写最短示例和限制，解释准备脱敏快照、指定版本、处理INCOMPLETE和UNSUPPORTED。
     acceptance: 文档命令逐条以存在的合成/审核数据执行；不写未发布pip命令为已上线。
-    status: blocked_review
-    artifacts: []
+    status: done
+    artifacts:
+    - artifacts/P06/20260914T102732Z/HANDOFF.md
 - id: P07
   title: 安全、边界和性能硬化
   depends_on:
@@ -403,28 +409,41 @@ phases:
   - 关键已裁决数据false-safe=0、额外blocker=0；全部secret canary为0泄露。
   - 验收中的性能指标有实际证据并达标；未测不得通过。
   - 性能改动没有减少required checks或放宽输入保护。
-  status: blocked_review
-  approval_ref: null
-  artifacts: []
+  status: done
+  approval_ref: APR-P07-STAGE-ACCEPTANCE-20260914-01
+  artifacts:
+  - artifacts/P07/20260914T104827Z/QUALITY_REPORT.md
+  - artifacts/P07/20260914T104827Z/VALIDATION.md
+  - artifacts/P07/20260914T104827Z/HANDOFF.md
+  - artifacts/P07/20260914T104827Z/REVIEW_BUNDLE.sha256
+  - artifacts/P07/20260914T105719Z/REFERENCE_ENVIRONMENT.md
+  - artifacts/P07/20260914T105719Z/QUALITY_REPORT.md
+  - artifacts/P07/20260914T105719Z/VALIDATION.md
+  - artifacts/P07/20260914T105719Z/HANDOFF.md
+  - artifacts/P07/20260914T105719Z/REVIEW_BUNDLE.sha256
   tasks:
   - id: P07.T1
     title: 安全负控与变异
     action: 运行所有输出的secret canary、路径/进程/网络禁止测试，并手动或工具变异关键版本/UNKNOWN/approval条件。
     acceptance: 关键变异被杀死；输入未改；无 secret 泄露；无非授权I/O。
-    status: blocked_review
-    artifacts: []
+    status: ready_for_review
+    artifacts:
+    - artifacts/P07/20260914T104827Z/VALIDATION.md
   - id: P07.T2
     title: 真实性能基准
     action: 固定medium/stress和参考环境，5预热+30正式样本，分别记录纯check和Compose采集。
     acceptance: 原始数据完整；满足p95/RSS/超时阈值或明确未通过，不以平均值替代。
-    status: blocked_review
-    artifacts: []
+    status: ready_for_review
+    artifacts:
+    - artifacts/P07/20260914T104827Z/QUALITY_REPORT.md
+    - artifacts/P07/20260914T105719Z/QUALITY_REPORT.md
   - id: P07.T3
     title: 基于profile优化
     action: 定位重复parse/扫描/进程，做最小优化并回归；审查错误路径/输出限额。
     acceptance: 所有正确性/隐私保持；无新增核心依赖；快测试在预算内或有审批后的拆分方案。
-    status: blocked_review
-    artifacts: []
+    status: ready_for_review
+    artifacts:
+    - artifacts/P07/20260914T104827Z/QUALITY_REPORT.md
 - id: P08
   title: 独立环境重演与 beta 验收
   depends_on:
@@ -436,28 +455,75 @@ phases:
   - 独立实验许可与真实执行证据存在。
   - 至少一个已批准升级边重演、三个不同部署画像，结果与报告可核对。
   - beta说明不超过已测范围；有错误放行立即冻结。
-  status: blocked_review
-  approval_ref: null
-  artifacts: []
+  status: done
+  approval_ref: APR-P08-STAGE-ACCEPTANCE-20260915-01
+  artifacts:
+  - artifacts/P08/20260914T110452Z/LAB_PLAN.md
+  - artifacts/P08/20260914T110452Z/HANDOFF.md
+  - artifacts/P08/20260914T110452Z/REVIEW_BUNDLE.sha256
+  - artifacts/P08/20260914T111856Z/LAB_ENVIRONMENT.md
+  - artifacts/P08/20260914T111856Z/VM_CREATION.md
+  - artifacts/P08/20260914T111856Z/HANDOFF.md
+  - artifacts/P08/20260914T111856Z/REVIEW_BUNDLE.sha256
+  - artifacts/P08/20260914T125601Z/SOURCE_REHEARSAL_FAILURE.md
+  - artifacts/P08/20260914T125601Z/HANDOFF.md
+  - artifacts/P08/20260914T125601Z/REVIEW_BUNDLE.sha256
+  - artifacts/P08/20260914T132818Z/REHEARSAL.md
+  - artifacts/P08/20260914T132818Z/HANDOFF.md
+  - artifacts/P08/20260914T132818Z/REVIEW_BUNDLE.sha256
+  - artifacts/P08/20260914T134221Z/REHEARSAL.md
+  - artifacts/P08/20260914T134221Z/BETA_READINESS.md
+  - artifacts/P08/20260914T134221Z/VALIDATION.md
+  - artifacts/P08/20260914T134221Z/HANDOFF.md
+  - artifacts/P08/20260914T134221Z/REVIEW_BUNDLE.sha256
+  - artifacts/P08/20260914T134221Z/INDEPENDENT_AUDIT.md
+  - artifacts/P08/20260914T134221Z/STATUS_CORRECTION.md
+  - artifacts/P08/20260914T134221Z/LIMITED_SCOPE_REBIND.md
+  - artifacts/P08/20260914T134221Z/LIMITED_SCOPE_VALIDATION.md
+  - artifacts/P08/20260914T134221Z/BETA_READINESS_LIMITED.md
+  - artifacts/P08/20260914T134221Z/LIMITED_SCOPE_INDEPENDENT_AUDIT.md
+  - artifacts/P08/20260914T144311Z/RUN_RECORD.md
+  - artifacts/P08/20260914T144311Z/ARGV_INCIDENT_CLOSURE.md
+  - artifacts/P08/20260914T144311Z/T2_T3_CLOSURE.md
+  - artifacts/P08/20260914T144311Z/HANDOFF.md
+  - artifacts/P08/20260914T144311Z/COMMANDS.json
+  - artifacts/P08/20260914T144311Z/ARGV_TEST_OUTPUT.txt
+  - artifacts/P08/20260914T144311Z/EVIDENCE_MANIFEST.sha256
+  - artifacts/P08/20260914T144311Z/FINAL_INDEPENDENT_REVIEW.md
+  - artifacts/P08/20260914T144311Z/REVIEW_BUNDLE.sha256
   tasks:
   - id: P08.T1
     title: 准备可审查实验
     action: 列明独立资源、合成数据、固定镜像/版本、命令副作用和回收方法；验证不是生产context。
     acceptance: 未批准前不启动服务；无环境记blocked_external；无需读取真实凭据。
-    status: blocked_review
-    artifacts: []
+    status: done
+    artifacts:
+    - artifacts/P08/20260914T110452Z/LAB_PLAN.md
+    - artifacts/P08/20260914T111856Z/LAB_ENVIRONMENT.md
   - id: P08.T2
     title: 验证三种画像与重演
     action: 覆盖bundled持久数据、fresh、external/不适用等至少三画像；独立跑已批准检查和一条真正升级重演。
     acceptance: 报告与实际观察对应；不把启动成功等同向量检索/迁移成功；相应不变量有具体验证。
-    status: blocked_review
-    artifacts: []
+    status: done
+    artifacts:
+    - artifacts/P08/20260914T125601Z/SOURCE_REHEARSAL_FAILURE.md
+    - artifacts/P08/20260914T132818Z/REHEARSAL.md
+    - artifacts/P08/20260914T134221Z/REHEARSAL.md
+    - artifacts/P08/20260914T134221Z/INDEPENDENT_AUDIT.md
+    - artifacts/P08/20260914T134221Z/LIMITED_SCOPE_VALIDATION.md
+    - artifacts/P08/20260914T134221Z/LIMITED_SCOPE_INDEPENDENT_AUDIT.md
+    - artifacts/P08/20260914T144311Z/T2_T3_CLOSURE.md
+    - artifacts/P08/20260914T144311Z/FINAL_INDEPENDENT_REVIEW.md
   - id: P08.T3
     title: beta质量裁决
     action: 核对误报/未知比例、安装/性能/隐私和未支持项；形成只限矩阵的beta声明。
     acceptance: 不满足就保持blocked；真实升级测试与synthetic明确分开；不自动发布。
-    status: blocked_review
-    artifacts: []
+    status: done
+    artifacts:
+    - artifacts/P08/20260914T134221Z/BETA_READINESS.md
+    - artifacts/P08/20260914T134221Z/STATUS_CORRECTION.md
+    - artifacts/P08/20260914T134221Z/BETA_READINESS_LIMITED.md
+    - artifacts/P08/20260914T144311Z/T2_T3_CLOSURE.md
 - id: P09
   title: 发布审批、真实反馈与稳定版判断
   depends_on:
@@ -469,21 +535,37 @@ phases:
   - 实际发布需要独立授权；未授权可交付候选，但本阶段不得伪完成。
   - 两位独立维护者和三个画像的证据达到目标，否则稳定版门未通过。
   - 发生false-safe/泄密按事件流程处理，不继续营销。
-  status: blocked_review
-  approval_ref: null
-  artifacts: []
+  status: in_progress
+  approval_ref: APR-P09-PUBLIC-BETA-20260915-01
+  artifacts:
+  - artifacts/P09/20260914T162500Z/RELEASE_CANDIDATE.md
+  - artifacts/P09/20260914T162500Z/PILOT_FEEDBACK.md
+  - artifacts/P09/20260914T162500Z/STABLE_DECISION.md
+  - artifacts/P09/20260914T162500Z/VALIDATION.md
+  - artifacts/P09/20260914T162500Z/HANDOFF.md
+  - artifacts/P09/20260914T162500Z/CANDIDATE_SOURCE_MANIFEST.sha256
+  - artifacts/P09/20260914T162500Z/LICENSE_AND_ATTRIBUTION_REVIEW.md
+  - artifacts/P09/20260914T162500Z/REVIEW_BUNDLE.sha256
   tasks:
   - id: P09.T1
     title: 准备发布而非自动上传
     action: 构建校验包、许可归属、支持矩阵、真实demo、隐私/已知局限；输出精确待发布digest和命令计划。
     acceptance: 无秘密/未批准规则；发行说明不承诺安全；没有凭据也能完成本地候选。
-    status: blocked_review
-    artifacts: []
+    status: done
+    artifacts:
+    - artifacts/P09/20260914T162500Z/RELEASE_CANDIDATE.md
+    - artifacts/P09/20260914T162500Z/PILOT_FEEDBACK.md
+    - artifacts/P09/20260914T162500Z/STABLE_DECISION.md
+    - artifacts/P09/20260914T162500Z/VALIDATION.md
+    - artifacts/P09/20260914T162500Z/HANDOFF.md
+    - artifacts/P09/20260914T162500Z/CANDIDATE_SOURCE_MANIFEST.sha256
+    - artifacts/P09/20260914T162500Z/LICENSE_AND_ATTRIBUTION_REVIEW.md
+    - artifacts/P09/20260914T162500Z/REVIEW_BUNDLE.sha256
   - id: P09.T2
     title: 授权后执行指定发布
     action: 仅在owner明确授权对应渠道/内容时才commit/push/tag/upload；否则停ready_for_review。
     acceptance: 实际发布结果可核对；禁止把计划或本地build当已上线。
-    status: blocked_review
+    status: in_progress
     artifacts: []
   - id: P09.T3
     title: 收集复用证据

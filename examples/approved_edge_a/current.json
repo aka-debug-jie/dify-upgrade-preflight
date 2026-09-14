@@ -1,0 +1,51 @@
+{
+  "capture": {
+    "collector_version": "synthetic-approved-demo",
+    "compose_version": "2.33",
+    "mode": "compose_declared"
+  },
+  "facts": {
+    "dify.declared_version": {
+      "origin": "declared",
+      "reason": null,
+      "source_ref": "synthetic:approved-demo",
+      "status": "known",
+      "value": "1.16.0"
+    },
+    "history.upgraded_from_before_1_15": {
+      "origin": "attested",
+      "reason": null,
+      "source_ref": "synthetic:approved-demo",
+      "status": "known",
+      "value": false
+    },
+    "migration.legacy_model_types_completed": {
+      "origin": "attested",
+      "reason": null,
+      "source_ref": "synthetic:approved-demo",
+      "status": "known",
+      "value": true
+    },
+    "plugins.cache_invalidation_available": {
+      "origin": "attested",
+      "reason": null,
+      "source_ref": "synthetic:approved-demo",
+      "status": "known",
+      "value": true
+    },
+    "plugins.externally_installed": {
+      "origin": "attested",
+      "reason": null,
+      "source_ref": "synthetic:approved-demo",
+      "status": "known",
+      "value": false
+    }
+  },
+  "gaps": [],
+  "kind": "deployment_snapshot",
+  "private_relations": {},
+  "public_config": {},
+  "schema_version": "1.0",
+  "snapshot_id": "approved-demo-current",
+  "synthetic": true
+}

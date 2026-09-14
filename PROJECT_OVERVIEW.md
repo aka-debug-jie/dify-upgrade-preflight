@@ -24,8 +24,8 @@ Codex实现和测试，整理证据；你批准规则/范围/风险和发布。r
 
 ## 下一步怎么做
 
-当前实现已完成 P00–P04；P05 已建立 owner 审批的两条 exact edge 和六条 catalog rule，并为 `ready_for_review`，等待 owner stage acceptance。继续前先读取 `roadmap.yaml` 和 `prompts/RESUME.md`，只在取得新的阶段授权后推进；不能将 candidate 材料或范围外版本当作已批准能力。
+当前实现已完成 P00–P08；P09.T1 正在准备本地发布候选。继续前先读取 `roadmap.yaml` 和 `prompts/RESUME.md`，只在取得新的阶段授权后推进；不能将 candidate 材料或范围外版本当作已批准能力。
 
 ## 当前状态
 
-已有 synthetic CLI、受限 Compose 采集、三方差异和 digest-bound approved catalog。性能实测、独立真实升级重演和真实维护者反馈仍未完成，因此不能声称 production-grade 或升级安全保证。详细方案在docs/IMPLEMENTATION_PLAN.md，所有阶段提示词在prompts/。
+已有 synthetic CLI、受限 Compose 采集、三方差异和 digest-bound approved catalog。P07 性能验收已完成；P08 已在有限的 Edge A 核心服务实验范围内完成三种画像重演。真实维护者反馈仍未完成，因此不能声称 production-grade 或升级安全保证。详细方案在docs/IMPLEMENTATION_PLAN.md，所有阶段提示词在prompts/。

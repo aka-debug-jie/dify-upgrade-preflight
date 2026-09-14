@@ -25,6 +25,22 @@ def test_snapshot_is_declared_redacted_and_leaves_inputs_unchanged(tmp_path: Pat
     assert canary not in json.dumps(value)
 
 
+def test_inactive_profile_service_is_not_treated_as_bundled(tmp_path: Path) -> None:
+    compose = tmp_path / "compose.yaml"
+    compose.write_text(
+        "services:\n"
+        "  api:\n    image: langgenius/dify-api:1.16.1\n"
+        "  web:\n    image: langgenius/dify-web:1.16.1\n"
+        "  db_postgres:\n    image: postgres:15-alpine\n    profiles: [postgresql]\n"
+        "  weaviate:\n    image: semitechnologies/weaviate:1.27.0\n    profiles: [weaviate]\n"
+    )
+    snapshot = collect_snapshot(
+        CaptureRequest(project_dir=tmp_path, compose_files=(compose,), profiles=("postgresql",))
+    )
+    assert snapshot.public_config["services.weaviate.present"] is False
+    assert snapshot.facts["vector.ownership"].status is FactStatus.UNKNOWN
+
+
 def test_bundled_vector_is_declared_but_persisted_data_remains_unknown(tmp_path: Path) -> None:
     compose = tmp_path / "compose.yaml"
     compose.write_text(

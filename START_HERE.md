@@ -2,7 +2,7 @@
 
 规划包版本：0.1.0 · 编制日期：2026-09-13
 
-**本仓库同时包含开发契约、设计、测试规格和早期实现。当前 catalog 有两条 owner 审批的 exact support edge 和六条规则；P05 仍待最终阶段验收，性能实测、独立真实升级重演和真实维护者反馈尚未完成。**
+**本仓库同时包含开发契约、设计、测试规格和实现。当前 catalog 有两条 owner 审批的 exact support edge 和六条规则；P00–P08 已完成，P09.T1 正在准备本地发布候选。P08 的实验 beta 证据仅覆盖 `1.16.0 → 1.16.1` 的核心服务范围，真实维护者反馈尚未完成。**
 
 ## 我们要交付什么
 
@@ -16,7 +16,7 @@
 
 1. 将压缩包解压到一个**新的开发目录**。不要解压进现有生产 Dify 目录，不覆盖已有 `AGENTS.md`。
 2. 在 Codex 中打开这个开发目录，把根目录 `CODEX_START_PROMPT.md` 全文作为第一条任务。
-3. 先读取 `roadmap.yaml`。当前 P00–P04 已完成；P05 为 `ready_for_review`，approved catalog 已建立并等待 owner stage acceptance，不能直接开始后续阶段。
+3. 先读取 `roadmap.yaml`。当前 P00–P08 已完成；P09 只可按明确授权推进，发布、收集反馈和稳定版判断均须分别审核。
 4. 你审阅后明确批准当前阶段。下一轮发送对应的 `prompts/Pxx_*.md`。每次只推进一个阶段，阶段完成后停在 `ready_for_review`。
 5. 换会话使用 `prompts/RESUME.md`。存在错误、安全事件或来源冲突时使用专用提示词，不重写整个项目。
 
@@ -44,7 +44,7 @@
 
 ## 当前有意保留的边界
 
-- 支持范围仅限 `catalog/support-matrix.yaml` 中的两条 exact edge；P05 完成验收、独立真实升级重演和真实维护者反馈均尚未完成。
+- 支持范围仅限 `catalog/support-matrix.yaml` 中的两条 exact edge；P08 已在有限 Edge A 核心服务范围内完成独立实验 beta 验收，真实维护者反馈仍未完成。
 - `examples/` 全部是人为构造的演示数据，不是 Dify 兼容性事实。
 - 上一轮聊天中的版本数字、阈值、自动迁移推断，不自动成为产品规则。
 - 第一版检查 `static_upgrade_plan`，不证明数据库备份可恢复、不证明在线服务状态、不承诺升级成功。

@@ -6,6 +6,7 @@ import hashlib
 import json
 from collections.abc import Mapping
 
+from dify_preflight import __version__
 from dify_preflight.catalog.load import Catalog
 from dify_preflight.domain import DecisionInput, DeploymentSnapshot, Fact, FactOrigin, FactStatus, TruthValue, UpgradeRequest
 from dify_preflight.engine.expressions import evaluate_expression
@@ -105,6 +106,7 @@ def evaluate(snapshot: DeploymentSnapshot, request: UpgradeRequest, catalog: Cat
             "fact_evidence": _fact_evidence(refs, facts),
             "evidence_refs": rule["evidence_refs"],
             "remediation_phase": rule["remediation"]["phase"],
+            "remediation_summary": rule["remediation"].get("summary", "Manual review required."),
         })
     required_unknown = (
         bool(unknown)
@@ -240,7 +242,7 @@ def _report(
             "catalog_digest": catalog.digest,
             "snapshot_digest": _snapshot_digest(snapshot),
             "proposed_snapshot_digest": _snapshot_digest(request.proposed_snapshot) if request.proposed_snapshot else None,
-            "tool_version": "0.0.0",
+            "tool_version": __version__,
             "canonicalization_version": "1",
             "catalog_trust": trust,
         },

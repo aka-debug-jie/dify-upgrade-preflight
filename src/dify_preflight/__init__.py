@@ -1,3 +1,3 @@
-"""Dify Upgrade Preflight synthetic walking skeleton."""
+"""Dify Upgrade Preflight."""
 
-__version__ = "0.0.0"
+__version__ = "0.1.0b0"
