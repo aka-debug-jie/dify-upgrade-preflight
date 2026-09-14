@@ -159,3 +159,238 @@ approval_hashes:
     sources/P05.S015: e5f411507ddee787fa533f7e63a7949b3f002586acf9077c2a391b06002841d6
     sources/P05.S016: 886aefbcbee5cf20edf7139162a6a90295539c484c86b58699eb0cbe85d3aede
     sources/P05.S017: 3762e7c3edc751564fa82be914b146de448c0f95ea97511dbe76921a5627334f
+approved_object_canonical:
+  active_set_sha256: f9b6d9d8a876dc657c3eba1c076dc9aa93fbff3ea1e227498c191217db374ddf
+  edges:
+    P05-EDGE-A:
+      canonical_object:
+        deployment_profile: compose
+        id: P05-EDGE-A
+        required_facts:
+        - history.upgraded_from_before_1_15
+        - migration.legacy_model_types_completed
+        - plugins.cache_invalidation_available
+        - plugins.externally_installed
+        - proposed.agent_auth.wiring_complete
+        - proposed.agent_backend.declared
+        - proposed.agent_runtime.backend
+        - proposed.agent_sandbox.target_network_topology
+        - proposed.plugins.provider_cache_enabled
+        - proposed.private.agent_api_token_is_published_default
+        - proposed.private.agent_api_tokens_same_as_peer
+        rule_ids:
+        - P05-R01
+        - P05-R02
+        - P05-R03
+        - P05-R04
+        - P05-R05
+        scope: static_upgrade_plan
+        source_commit: 5c6372d2f76d240265b92fd27c16bc772ffcb107
+        source_version: 1.16.0
+        target_commit: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+        target_version: 1.16.1
+      sha256: d58ff32f14ad946a48f0a40ab0dd42f71f16afdde5dacd51a24ac26a6378b8d4
+    P05-EDGE-WORKER-1131-1132:
+      canonical_object:
+        deployment_profile: compose
+        id: P05-EDGE-WORKER-1131-1132
+        required_facts:
+        - proposed.worker.topology_complete
+        - proposed.worker.official_entrypoint
+        - proposed.worker.custom_queue_override_present
+        - proposed.worker.workflow_queue_covered
+        - proposed.api_token_last_used_update_enabled
+        - proposed.worker.api_token_queue_covered
+        rule_ids:
+        - P05-R07
+        scope: static_upgrade_plan
+        source_commit: f943f1e39bfb357bb0bf4f04204b9efc5cac85dc
+        source_version: 1.13.1
+        target_commit: c8560bacb328ef27a3cdaad2175b11df8338120d
+        target_version: 1.13.2
+      sha256: af457f9ceeb36fbf042a68f025b35f3aeebc644f61be8b5ff3e236d0a1d5294a
+  rules:
+    P05-R01:
+      canonical_object:
+        applies:
+          fact: proposed.agent_backend.declared
+          op: eq
+          value: true
+        assertion:
+          fact: proposed.private.agent_api_token_is_published_default
+          op: eq
+          value: false
+        edge_id: P05-EDGE-A
+        evidence_refs:
+        - P05.S004
+        - P05.S005
+        - P05.S006
+        id: P05-R01
+        phase: before_upgrade
+        required_facts:
+        - proposed.agent_backend.declared
+        - proposed.private.agent_api_token_is_published_default
+        scope: static_upgrade_plan
+        severity: warning
+        title: Agent API authentication uses the published development default
+      sha256: ccb24e6bf1019db53986e05463a0bed16314b51c73bcb37947a280d44f517479
+    P05-R02:
+      canonical_object:
+        applies:
+          fact: proposed.agent_backend.declared
+          op: eq
+          value: true
+        assertion:
+          all:
+          - fact: proposed.private.agent_api_tokens_same_as_peer
+            op: eq
+            value: true
+          - fact: proposed.agent_auth.wiring_complete
+            op: eq
+            value: true
+        edge_id: P05-EDGE-A
+        evidence_refs:
+        - P05.S004
+        - P05.S005
+        id: P05-R02
+        phase: before_upgrade
+        required_facts:
+        - proposed.agent_backend.declared
+        - proposed.private.agent_api_tokens_same_as_peer
+        - proposed.agent_auth.wiring_complete
+        scope: static_upgrade_plan
+        severity: blocker
+        title: API and agent backend authentication tokens do not match
+      sha256: 74bc33c8cc4acad63680d8f08d2a35d6b17d5cba467965f53a8091466cac02f4
+    P05-R03:
+      canonical_object:
+        applies:
+          all:
+          - fact: proposed.agent_backend.declared
+            op: eq
+            value: true
+          - fact: proposed.agent_runtime.backend
+            op: eq
+            value: local
+        assertion:
+          fact: proposed.agent_sandbox.target_network_topology
+          op: eq
+          value: true
+        edge_id: P05-EDGE-A
+        evidence_refs:
+        - P05.S002
+        - P05.S004
+        - P05.S005
+        id: P05-R03
+        phase: before_upgrade
+        required_facts:
+        - proposed.agent_backend.declared
+        - proposed.agent_runtime.backend
+        - proposed.agent_sandbox.target_network_topology
+        scope: static_upgrade_plan
+        severity: blocker
+        title: Local agent sandbox bypasses the target proxy isolation topology
+      sha256: fc954aefadc7e2c3df9de5f9189a22e16f0fe58431c08d61b062138291281523
+    P05-R04:
+      canonical_object:
+        applies:
+          all:
+          - fact: plugins.externally_installed
+            op: eq
+            value: true
+          - fact: proposed.plugins.provider_cache_enabled
+            op: eq
+            value: true
+        assertion:
+          fact: plugins.cache_invalidation_available
+          op: eq
+          value: true
+        edge_id: P05-EDGE-A
+        evidence_refs:
+        - P05.S004
+        - P05.S013
+        - P05.S014
+        id: P05-R04
+        phase: manual_review
+        required_facts:
+        - plugins.externally_installed
+        - proposed.plugins.provider_cache_enabled
+        - plugins.cache_invalidation_available
+        scope: static_upgrade_plan
+        severity: warning
+        title: External plugin installation cannot invalidate enabled provider cache
+      sha256: 4f36391dec7101caf26c8c0328515b7e240a4eec6c91ae60855e52a4199bc166
+    P05-R05:
+      canonical_object:
+        applies:
+          fact: history.upgraded_from_before_1_15
+          op: eq
+          value: true
+        assertion:
+          fact: migration.legacy_model_types_completed
+          op: eq
+          value: true
+        edge_id: P05-EDGE-A
+        evidence_refs:
+        - P05.S004
+        - P05.S015
+        - P05.S016
+        - P05.S017
+        id: P05-R05
+        phase: after_upgrade
+        required_facts:
+        - history.upgraded_from_before_1_15
+        - migration.legacy_model_types_completed
+        scope: static_upgrade_plan
+        severity: warning
+        title: Legacy model-type migration is required but not attested complete
+      sha256: b94a851b9219622b8ec6642e3386ee7ea525732368cb617f57531d4246adfb0b
+    P05-R07:
+      canonical_object:
+        applies:
+          all:
+          - fact: proposed.worker.topology_complete
+            op: eq
+            value: true
+          - fact: proposed.worker.official_entrypoint
+            op: eq
+            value: true
+          - fact: proposed.worker.custom_queue_override_present
+            op: eq
+            value: true
+        assertion:
+          all:
+          - fact: proposed.worker.workflow_queue_covered
+            op: eq
+            value: true
+          - any:
+            - not:
+                fact: proposed.api_token_last_used_update_enabled
+                op: eq
+                value: true
+            - fact: proposed.worker.api_token_queue_covered
+              op: eq
+              value: true
+        edge_id: P05-EDGE-WORKER-1131-1132
+        evidence_refs:
+        - P00.S002
+        - P00.S026
+        - P00.S027
+        - P00.S028
+        - P00.S030
+        - P00.S031
+        - P00.S057
+        - P00.S058
+        id: P05-R07
+        phase: before_upgrade
+        required_facts:
+        - proposed.worker.topology_complete
+        - proposed.worker.official_entrypoint
+        - proposed.worker.custom_queue_override_present
+        - proposed.worker.workflow_queue_covered
+        - proposed.api_token_last_used_update_enabled
+        - proposed.worker.api_token_queue_covered
+        scope: static_upgrade_plan
+        severity: warning
+        title: Complete custom worker topology omits a target-required effective queue
+      sha256: e0599fe49c76180bb5ec5fabf11a2930de17e5e459fe9c6d05ef3df258ae319e

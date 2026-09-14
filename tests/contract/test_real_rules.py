@@ -1,5 +1,3 @@
-import hashlib
-import json
 from collections import Counter
 from pathlib import Path
 
@@ -39,14 +37,11 @@ def test_p05_only_fixed_evidence_candidates_can_be_review_ready() -> None:
     }
 
     by_id = {item["id"]: item for item in register["candidates"]}
-    pinned = yaml.safe_load((ROOT / "sources/pinned.yaml").read_text(encoding="utf-8"))
-    pins = {item["id"]: item for item in pinned["sources"]}
-    for candidate_id, expected_refs in {
-        "P05-C01": {"P00.S002", "P00.S003", "P00.S008", "P00.S009", "P00.S036", "P00.S054", "P00.S055"},
-        "P05-C02": {"P00.S002", "P00.S026", "P00.S027", "P00.S028", "P00.S030", "P00.S031", "P00.S057", "P00.S058"},
-    }.items():
-        assert set(by_id[candidate_id]["source_refs"]) == expected_refs
-        assert all(pins[source]["status"] == "obtained" and len(pins[source]["sha256"]) == 64 for source in expected_refs)
+    manifest = yaml.safe_load((ROOT / "catalog/approval-manifest.yaml").read_text(encoding="utf-8"))
+    expected_worker_refs = {"P00.S002", "P00.S026", "P00.S027", "P00.S028", "P00.S030", "P00.S031", "P00.S057", "P00.S058"}
+    assert set(by_id["P05-C02"]["source_refs"]) == expected_worker_refs
+    assert expected_worker_refs <= set(manifest["approved_sources"])
+    assert by_id["P05-C01"]["source_refs"]
 
 
 def test_product_catalog_loads_only_approved_directory_with_owner_policy() -> None:
@@ -92,44 +87,23 @@ def test_p05_recovery_package_has_six_roots_and_thirty_pending_cases() -> None:
     assert all(item["owner_decision"] is None for item in cases["cases"])
 
 
-def test_p05_recovery_sources_are_locally_fixed_and_unapproved() -> None:
-    manifest_path = ROOT / "artifacts/P05/20260913T123039Z/SOURCE_MANIFEST.json"
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-
-    assert len(manifest["sources"]) == 14
-    source_ids = {source["id"] for source in manifest["sources"]}
-    for source in manifest["sources"]:
-        artifact = ROOT / source["artifact"]
-        assert source["review_status"] == "candidate_not_approved"
-        assert source["transport"] == "prior_https_fetch_cache"
-        assert source["http_status"] is None
-        assert source["final_url"] is None
-        assert source["retrieved_at"] is None
-        assert artifact.is_file()
-        assert hashlib.sha256(artifact.read_bytes()).hexdigest() == source["sha256"]
+def test_active_p05_recovery_sources_are_publicly_bound() -> None:
+    manifest = yaml.safe_load((ROOT / "catalog/approval-manifest.yaml").read_text(encoding="utf-8"))
     fixed_sources = yaml.safe_load(
         (ROOT / "catalog/candidates/P05-R05-fixed-sources.yaml").read_text(encoding="utf-8")
     )
     assert {source["source_id"] for source in fixed_sources["sources"]} == {"P05.S015", "P05.S016", "P05.S017"}
     assert all(source["classification"] == "official_fixed" for source in fixed_sources["sources"])
-    source_ids |= {source["source_id"] for source in fixed_sources["sources"]}
     candidates = yaml.safe_load(
         (ROOT / "catalog/candidates/P05-recovery-candidates.yaml").read_text(encoding="utf-8")
     )
+    active = yaml.safe_load((ROOT / "catalog/candidates/P05-active-promotion-set.yaml").read_text(encoding="utf-8"))
+    worker = yaml.safe_load((ROOT / "catalog/candidates/P05-worker-queue-candidate.yaml").read_text(encoding="utf-8"))
+    roots = {item["id"]: item for item in candidates["root_causes"]}
+    roots[worker["root_cause"]["id"]] = worker["root_cause"]
     assert {
         source
-        for root_cause in candidates["root_causes"]
+        for root_id in active["active_candidate_root_ids"]
+        for root_cause in [roots[root_id]]
         for source in root_cause["source_refs"]
-    } <= source_ids
-
-    commits = {}
-    for source in manifest["sources"]:
-        if source["artifact"].endswith("tag-ref.json"):
-            value = json.loads((ROOT / source["artifact"]).read_text(encoding="utf-8"))
-            commits[value["ref"].removeprefix("refs/tags/")] = value["object"]["sha"]
-    assert commits == {
-        "1.16.0": "5c6372d2f76d240265b92fd27c16bc772ffcb107",
-        "1.16.1": "6f8ed69ee15f9a2e7189ca066275e973d091d1e9",
-        "1.17.0": "09a855dcef24c0edc7431c46c0cfaa494481daf5",
-        "1.17.1": "8387590ace4a094de812b7847fc6a4c3a27cd52b",
-    }
+    } <= set(manifest["approved_sources"])

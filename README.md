@@ -2,7 +2,7 @@
 
 离线、只读、证据驱动的 Dify 升级预检工具。它将用户明确提供的 Compose 配置收缩为脱敏的声明态快照，并将其与固定官方基线和经过审核的规则相比较。
 
-> **开发中，不能用于真实升级决策。** 当前没有已批准的 Dify 升级支持边、生产规则或兼容性声明；`roadmap.yaml` 中的 P05 仍为 `blocked_review`。本仓库的 demo、快照、规则和测试数据都是 synthetic 或待人工裁决材料。
+> **开发中，不能用于真实升级决策。** 当前 catalog 已有 owner 审批的两条 exact support edge 和六条规则，仅限 [support matrix](catalog/support-matrix.yaml) 明确列出的范围；P05 仍为 `blocked_review`，等待最终阶段验收。demo 和测试输入仍为 synthetic；尚未完成独立真实升级重演或真实维护者反馈，`NO_KNOWN_BLOCKERS` 不是升级安全保证。
 
 ## 当前可运行内容
 
@@ -19,8 +19,8 @@ dify-preflight demo --case blocked --format json
 ## 项目边界与状态
 
 - [PROJECT_CHARTER.md](PROJECT_CHARTER.md) 说明产品范围；[ACCEPTANCE_CONTRACT.md](ACCEPTANCE_CONTRACT.md) 定义完成门槛。
-- [roadmap.yaml](roadmap.yaml) 是唯一阶段状态来源。当前 `approved_edges` 为空，不能将候选版本或 `NO_KNOWN_BLOCKERS` 解读为安全保证。
-- `catalog/candidates/` 中的所有材料均为 `pending_owner_adjudication`，不可执行、不可提升为规则，也不可用于兼容性结论。
+- [roadmap.yaml](roadmap.yaml) 是唯一阶段状态来源。P05 尚未最终验收；不得将 matrix 之外的版本或 `NO_KNOWN_BLOCKERS` 解读为安全保证。
+- `catalog/approved/` 和 [catalog/approval-manifest.yaml](catalog/approval-manifest.yaml) 是当前 owner 审批的本地 catalog；`catalog/candidates/` 仍包含未获批准的研究材料，不能自动提升为规则。
 - [sources/SOURCES.md](sources/SOURCES.md) 仅提供公开来源定位；本地审计原件、原始 Compose、`.env`、运行产物和证据副本不会发布。
 
 ## 参与方式

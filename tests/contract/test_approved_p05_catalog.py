@@ -22,9 +22,9 @@ def test_approved_p05_catalog_loads_with_digest_bound_owner_policy() -> None:
     assert {edge["id"] for edge in catalog.edges} == {"P05-EDGE-A", "P05-EDGE-WORKER-1131-1132"}
     assert {rule["id"] for rule in catalog.rules} == {"P05-R01", "P05-R02", "P05-R03", "P05-R04", "P05-R05", "P05-R07"}
 
-    revision = json.loads((ROOT / "artifacts/P05/20260914T083000Z/R05_REVISED_PROMOTION_OBJECTS.json").read_text(encoding="utf-8"))
-    assert manifest["approved_object_digests"]["active_set"] == revision["active_set_object_sha256"]
-    assert manifest["approved_object_digests"]["rules"]["P05-R05"] == revision["new_r05_sha256"]
+    revision = manifest["approved_object_canonical"]
+    assert manifest["approved_object_digests"]["active_set"] == revision["active_set_sha256"]
+    assert manifest["approved_object_digests"]["rules"]["P05-R05"] == revision["rules"]["P05-R05"]["sha256"]
     assert all(len(value) == 64 for value in manifest["approved_sources"].values())
     assert all(
         any(manifest["source_records"][ref]["classification"] == "official_fixed" for ref in rule["evidence_refs"])
