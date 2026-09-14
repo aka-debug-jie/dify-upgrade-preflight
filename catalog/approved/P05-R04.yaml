@@ -1,0 +1,34 @@
+schema_version: '1.0'
+id: P05-R04
+revision: 1
+synthetic: false
+status: approved
+title: External plugin installation cannot invalidate enabled provider cache
+scope: static_upgrade_plan
+support_edge_ids:
+- P05-EDGE-A
+applies:
+  all:
+  - fact: plugins.externally_installed
+    op: eq
+    value: true
+  - fact: proposed.plugins.provider_cache_enabled
+    op: eq
+    value: true
+assertion:
+  fact: plugins.cache_invalidation_available
+  op: eq
+  value: true
+severity: warning
+evidence_refs: &id001
+- P05.S004
+- P05.S013
+- P05.S014
+review_ref: APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01
+supersedes: []
+remediation:
+  phase: manual_review
+  summary: Review the documented requirement and update the target plan or record
+    the required manual step.
+  docs_refs: *id001
+  executable: false

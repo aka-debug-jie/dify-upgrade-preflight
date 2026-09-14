@@ -1,7 +1,8 @@
 schema_version: '1.0'
-status: pending_owner_adjudication
+status: owner_scoped_candidate
 executable: false
 purpose: P05_recovery_proposal_not_rule_dsl
+semantics_approval_ref: APR-P05-SEMANTICS-20260914-01
 candidate_edges:
 - id: P05-EDGE-A
   source_version: 1.16.0
@@ -21,9 +22,9 @@ root_causes:
   title: Agent API authentication uses the published development default
   independence_claim: Credential strength is independent from whether peer tokens match.
   source_refs: [P05.S004, P05.S005, P05.S006]
-  required_facts: [agent_backend.declared, private.agent_api_token_is_published_default]
-  collection_gap: The collector does not yet emit the approved boolean default relation.
-  proposed_severity: blocker
+  required_facts: [proposed.agent_backend.declared, proposed.private.agent_api_token_is_published_default]
+  collection_gap: Candidate requires target-D namespace; relation exists only as an in-memory derived boolean.
+  proposed_severity: warning
   proposed_phase: before_upgrade
   approval_ref: null
 - id: P05-R02
@@ -31,8 +32,8 @@ root_causes:
   title: API and agent backend authentication tokens do not match
   independence_claim: Peer mismatch causes authentication failure even when both values are non-default.
   source_refs: [P05.S004, P05.S005]
-  required_facts: [agent_backend.declared, private.agent_api_tokens_same_as_peer, agent_auth_wiring_complete]
-  collection_gap: The collector does not yet emit peer equality or target wiring facts.
+  required_facts: [proposed.agent_backend.declared, proposed.private.agent_api_tokens_same_as_peer, proposed.agent_auth.wiring_complete]
+  collection_gap: Candidate requires target-D peer equality and dotted target wiring facts.
   proposed_severity: blocker
   proposed_phase: before_upgrade
   approval_ref: null
@@ -41,8 +42,8 @@ root_causes:
   title: Local agent sandbox bypasses the target proxy isolation topology
   independence_claim: Network exposure remains unsafe even when authentication tokens are correct.
   source_refs: [P05.S002, P05.S004, P05.S005]
-  required_facts: [agent_runtime.backend, agent_sandbox.target_network_topology]
-  collection_gap: The collector does not yet retain service-network and proxy topology.
+  required_facts: [proposed.agent_backend.declared, proposed.agent_runtime.backend, proposed.agent_sandbox.target_network_topology]
+  collection_gap: Candidate applies only to declared local target runtime with normalizable topology.
   proposed_severity: blocker
   proposed_phase: before_upgrade
   approval_ref: null
@@ -51,8 +52,8 @@ root_causes:
   title: External plugin installation cannot invalidate enabled provider cache
   independence_claim: Stale provider discovery is separate from agent authentication and sandbox networking.
   source_refs: [P05.S004, P05.S013, P05.S014]
-  required_facts: [plugins.installation_ownership, plugins.provider_cache_enabled, plugins.cache_invalidation_available]
-  collection_gap: External installation ownership and invalidation capability need explicit attestation.
+  required_facts: [plugins.externally_installed, proposed.plugins.provider_cache_enabled, plugins.cache_invalidation_available]
+  collection_gap: Installation and invalidation are explicit attestations; cache is a declared target-D fact.
   proposed_severity: warning
   proposed_phase: manual_review
   approval_ref: null
@@ -60,7 +61,7 @@ root_causes:
   candidate_edge_id: P05-EDGE-A
   title: Legacy model-type migration is required but not attested complete
   independence_claim: Historical model records are unrelated to current Compose authentication or networks.
-  source_refs: [P05.S004]
+  source_refs: [P05.S004, P05.S015, P05.S016, P05.S017]
   required_facts: [history.upgraded_from_before_1_15, migration.legacy_model_types_completed]
   collection_gap: Both facts require explicit user attestation; Compose cannot prove database history.
   proposed_severity: warning

@@ -1,0 +1,226 @@
+schema_version: '1.0'
+status: owner_adjudicated_synthetic_development_facts
+synthetic: true
+executable: true
+purpose: B_and_D_fact_inputs_for_candidate_evaluator_only
+approval_ref: APR-P05-SEMANTICS-20260914-01
+snapshot_defaults:
+  capture:
+    mode: compose_declared
+    compose_version: '2.33'
+cases:
+- case_id: P05-R01-01
+  root_cause_id: P05-R01
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+  d_private_relations:
+    agent_api_token_is_published_default: true
+- case_id: P05-R01-02
+  root_cause_id: P05-R01
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+  d_private_relations:
+    agent_api_token_is_published_default: false
+- case_id: P05-R01-04
+  root_cause_id: P05-R01
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: false
+  d_private_relations:
+    agent_api_token_is_published_default: false
+- case_id: P05-R02-01
+  root_cause_id: P05-R02
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+    agent_auth.wiring_complete: true
+  d_private_relations:
+    agent_api_tokens_same_as_peer: false
+- case_id: P05-R02-02
+  root_cause_id: P05-R02
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+    agent_auth.wiring_complete: true
+  d_private_relations:
+    agent_api_tokens_same_as_peer: true
+- case_id: P05-R02-03
+  root_cause_id: P05-R02
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+    agent_auth.wiring_complete: true
+  d_private_relations:
+    agent_api_tokens_same_as_peer: null
+- case_id: P05-R02-04
+  root_cause_id: P05-R02
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: false
+    agent_auth.wiring_complete: true
+  d_private_relations:
+    agent_api_tokens_same_as_peer: true
+- case_id: P05-R02-05
+  root_cause_id: P05-R02
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+    agent_auth.wiring_complete: false
+  d_private_relations:
+    agent_api_tokens_same_as_peer: true
+- case_id: P05-R02-07
+  root_cause_id: P05-R02
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+    agent_auth.wiring_complete: false
+  d_private_relations:
+    agent_api_tokens_same_as_peer: false
+- case_id: P05-R03-01
+  root_cause_id: P05-R03
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+    agent_runtime.backend: local
+    agent_sandbox.target_network_topology: false
+- case_id: P05-R03-02
+  root_cause_id: P05-R03
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+    agent_runtime.backend: local
+    agent_sandbox.target_network_topology: true
+- case_id: P05-R03-03
+  root_cause_id: P05-R03
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: false
+    agent_runtime.backend: local
+    agent_sandbox.target_network_topology: true
+- case_id: P05-R03-05
+  root_cause_id: P05-R03
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+    agent_runtime.backend: local
+    agent_sandbox.target_network_topology: false
+- case_id: P05-R04-01
+  root_cause_id: P05-R04
+  candidate_edge_id: P05-EDGE-A
+  b_facts:
+    plugins.externally_installed: {value: true, origin: attested}
+    plugins.cache_invalidation_available: {value: false, origin: attested}
+  d_facts:
+    plugins.provider_cache_enabled: true
+- case_id: P05-R04-02
+  root_cause_id: P05-R04
+  candidate_edge_id: P05-EDGE-A
+  b_facts:
+    plugins.externally_installed: {value: true, origin: attested}
+    plugins.cache_invalidation_available: {value: false, origin: attested}
+  d_facts:
+    plugins.provider_cache_enabled: false
+- case_id: P05-R04-03
+  root_cause_id: P05-R04
+  candidate_edge_id: P05-EDGE-A
+  b_facts:
+    plugins.externally_installed: {value: false, origin: attested}
+    plugins.cache_invalidation_available: {value: true, origin: attested}
+  d_facts:
+    plugins.provider_cache_enabled: true
+- case_id: P05-R04-05
+  root_cause_id: P05-R04
+  candidate_edge_id: P05-EDGE-A
+  b_facts:
+    plugins.externally_installed: {value: true, origin: attested}
+    plugins.cache_invalidation_available: {value: true, origin: attested}
+  d_facts:
+    plugins.provider_cache_enabled: true
+- case_id: P05-R05-01
+  root_cause_id: P05-R05
+  candidate_edge_id: P05-EDGE-A
+  b_facts:
+    history.upgraded_from_before_1_15: {value: true, origin: attested}
+    migration.legacy_model_types_completed: {value: false, origin: attested}
+  d_facts: {}
+- case_id: P05-R05-02
+  root_cause_id: P05-R05
+  candidate_edge_id: P05-EDGE-A
+  b_facts:
+    history.upgraded_from_before_1_15: {value: true, origin: attested}
+    migration.legacy_model_types_completed: {value: true, origin: attested}
+  d_facts: {}
+- case_id: P05-R05-03
+  root_cause_id: P05-R05
+  candidate_edge_id: P05-EDGE-A
+  b_facts:
+    history.upgraded_from_before_1_15: {value: false, origin: attested}
+    migration.legacy_model_types_completed: {value: true, origin: attested}
+  d_facts: {}
+- case_id: P05-R05-05
+  root_cause_id: P05-R05
+  candidate_edge_id: P05-EDGE-A
+  b_facts:
+    history.upgraded_from_before_1_15: {value: true, origin: attested}
+    migration.legacy_model_types_completed:
+      status: unknown
+      origin: attested
+      reason: owner_attestation_unavailable
+  d_facts: {}
+- case_id: P05-R05-06
+  root_cause_id: P05-R05
+  candidate_edge_id: P05-EDGE-A
+  request:
+    source_version: 1.16.0
+    target_version: 1.17.1
+  b_facts:
+    history.upgraded_from_before_1_15: {value: true, origin: attested}
+    migration.legacy_model_types_completed: {value: false, origin: attested}
+  d_facts: {}
+- case_id: P05-R06-01
+  root_cause_id: P05-R06
+  candidate_edge_id: P05-EDGE-B
+  b_facts:
+    vector.ownership: bundled
+    vector.persisted_data: {value: true, origin: attested}
+    vector.staged_upgrade_completed: {value: false, origin: attested}
+  d_facts: {}
+- case_id: P05-R06-02
+  root_cause_id: P05-R06
+  candidate_edge_id: P05-EDGE-B
+  b_facts:
+    vector.ownership: bundled
+    vector.persisted_data: {value: true, origin: attested}
+    vector.staged_upgrade_completed: {value: true, origin: attested}
+  d_facts: {}
+- case_id: P05-R06-03
+  root_cause_id: P05-R06
+  candidate_edge_id: P05-EDGE-B
+  b_facts:
+    vector.ownership: bundled
+    vector.persisted_data: {value: false, origin: attested}
+    vector.staged_upgrade_completed: {value: true, origin: attested}
+  d_facts: {}
+- case_id: P05-R06-04
+  root_cause_id: P05-R06
+  candidate_edge_id: P05-EDGE-B
+  b_facts:
+    vector.ownership: external
+    vector.persisted_data: {value: false, origin: attested}
+    vector.staged_upgrade_completed: {value: true, origin: attested}
+  d_facts: {}

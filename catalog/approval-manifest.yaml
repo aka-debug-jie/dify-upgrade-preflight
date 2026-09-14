@@ -1,0 +1,161 @@
+schema_version: '1.0'
+approval_ref: APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01
+approved_object_digests:
+  active_set: f9b6d9d8a876dc657c3eba1c076dc9aa93fbff3ea1e227498c191217db374ddf
+  edges:
+    P05-EDGE-A: d58ff32f14ad946a48f0a40ab0dd42f71f16afdde5dacd51a24ac26a6378b8d4
+    P05-EDGE-WORKER-1131-1132: af457f9ceeb36fbf042a68f025b35f3aeebc644f61be8b5ff3e236d0a1d5294a
+  rules:
+    P05-R01: ccb24e6bf1019db53986e05463a0bed16314b51c73bcb37947a280d44f517479
+    P05-R02: 74bc33c8cc4acad63680d8f08d2a35d6b17d5cba467965f53a8091466cac02f4
+    P05-R03: fc954aefadc7e2c3df9de5f9189a22e16f0fe58431c08d61b062138291281523
+    P05-R04: 4f36391dec7101caf26c8c0328515b7e240a4eec6c91ae60855e52a4199bc166
+    P05-R05: b94a851b9219622b8ec6642e3386ee7ea525732368cb617f57531d4246adfb0b
+    P05-R07: e0599fe49c76180bb5ec5fabf11a2930de17e5e459fe9c6d05ef3df258ae319e
+approved_sources:
+  P00.S002: 179d6f8291ba87df7431f4a757e2e350aeaef5ad567ee0189b6a0a95c7ffa7fb
+  P00.S026: 91d8f263ddd975f03bfc87ba0775110dac1aacf2e7c7777674fc08b37392438c
+  P00.S027: 46e7991fcd4595985da81ec265a40d6c8e1d22462c8a4cf1335b43873a49fac0
+  P00.S028: 1daaacbc9be4c3e7161b55d4912adb41324f893769e8c8b31a6c326aac9206f7
+  P00.S030: 91d8f263ddd975f03bfc87ba0775110dac1aacf2e7c7777674fc08b37392438c
+  P00.S031: 46e7991fcd4595985da81ec265a40d6c8e1d22462c8a4cf1335b43873a49fac0
+  P00.S057: 14bddc2a1e60044f24c2e21b6999450aebde3126082a51df24c2981f7b6cde72
+  P00.S058: a2d3f60290ffa14e899be9b10f61aba7566dbe83414207f9980cc255a75bd557
+  P05.S002: 9be7c92d6fc2bac708efd1c88b24c45f9587243a4b2d77729e3c13b2b82404bf
+  P05.S004: 937fb34a20b5c023c509cbb950406eadec69b24f69d728c34f8dd7537adab623
+  P05.S005: aba772e012fd829499a663532b22ff3521096105f01ed9222eeb02a956a9ff3b
+  P05.S006: 6c37d8de55cb54d56d09b8a18512c96040809f687eeb59f5db0a4ab119004234
+  P05.S013: ed9622c89cb3617e28bbec48b815db9628d99b4154adb8014b6781b1b559e32c
+  P05.S014: d0671fbac3b7aa98159580a4803a4da356c41dec282268780f1c95a5d3f26479
+  P05.S015: e5f411507ddee787fa533f7e63a7949b3f002586acf9077c2a391b06002841d6
+  P05.S016: 886aefbcbee5cf20edf7139162a6a90295539c484c86b58699eb0cbe85d3aede
+  P05.S017: 3762e7c3edc751564fa82be914b146de448c0f95ea97511dbe76921a5627334f
+source_records:
+  P05.S002:
+    sha256: 9be7c92d6fc2bac708efd1c88b24c45f9587243a4b2d77729e3c13b2b82404bf
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/5c6372d2f76d240265b92fd27c16bc772ffcb107/docker/docker-compose.yaml
+    commit_sha: 5c6372d2f76d240265b92fd27c16bc772ffcb107
+    release_tag: 1.16.0
+  P05.S004:
+    sha256: 937fb34a20b5c023c509cbb950406eadec69b24f69d728c34f8dd7537adab623
+    classification: official_mutable
+    url: https://api.github.com/repos/langgenius/dify/releases/tags/1.16.1
+    commit_sha: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+    release_tag: 1.16.1
+  P05.S005:
+    sha256: aba772e012fd829499a663532b22ff3521096105f01ed9222eeb02a956a9ff3b
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/6f8ed69ee15f9a2e7189ca066275e973d091d1e9/docker/docker-compose.yaml
+    commit_sha: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+    release_tag: 1.16.1
+  P05.S006:
+    sha256: 6c37d8de55cb54d56d09b8a18512c96040809f687eeb59f5db0a4ab119004234
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/6f8ed69ee15f9a2e7189ca066275e973d091d1e9/docker/envs/core-services/dify-agent.env.example
+    commit_sha: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+    release_tag: 1.16.1
+  P05.S013:
+    sha256: ed9622c89cb3617e28bbec48b815db9628d99b4154adb8014b6781b1b559e32c
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/6f8ed69ee15f9a2e7189ca066275e973d091d1e9/api/configs/feature/__init__.py
+    commit_sha: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+    release_tag: 1.16.1
+  P05.S014:
+    sha256: d0671fbac3b7aa98159580a4803a4da356c41dec282268780f1c95a5d3f26479
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/6f8ed69ee15f9a2e7189ca066275e973d091d1e9/docker/envs/core-services/shared.env.example
+    commit_sha: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+    release_tag: 1.16.1
+  P00.S002:
+    sha256: 179d6f8291ba87df7431f4a757e2e350aeaef5ad567ee0189b6a0a95c7ffa7fb
+    classification: official_mutable
+    url: https://api.github.com/repos/langgenius/dify/releases/tags/1.13.2
+    commit_sha: null
+    release_tag: null
+  P00.S026:
+    sha256: 91d8f263ddd975f03bfc87ba0775110dac1aacf2e7c7777674fc08b37392438c
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/f943f1e39bfb357bb0bf4f04204b9efc5cac85dc/api/docker/entrypoint.sh
+    commit_sha: f943f1e39bfb357bb0bf4f04204b9efc5cac85dc
+    release_tag: null
+  P00.S027:
+    sha256: 46e7991fcd4595985da81ec265a40d6c8e1d22462c8a4cf1335b43873a49fac0
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/f943f1e39bfb357bb0bf4f04204b9efc5cac85dc/api/extensions/ext_celery.py
+    commit_sha: f943f1e39bfb357bb0bf4f04204b9efc5cac85dc
+    release_tag: null
+  P00.S028:
+    sha256: 1daaacbc9be4c3e7161b55d4912adb41324f893769e8c8b31a6c326aac9206f7
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/f943f1e39bfb357bb0bf4f04204b9efc5cac85dc/docker/docker-compose.yaml
+    commit_sha: f943f1e39bfb357bb0bf4f04204b9efc5cac85dc
+    release_tag: null
+  P00.S030:
+    sha256: 91d8f263ddd975f03bfc87ba0775110dac1aacf2e7c7777674fc08b37392438c
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/c8560bacb328ef27a3cdaad2175b11df8338120d/api/docker/entrypoint.sh
+    commit_sha: c8560bacb328ef27a3cdaad2175b11df8338120d
+    release_tag: null
+  P00.S031:
+    sha256: 46e7991fcd4595985da81ec265a40d6c8e1d22462c8a4cf1335b43873a49fac0
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/c8560bacb328ef27a3cdaad2175b11df8338120d/api/extensions/ext_celery.py
+    commit_sha: c8560bacb328ef27a3cdaad2175b11df8338120d
+    release_tag: null
+  P00.S057:
+    sha256: 14bddc2a1e60044f24c2e21b6999450aebde3126082a51df24c2981f7b6cde72
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/c8560bacb328ef27a3cdaad2175b11df8338120d/api/schedule/update_api_token_last_used_task.py
+    commit_sha: c8560bacb328ef27a3cdaad2175b11df8338120d
+    release_tag: null
+  P00.S058:
+    sha256: a2d3f60290ffa14e899be9b10f61aba7566dbe83414207f9980cc255a75bd557
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/c8560bacb328ef27a3cdaad2175b11df8338120d/api/tasks/app_generate/workflow_execute_task.py
+    commit_sha: c8560bacb328ef27a3cdaad2175b11df8338120d
+    release_tag: null
+  P05.S015:
+    sha256: e5f411507ddee787fa533f7e63a7949b3f002586acf9077c2a391b06002841d6
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/6f8ed69ee15f9a2e7189ca066275e973d091d1e9/api/commands/data_migrate.py
+    commit_sha: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+    release_tag: 1.16.1
+  P05.S016:
+    sha256: 886aefbcbee5cf20edf7139162a6a90295539c484c86b58699eb0cbe85d3aede
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/6f8ed69ee15f9a2e7189ca066275e973d091d1e9/api/services/legacy_model_type_migration.py
+    commit_sha: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+    release_tag: 1.16.1
+  P05.S017:
+    sha256: 3762e7c3edc751564fa82be914b146de448c0f95ea97511dbe76921a5627334f
+    classification: official_fixed
+    url: https://raw.githubusercontent.com/langgenius/dify/8387590ace4a094de812b7847fc6a4c3a27cd52b/api/migrations/versions/2026_08_27_1200-5578e028b2f2_migrate_legacy_model_types.py
+    commit_sha: 8387590ace4a094de812b7847fc6a4c3a27cd52b
+    release_tag: 1.17.1
+approval_hashes:
+  APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01:
+    support-matrix.yaml: 20b5c8d31dcdae8dc3dbb966530c8f076f958083fd3f463a7bdd7025bd74bdf9
+    approved/P05-R01.yaml: 92eb1465386fc69e8d4b8812c8c4e3122955930cd2c681e6b6ec6819bf048cf6
+    approved/P05-R02.yaml: 0704c5dfbcf76ca8a7bc1749fe659d484eab5011d1a2cd6a6a98093d302749ea
+    approved/P05-R03.yaml: 3dbe7816f59b4560cd861345306e07de92efffd8efdb4a8ca2e7ca676a811be6
+    approved/P05-R04.yaml: 45fde9652e30f281b0962e41db38ae50506669d3d47d5d4e280997ef921ea567
+    approved/P05-R05.yaml: 2cdccbe4cbfc10b2cc692d69adb8f3eb329dd72623d7c8497ea37c89d526b428
+    approved/P05-R07.yaml: 22445073bb3f3c30a4603ec80257a0c071550a43cfbbf2a95a419aca9d21417d
+    sources/P05.S002: 9be7c92d6fc2bac708efd1c88b24c45f9587243a4b2d77729e3c13b2b82404bf
+    sources/P05.S004: 937fb34a20b5c023c509cbb950406eadec69b24f69d728c34f8dd7537adab623
+    sources/P05.S005: aba772e012fd829499a663532b22ff3521096105f01ed9222eeb02a956a9ff3b
+    sources/P05.S006: 6c37d8de55cb54d56d09b8a18512c96040809f687eeb59f5db0a4ab119004234
+    sources/P05.S013: ed9622c89cb3617e28bbec48b815db9628d99b4154adb8014b6781b1b559e32c
+    sources/P05.S014: d0671fbac3b7aa98159580a4803a4da356c41dec282268780f1c95a5d3f26479
+    sources/P00.S002: 179d6f8291ba87df7431f4a757e2e350aeaef5ad567ee0189b6a0a95c7ffa7fb
+    sources/P00.S026: 91d8f263ddd975f03bfc87ba0775110dac1aacf2e7c7777674fc08b37392438c
+    sources/P00.S027: 46e7991fcd4595985da81ec265a40d6c8e1d22462c8a4cf1335b43873a49fac0
+    sources/P00.S028: 1daaacbc9be4c3e7161b55d4912adb41324f893769e8c8b31a6c326aac9206f7
+    sources/P00.S030: 91d8f263ddd975f03bfc87ba0775110dac1aacf2e7c7777674fc08b37392438c
+    sources/P00.S031: 46e7991fcd4595985da81ec265a40d6c8e1d22462c8a4cf1335b43873a49fac0
+    sources/P00.S057: 14bddc2a1e60044f24c2e21b6999450aebde3126082a51df24c2981f7b6cde72
+    sources/P00.S058: a2d3f60290ffa14e899be9b10f61aba7566dbe83414207f9980cc255a75bd557
+    sources/P05.S015: e5f411507ddee787fa533f7e63a7949b3f002586acf9077c2a391b06002841d6
+    sources/P05.S016: 886aefbcbee5cf20edf7139162a6a90295539c484c86b58699eb0cbe85d3aede
+    sources/P05.S017: 3762e7c3edc751564fa82be914b146de448c0f95ea97511dbe76921a5627334f

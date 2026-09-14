@@ -1,0 +1,12 @@
+schema_version: '1.0'
+status: semantic_implementation_fixture_not_owner_adjudication
+fixture_kind: synthetic
+edge_id: P05-EDGE-WORKER-1131-1132
+oracle: absent_pending_owner_adjudication
+cases:
+- case_id: P05-R07-H01
+  scenario: source-version boundary outside the candidate edge
+- case_id: P05-R07-H02
+  scenario: api-token update disabled and api_token absent
+- case_id: P05-R07-H03
+  scenario: required queue coverage cannot be derived from target D

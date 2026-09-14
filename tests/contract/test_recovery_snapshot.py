@@ -60,6 +60,7 @@ def test_recovery_snapshot_derives_only_fixed_relations_and_attestations(tmp_pat
     assert snapshot.private_relations["agent_api_token_is_published_default"] is True
     assert snapshot.private_relations["agent_api_tokens_same_as_peer"] is True
     assert snapshot.facts["agent_sandbox.target_network_topology"].value is True
+    assert snapshot.facts["agent_runtime.backend"].value == "local"
     assert snapshot.facts["plugins.provider_cache_enabled"].value is True
     assert snapshot.facts["history.upgraded_from_before_1_15"].origin is FactOrigin.ATTESTED
     assert snapshot.facts["migration.legacy_model_types_completed"].value is False
@@ -87,3 +88,18 @@ def test_unknown_recovery_public_fields_are_omitted_not_projected_false(tmp_path
     assert snapshot.facts["agent_sandbox.target_network_topology"].status is FactStatus.KNOWN
     assert snapshot.facts["agent_sandbox.target_network_topology"].value is False
     assert "plugins.provider_cache_enabled" not in snapshot.public_config
+
+
+def test_agent_runtime_backend_is_unknown_for_conflicting_or_unclassified_compose(tmp_path: Path) -> None:
+    compose = tmp_path / "compose.yaml"
+    compose.write_text(
+        "services:\n"
+        "  api:\n"
+        "    image: langgenius/dify-api:1.16.1\n"
+        "    environment:\n"
+        "      ENTERPRISE_ENABLED: 'true'\n"
+        "      E2B_API_KEY: synthetic-only\n",
+        encoding="utf-8",
+    )
+    snapshot = collect_snapshot(CaptureRequest(project_dir=tmp_path, compose_files=(compose,)))
+    assert snapshot.facts["agent_runtime.backend"].status is FactStatus.UNKNOWN

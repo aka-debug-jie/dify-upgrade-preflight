@@ -1,0 +1,85 @@
+schema_version: '1.0'
+status: owner_selected_synthetic_heldout_inputs
+synthetic: true
+executable: true
+purpose: sealed_inputs_without_expected_results
+approval_ref: APR-P05-SEMANTICS-20260914-01
+snapshot_defaults:
+  capture:
+    mode: compose_declared
+    compose_version: '2.33'
+cases:
+- case_id: P05-R01-03
+  root_cause_id: P05-R01
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+  d_private_relations:
+    agent_api_token_is_published_default: null
+- case_id: P05-R01-05
+  root_cause_id: P05-R01
+  candidate_edge_id: P05-EDGE-A
+  request:
+    source_version: 1.17.0
+    target_version: 1.17.1
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+  d_private_relations:
+    agent_api_token_is_published_default: true
+- case_id: P05-R02-06
+  root_cause_id: P05-R02
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+    agent_auth.wiring_complete: true
+  d_private_relations:
+    agent_api_tokens_same_as_peer: false
+- case_id: P05-R03-04
+  root_cause_id: P05-R03
+  candidate_edge_id: P05-EDGE-A
+  b_facts: {}
+  d_facts:
+    agent_backend.declared: true
+    agent_runtime.backend: local
+    agent_sandbox.target_network_topology:
+      status: unknown
+      origin: declared
+      reason: custom_network_driver_not_normalized
+- case_id: P05-R04-04
+  root_cause_id: P05-R04
+  candidate_edge_id: P05-EDGE-A
+  b_facts:
+    plugins.externally_installed: {value: true, origin: attested}
+    plugins.cache_invalidation_available:
+      status: unknown
+      origin: attested
+      reason: owner_attestation_unavailable
+  d_facts:
+    plugins.provider_cache_enabled: true
+- case_id: P05-R05-04
+  root_cause_id: P05-R05
+  candidate_edge_id: P05-EDGE-A
+  b_facts:
+    history.upgraded_from_before_1_15:
+      status: unknown
+      origin: attested
+      reason: earliest_deployment_version_unknown
+    migration.legacy_model_types_completed: {value: true, origin: attested}
+  d_facts: {}
+- case_id: P05-R06-05
+  root_cause_id: P05-R06
+  candidate_edge_id: P05-EDGE-B
+  b_facts:
+    vector.ownership: bundled
+    vector.persisted_data:
+      status: unknown
+      origin: attested
+      reason: persisted_data_attestation_unavailable
+    vector.staged_upgrade_completed:
+      status: unknown
+      origin: attested
+      reason: staged_upgrade_attestation_unavailable
+  d_facts: {}

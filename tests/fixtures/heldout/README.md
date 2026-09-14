@@ -1,4 +1,9 @@
 # P05 heldout fixtures
 
-No P05 heldout fixture has been created. The P00 scenarios are evidence
-discovery material, not independently adjudicated heldout expectations.
+`P05-heldout-inputs.yaml` contains seven executable synthetic B/D inputs and no
+expected result fields. `P05-heldout-manifest.yaml` fixes the selected IDs. The
+oracle is stored separately at
+`tests/fixtures/adjudicated/P05-heldout-oracle.yaml`.
+
+These inputs remain candidate-only and synthetic; they are not production
+support evidence.

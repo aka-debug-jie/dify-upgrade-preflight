@@ -1,0 +1,31 @@
+schema_version: '1.0'
+id: P05-R05
+revision: 1
+synthetic: false
+status: approved
+title: Legacy model-type migration is required but not attested complete
+scope: static_upgrade_plan
+support_edge_ids:
+- P05-EDGE-A
+applies:
+  fact: history.upgraded_from_before_1_15
+  op: eq
+  value: true
+assertion:
+  fact: migration.legacy_model_types_completed
+  op: eq
+  value: true
+severity: warning
+evidence_refs: &id001
+- P05.S004
+- P05.S015
+- P05.S016
+- P05.S017
+review_ref: APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01
+supersedes: []
+remediation:
+  phase: after_upgrade
+  summary: Review the documented requirement and update the target plan or record
+    the required manual step.
+  docs_refs: *id001
+  executable: false

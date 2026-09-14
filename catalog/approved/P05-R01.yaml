@@ -1,0 +1,30 @@
+schema_version: '1.0'
+id: P05-R01
+revision: 1
+synthetic: false
+status: approved
+title: Agent API authentication uses the published development default
+scope: static_upgrade_plan
+support_edge_ids:
+- P05-EDGE-A
+applies:
+  fact: proposed.agent_backend.declared
+  op: eq
+  value: true
+assertion:
+  fact: proposed.private.agent_api_token_is_published_default
+  op: eq
+  value: false
+severity: warning
+evidence_refs: &id001
+- P05.S004
+- P05.S005
+- P05.S006
+review_ref: APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01
+supersedes: []
+remediation:
+  phase: before_upgrade
+  summary: Review the documented requirement and update the target plan or record
+    the required manual step.
+  docs_refs: *id001
+  executable: false

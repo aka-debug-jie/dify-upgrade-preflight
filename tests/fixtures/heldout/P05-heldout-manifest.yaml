@@ -1,0 +1,13 @@
+schema_version: '1.0'
+status: owner_selected_heldout
+executable: false
+purpose: P05_independent_review_ids_only_not_rule_tuning_input
+approval_ref: APR-P05-SEMANTICS-20260914-01
+case_ids:
+- P05-R01-03
+- P05-R01-05
+- P05-R02-06
+- P05-R03-04
+- P05-R04-04
+- P05-R05-04
+- P05-R06-05

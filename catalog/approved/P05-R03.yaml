@@ -1,0 +1,34 @@
+schema_version: '1.0'
+id: P05-R03
+revision: 1
+synthetic: false
+status: approved
+title: Local agent sandbox bypasses the target proxy isolation topology
+scope: static_upgrade_plan
+support_edge_ids:
+- P05-EDGE-A
+applies:
+  all:
+  - fact: proposed.agent_backend.declared
+    op: eq
+    value: true
+  - fact: proposed.agent_runtime.backend
+    op: eq
+    value: local
+assertion:
+  fact: proposed.agent_sandbox.target_network_topology
+  op: eq
+  value: true
+severity: blocker
+evidence_refs: &id001
+- P05.S002
+- P05.S004
+- P05.S005
+review_ref: APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01
+supersedes: []
+remediation:
+  phase: before_upgrade
+  summary: Review the documented requirement and update the target plan or record
+    the required manual step.
+  docs_refs: *id001
+  executable: false

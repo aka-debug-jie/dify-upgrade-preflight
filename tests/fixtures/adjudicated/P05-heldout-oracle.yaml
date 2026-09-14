@@ -1,0 +1,19 @@
+schema_version: '1.0'
+status: owner_adjudicated_heldout_oracle
+purpose: expected_results_separated_from_heldout_inputs
+approval_ref: APR-P05-SEMANTICS-20260914-01
+cases:
+- case_id: P05-R01-03
+  expected: {result: unknown, verdict_effect: incomplete}
+- case_id: P05-R01-05
+  expected: {result: request_unsupported, verdict_effect: unsupported}
+- case_id: P05-R02-06
+  expected: {result: failed, verdict_effect: blocked}
+- case_id: P05-R03-04
+  expected: {result: unknown, verdict_effect: incomplete}
+- case_id: P05-R04-04
+  expected: {result: unknown, verdict_effect: incomplete}
+- case_id: P05-R05-04
+  expected: {result: unknown, verdict_effect: incomplete}
+- case_id: P05-R06-05
+  expected: {result: unknown, verdict_effect: incomplete}

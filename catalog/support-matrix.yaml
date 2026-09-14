@@ -1,3 +1,89 @@
 schema_version: '1.0'
-catalog_version: 0.0.0-planning
-approved_edges: []
+catalog_version: 0.1.0-p05-approved
+approved_edges:
+- id: P05-EDGE-A
+  source_version: 1.16.0
+  target_version: 1.16.1
+  source_commit: 5c6372d2f76d240265b92fd27c16bc772ffcb107
+  target_commit: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+  deployment_profile: compose
+  compose_version: '2.33'
+  scope: static_upgrade_plan
+  required_facts:
+  - history.upgraded_from_before_1_15
+  - migration.legacy_model_types_completed
+  - plugins.cache_invalidation_available
+  - plugins.externally_installed
+  - proposed.agent_auth.wiring_complete
+  - proposed.agent_backend.declared
+  - proposed.agent_runtime.backend
+  - proposed.agent_sandbox.target_network_topology
+  - proposed.plugins.provider_cache_enabled
+  - proposed.private.agent_api_token_is_published_default
+  - proposed.private.agent_api_tokens_same_as_peer
+  rule_ids:
+  - P05-R01
+  - P05-R02
+  - P05-R03
+  - P05-R04
+  - P05-R05
+  case_ids:
+  - P05-R01-01
+  - P05-R01-02
+  - P05-R01-04
+  - P05-R02-01
+  - P05-R02-02
+  - P05-R02-03
+  - P05-R02-04
+  - P05-R02-05
+  - P05-R02-07
+  - P05-R03-01
+  - P05-R03-02
+  - P05-R03-03
+  - P05-R03-05
+  - P05-R04-01
+  - P05-R04-02
+  - P05-R04-03
+  - P05-R04-05
+  - P05-R05-01
+  - P05-R05-02
+  - P05-R05-03
+  - P05-R05-05
+  - P05-R05-06
+  - P05-R01-03
+  - P05-R01-05
+  - P05-R02-06
+  - P05-R03-04
+  - P05-R04-04
+  - P05-R05-04
+  approval_ref: APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01
+- id: P05-EDGE-WORKER-1131-1132
+  source_version: 1.13.1
+  target_version: 1.13.2
+  source_commit: f943f1e39bfb357bb0bf4f04204b9efc5cac85dc
+  target_commit: c8560bacb328ef27a3cdaad2175b11df8338120d
+  deployment_profile: compose
+  compose_version: '2.33'
+  scope: static_upgrade_plan
+  required_facts:
+  - proposed.worker.topology_complete
+  - proposed.worker.official_entrypoint
+  - proposed.worker.custom_queue_override_present
+  - proposed.worker.workflow_queue_covered
+  - proposed.api_token_last_used_update_enabled
+  - proposed.worker.api_token_queue_covered
+  rule_ids:
+  - P05-R07
+  case_ids:
+  - P05-R07-D01
+  - P05-R07-D02
+  - P05-R07-D03
+  - P05-R07-D04
+  - P05-R07-D05
+  - P05-R07-D06
+  - P05-R07-D07
+  - P05-R07-D08
+  - P05-R07-H01
+  - P05-R07-H02
+  - P05-R07-H03
+  approval_ref: APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01

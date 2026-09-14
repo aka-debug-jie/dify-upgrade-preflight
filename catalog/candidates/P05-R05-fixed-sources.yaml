@@ -1,0 +1,46 @@
+schema_version: '1.0'
+status: candidate_evidence_binding
+purpose: named_immutable_source_records_for_P05_R05_only
+sources:
+- source_id: P05.S015
+  classification: official_fixed
+  official_owner: langgenius/dify
+  release_tag: 1.16.1
+  commit_sha: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+  path: api/commands/data_migrate.py
+  immutable_url: https://raw.githubusercontent.com/langgenius/dify/6f8ed69ee15f9a2e7189ca066275e973d091d1e9/api/commands/data_migrate.py
+  sha256: e5f411507ddee787fa533f7e63a7949b3f002586acf9077c2a391b06002841d6
+  size: 5690
+  retrieved_at: null
+  materialized_at: '2026-09-14T06:37:22.258637Z'
+  identity_evidence: artifacts/P05/20260914T063000Z/evidence/1.16.1-tree.json
+  local_evidence: artifacts/P05/20260914T063000Z/evidence/raw/r05-116-command.py
+  provenance_note: Fixed commit, path, Git-tree identity and SHA-256 are recorded; original raw HTTP receipt was not retained.
+- source_id: P05.S016
+  classification: official_fixed
+  official_owner: langgenius/dify
+  release_tag: 1.16.1
+  commit_sha: 6f8ed69ee15f9a2e7189ca066275e973d091d1e9
+  path: api/services/legacy_model_type_migration.py
+  immutable_url: https://raw.githubusercontent.com/langgenius/dify/6f8ed69ee15f9a2e7189ca066275e973d091d1e9/api/services/legacy_model_type_migration.py
+  sha256: 886aefbcbee5cf20edf7139162a6a90295539c484c86b58699eb0cbe85d3aede
+  size: 95028
+  retrieved_at: null
+  materialized_at: '2026-09-14T06:37:23.891644Z'
+  identity_evidence: artifacts/P05/20260914T063000Z/evidence/1.16.1-tree.json
+  local_evidence: artifacts/P05/20260914T063000Z/evidence/raw/r05-116-service.py
+  provenance_note: Fixed commit, path, Git-tree identity and SHA-256 are recorded; original raw HTTP receipt was not retained.
+- source_id: P05.S017
+  classification: official_fixed
+  official_owner: langgenius/dify
+  release_tag: 1.17.1
+  commit_sha: 8387590ace4a094de812b7847fc6a4c3a27cd52b
+  path: api/migrations/versions/2026_08_27_1200-5578e028b2f2_migrate_legacy_model_types.py
+  immutable_url: https://raw.githubusercontent.com/langgenius/dify/8387590ace4a094de812b7847fc6a4c3a27cd52b/api/migrations/versions/2026_08_27_1200-5578e028b2f2_migrate_legacy_model_types.py
+  sha256: 3762e7c3edc751564fa82be914b146de448c0f95ea97511dbe76921a5627334f
+  size: 9724
+  retrieved_at: null
+  materialized_at: '2026-09-14T06:37:25.420650Z'
+  identity_evidence: artifacts/P05/20260914T063000Z/evidence/1.17.1-tree.json
+  local_evidence: artifacts/P05/20260914T063000Z/evidence/raw/r05-117-migration.py
+  provenance_note: Fixed commit, path, Git-tree identity and SHA-256 are recorded; original raw HTTP receipt was not retained.

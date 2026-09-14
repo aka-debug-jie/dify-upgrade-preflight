@@ -1,0 +1,54 @@
+schema_version: '1.0'
+status: owner_scoped_candidate
+executable: false
+approval_ref: APR-P05-SEMANTICS-20260914-01
+purpose: candidate_rule_dsl_for_review_not_product_catalog
+rules:
+- id: P05-R01
+  edge_id: P05-EDGE-A
+  applies: {fact: proposed.agent_backend.declared, op: eq, value: true}
+  assertion: {fact: proposed.private.agent_api_token_is_published_default, op: eq, value: false}
+  severity: warning
+  phase: before_upgrade
+- id: P05-R02
+  edge_id: P05-EDGE-A
+  applies: {fact: proposed.agent_backend.declared, op: eq, value: true}
+  assertion:
+    all:
+    - {fact: proposed.private.agent_api_tokens_same_as_peer, op: eq, value: true}
+    - {fact: proposed.agent_auth.wiring_complete, op: eq, value: true}
+  severity: blocker
+  phase: before_upgrade
+- id: P05-R03
+  edge_id: P05-EDGE-A
+  applies:
+    all:
+    - {fact: proposed.agent_backend.declared, op: eq, value: true}
+    - {fact: proposed.agent_runtime.backend, op: eq, value: local}
+  assertion: {fact: proposed.agent_sandbox.target_network_topology, op: eq, value: true}
+  severity: blocker
+  phase: before_upgrade
+- id: P05-R04
+  edge_id: P05-EDGE-A
+  applies:
+    all:
+    - {fact: plugins.externally_installed, op: eq, value: true}
+    - {fact: proposed.plugins.provider_cache_enabled, op: eq, value: true}
+  assertion: {fact: plugins.cache_invalidation_available, op: eq, value: true}
+  severity: warning
+  phase: manual_review
+- id: P05-R05
+  edge_id: P05-EDGE-A
+  applies: {fact: history.upgraded_from_before_1_15, op: eq, value: true}
+  assertion: {fact: migration.legacy_model_types_completed, op: eq, value: true}
+  severity: warning
+  phase: after_upgrade
+- id: P05-R06
+  edge_id: P05-EDGE-B
+  applies:
+    all:
+    - {fact: vector.ownership, op: eq, value: bundled}
+    - {fact: vector.persisted_data, op: eq, value: true}
+  assertion: {fact: vector.staged_upgrade_completed, op: eq, value: true}
+  severity: blocker
+  phase: before_upgrade

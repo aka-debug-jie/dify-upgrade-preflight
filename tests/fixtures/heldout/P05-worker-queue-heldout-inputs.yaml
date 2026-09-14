@@ -1,0 +1,18 @@
+schema_version: '1.0'
+status: owner_locked_heldout_input
+executable: false
+purpose: P05_R07_independent_review_inputs_without_oracle
+review_bundle: artifacts/P05/20260914T075144Z/REVIEW_BUNDLE.sha256
+cases:
+- case_id: P05-R07-H01
+  root_cause_id: P05-R07
+  request: {source_version: 1.13.0, target_version: 1.13.2}
+  scenario: Source-version boundary outside the exact candidate edge.
+- case_id: P05-R07-H02
+  root_cause_id: P05-R07
+  request: {source_version: 1.13.1, target_version: 1.13.2}
+  scenario: Custom queue override covers workflow_based_app_execution; API-token updates are disabled and api_token is absent.
+- case_id: P05-R07-H03
+  root_cause_id: P05-R07
+  request: {source_version: 1.13.1, target_version: 1.13.2}
+  scenario: Complete official custom topology is declared but effective queue coverage cannot be normalized.

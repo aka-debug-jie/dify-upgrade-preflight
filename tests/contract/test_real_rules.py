@@ -10,7 +10,7 @@ from dify_preflight.catalog.load import CatalogPolicy, load_catalog
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_p05_candidates_do_not_create_approved_product_rules() -> None:
+def test_p05_candidates_remain_nonexecutable_when_digest_bound_catalog_is_approved() -> None:
     register = yaml.safe_load(
         (ROOT / "catalog/candidates/P05-candidate-register.yaml").read_text(encoding="utf-8")
     )
@@ -20,7 +20,7 @@ def test_p05_candidates_do_not_create_approved_product_rules() -> None:
     assert len(register["candidates"]) == 6
     assert all(item["status"] == "candidate" for item in register["candidates"])
     assert all(item["approval_ref"] is None for item in register["candidates"])
-    assert matrix["approved_edges"] == []
+    assert {edge["id"] for edge in matrix["approved_edges"]} == {"P05-EDGE-A", "P05-EDGE-WORKER-1131-1132"}
 
 
 def test_p05_only_fixed_evidence_candidates_can_be_review_ready() -> None:
@@ -49,14 +49,20 @@ def test_p05_only_fixed_evidence_candidates_can_be_review_ready() -> None:
         assert all(pins[source]["status"] == "obtained" and len(pins[source]["sha256"]) == 64 for source in expected_refs)
 
 
-def test_product_catalog_ignores_candidate_directory() -> None:
+def test_product_catalog_loads_only_approved_directory_with_owner_policy() -> None:
+    manifest = yaml.safe_load((ROOT / "catalog/approval-manifest.yaml").read_text(encoding="utf-8"))
     catalog = load_catalog(
         ROOT / "catalog/support-matrix.yaml",
-        CatalogPolicy(root=ROOT / "catalog", trust="untrusted"),
+        CatalogPolicy(
+            root=ROOT / "catalog",
+            approved_sources=manifest["approved_sources"],
+            approval_hashes=manifest["approval_hashes"],
+            trust="owner_approved_local",
+        ),
     )
 
-    assert catalog.rules == ()
-    assert catalog.edges == ()
+    assert {rule["id"] for rule in catalog.rules} == {"P05-R01", "P05-R02", "P05-R03", "P05-R04", "P05-R05", "P05-R07"}
+    assert {edge["id"] for edge in catalog.edges} == {"P05-EDGE-A", "P05-EDGE-WORKER-1131-1132"}
 
 
 def test_p05_recovery_package_has_six_roots_and_thirty_pending_cases() -> None:
@@ -67,7 +73,8 @@ def test_p05_recovery_package_has_six_roots_and_thirty_pending_cases() -> None:
         (ROOT / "tests/fixtures/pending_adjudication/P05-recovery-cases.yaml").read_text(encoding="utf-8")
     )
 
-    assert candidates["status"] == "pending_owner_adjudication"
+    assert candidates["status"] == "owner_scoped_candidate"
+    assert candidates["semantics_approval_ref"] == "APR-P05-SEMANTICS-20260914-01"
     assert candidates["executable"] is False
     assert len(candidates["candidate_edges"]) == 2
     assert len(candidates["root_causes"]) == 6
@@ -100,6 +107,12 @@ def test_p05_recovery_sources_are_locally_fixed_and_unapproved() -> None:
         assert source["retrieved_at"] is None
         assert artifact.is_file()
         assert hashlib.sha256(artifact.read_bytes()).hexdigest() == source["sha256"]
+    fixed_sources = yaml.safe_load(
+        (ROOT / "catalog/candidates/P05-R05-fixed-sources.yaml").read_text(encoding="utf-8")
+    )
+    assert {source["source_id"] for source in fixed_sources["sources"]} == {"P05.S015", "P05.S016", "P05.S017"}
+    assert all(source["classification"] == "official_fixed" for source in fixed_sources["sources"])
+    source_ids |= {source["source_id"] for source in fixed_sources["sources"]}
     candidates = yaml.safe_load(
         (ROOT / "catalog/candidates/P05-recovery-candidates.yaml").read_text(encoding="utf-8")
     )

@@ -1,0 +1,246 @@
+schema_version: '1.0'
+status: owner_adjudicated_candidate_development
+executable: false
+purpose: P05_candidate_behavior_expectations_not_production_rules
+approval_ref: APR-P05-SEMANTICS-20260914-01
+cases:
+- case_id: P05-R01-01
+  root_cause_id: P05-R01
+  scenario: Agent backend declared and token equals the published development default.
+  evaluation_level: finding
+  expected:
+    result: failed
+    verdict_effect: warning
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R01-02
+  root_cause_id: P05-R01
+  scenario: Agent backend declared and token is explicitly non-default.
+  evaluation_level: finding
+  expected:
+    result: passed
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R01-04
+  root_cause_id: P05-R01
+  scenario: Target deployment does not declare agent backend.
+  evaluation_level: finding
+  expected:
+    result: not_applicable
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R02-01
+  root_cause_id: P05-R02
+  scenario: API and agent backend tokens are both non-default but differ.
+  evaluation_level: finding
+  expected:
+    result: failed
+    verdict_effect: blocked
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R02-02
+  root_cause_id: P05-R02
+  scenario: API and agent backend tokens match and target wiring is complete.
+  evaluation_level: finding
+  expected:
+    result: passed
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R02-03
+  root_cause_id: P05-R02
+  scenario: One peer token is unavailable after redaction.
+  evaluation_level: finding
+  expected:
+    result: unknown
+    verdict_effect: incomplete
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R02-04
+  root_cause_id: P05-R02
+  scenario: Agent backend is absent from the target deployment.
+  evaluation_level: finding
+  expected:
+    result: not_applicable
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R02-05
+  root_cause_id: P05-R02
+  scenario: Tokens match but a customized API service does not wire the peer token.
+  evaluation_level: finding
+  expected:
+    result: failed
+    verdict_effect: blocked
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R02-07
+  root_cause_id: P05-R02
+  scenario: Agent backend is declared but one required peer token is explicitly empty.
+  evaluation_level: finding
+  expected:
+    result: failed
+    verdict_effect: blocked
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R03-01
+  root_cause_id: P05-R03
+  scenario: Local sandbox remains on the default network without the dedicated proxy.
+  evaluation_level: finding
+  expected:
+    result: failed
+    verdict_effect: blocked
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R03-02
+  root_cause_id: P05-R03
+  scenario: Local sandbox uses both target internal networks and the dedicated proxy.
+  evaluation_level: finding
+  expected:
+    result: passed
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R03-03
+  root_cause_id: P05-R03
+  scenario: Agent functionality is disabled and agent_backend plus local_sandbox are
+    omitted.
+  evaluation_level: finding
+  expected:
+    result: not_applicable
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R03-05
+  root_cause_id: P05-R03
+  scenario: Networks are present but agent_ssrf_proxy service is missing.
+  evaluation_level: finding
+  expected:
+    result: failed
+    verdict_effect: blocked
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R04-01
+  root_cause_id: P05-R04
+  scenario: Plugins are installed externally, provider cache is enabled, and invalidation
+    is unavailable.
+  evaluation_level: finding
+  expected:
+    result: failed
+    verdict_effect: warning
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R04-02
+  root_cause_id: P05-R04
+  scenario: Plugins are installed externally and provider cache is disabled.
+  evaluation_level: finding
+  expected:
+    result: not_applicable
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R04-03
+  root_cause_id: P05-R04
+  scenario: Dify manages plugin installation and cache invalidation.
+  evaluation_level: finding
+  expected:
+    result: not_applicable
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R04-05
+  root_cause_id: P05-R04
+  scenario: External installer provides a verified invalidation mechanism while cache
+    stays enabled.
+  evaluation_level: finding
+  expected:
+    result: passed
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R05-01
+  root_cause_id: P05-R05
+  scenario: Deployment history predates 1.15 and the legacy migration is attested
+    incomplete.
+  evaluation_level: finding
+  expected:
+    result: failed
+    verdict_effect: warning
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R05-02
+  root_cause_id: P05-R05
+  scenario: Deployment history predates 1.15 and migration completion is attested.
+  evaluation_level: finding
+  expected:
+    result: passed
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R05-03
+  root_cause_id: P05-R05
+  scenario: Fresh deployment began at 1.15 or later.
+  evaluation_level: finding
+  expected:
+    result: not_applicable
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R05-05
+  root_cause_id: P05-R05
+  scenario: Pre-1.15 history is attested but migration completion is unknown.
+  evaluation_level: finding
+  expected:
+    result: unknown
+    verdict_effect: incomplete
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R05-06
+  root_cause_id: P05-R05
+  scenario: Target is 1.17.1, where the manual legacy-model migration is not evaluated
+    because the target migration is automatic.
+  evaluation_level: request
+  expected:
+    result: request_unsupported
+    verdict_effect: unsupported
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R06-01
+  root_cause_id: P05-R06
+  scenario: Bundled Weaviate has existing data and staged-upgrade completion is explicitly
+    attested false.
+  evaluation_level: finding
+  expected:
+    result: failed
+    verdict_effect: blocked
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R06-02
+  root_cause_id: P05-R06
+  scenario: Bundled persisted Weaviate completed every approved staged upgrade.
+  evaluation_level: finding
+  expected:
+    result: passed
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R06-03
+  root_cause_id: P05-R06
+  scenario: Fresh bundled Weaviate deployment has no existing volume data.
+  evaluation_level: finding
+  expected:
+    result: not_applicable
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01
+- case_id: P05-R06-04
+  root_cause_id: P05-R06
+  scenario: Vector store is external Weaviate or another external backend.
+  evaluation_level: finding
+  expected:
+    result: not_applicable
+    verdict_effect: none
+  owner_decision: adjudicated_for_candidate_development
+  approval_ref: APR-P05-SEMANTICS-20260914-01

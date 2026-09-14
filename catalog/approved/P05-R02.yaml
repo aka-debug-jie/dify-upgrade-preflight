@@ -1,0 +1,33 @@
+schema_version: '1.0'
+id: P05-R02
+revision: 1
+synthetic: false
+status: approved
+title: API and agent backend authentication tokens do not match
+scope: static_upgrade_plan
+support_edge_ids:
+- P05-EDGE-A
+applies:
+  fact: proposed.agent_backend.declared
+  op: eq
+  value: true
+assertion:
+  all:
+  - fact: proposed.private.agent_api_tokens_same_as_peer
+    op: eq
+    value: true
+  - fact: proposed.agent_auth.wiring_complete
+    op: eq
+    value: true
+severity: blocker
+evidence_refs: &id001
+- P05.S004
+- P05.S005
+review_ref: APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01
+supersedes: []
+remediation:
+  phase: before_upgrade
+  summary: Review the documented requirement and update the target plan or record
+    the required manual step.
+  docs_refs: *id001
+  executable: false

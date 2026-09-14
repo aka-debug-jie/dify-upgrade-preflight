@@ -1,0 +1,12 @@
+schema_version: '1.0'
+status: owner_adjudicated_heldout_oracle
+executable: false
+purpose: P05_R07_expected_results_separated_from_heldout_inputs
+review_bundle: artifacts/P05/20260914T075144Z/REVIEW_BUNDLE.sha256
+cases:
+- case_id: P05-R07-H01
+  expected: {result: request_unsupported, verdict_effect: unsupported, report_verdict: UNSUPPORTED}
+- case_id: P05-R07-H02
+  expected: {result: passed, verdict_effect: none, report_verdict: NO_KNOWN_BLOCKERS}
+- case_id: P05-R07-H03
+  expected: {result: unknown, verdict_effect: incomplete, report_verdict: INCOMPLETE}

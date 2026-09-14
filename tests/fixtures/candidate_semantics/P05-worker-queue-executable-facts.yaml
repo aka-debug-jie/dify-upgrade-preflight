@@ -1,0 +1,88 @@
+schema_version: '1.0'
+status: synthetic_executable_fact_mapping
+purpose: mechanical_B_D_facts_for_owner_locked_P05_R07_scenarios
+snapshot_defaults:
+  capture: {mode: compose_declared, compose_version: '2.33'}
+cases:
+- case_id: P05-R07-D01
+  d_facts:
+    worker.topology_complete: {value: true, origin: attested}
+    worker.official_entrypoint: {value: true, origin: attested}
+    worker.custom_queue_override_present: {value: true, origin: derived}
+    worker.workflow_queue_covered: {value: false, origin: derived}
+    api_token_last_used_update_enabled: {value: false, origin: declared}
+    worker.api_token_queue_covered: {value: false, origin: derived}
+- case_id: P05-R07-D02
+  d_facts:
+    worker.topology_complete: {value: true, origin: attested}
+    worker.official_entrypoint: {value: true, origin: attested}
+    worker.custom_queue_override_present: {value: true, origin: derived}
+    worker.workflow_queue_covered: {value: true, origin: derived}
+    api_token_last_used_update_enabled: {value: true, origin: declared}
+    worker.api_token_queue_covered: {value: false, origin: derived}
+- case_id: P05-R07-D03
+  d_facts:
+    worker.topology_complete: {value: true, origin: attested}
+    worker.official_entrypoint: {value: true, origin: attested}
+    worker.custom_queue_override_present: {value: true, origin: derived}
+    worker.workflow_queue_covered: {value: true, origin: derived}
+    api_token_last_used_update_enabled: {value: true, origin: declared}
+    worker.api_token_queue_covered: {value: true, origin: derived}
+- case_id: P05-R07-D04
+  d_facts:
+    worker.topology_complete: {value: true, origin: attested}
+    worker.official_entrypoint: {value: true, origin: attested}
+    worker.custom_queue_override_present: {value: false, origin: derived}
+    worker.workflow_queue_covered: {value: true, origin: derived}
+    api_token_last_used_update_enabled: {value: false, origin: declared}
+    worker.api_token_queue_covered: {value: false, origin: derived}
+- case_id: P05-R07-D05
+  d_facts:
+    worker.topology_complete: {value: true, origin: attested}
+    worker.official_entrypoint: {value: true, origin: attested}
+    worker.custom_queue_override_present: {value: true, origin: derived}
+    worker.workflow_queue_covered: {value: false, origin: derived}
+    api_token_last_used_update_enabled: {value: false, origin: declared}
+    worker.api_token_queue_covered: {value: true, origin: derived}
+- case_id: P05-R07-D06
+  d_facts:
+    worker.topology_complete: {value: true, origin: attested}
+    worker.official_entrypoint: {value: true, origin: attested}
+    worker.custom_queue_override_present: {value: true, origin: derived}
+    worker.workflow_queue_covered: {value: true, origin: derived}
+    api_token_last_used_update_enabled: {value: true, origin: declared}
+    worker.api_token_queue_covered: {value: true, origin: derived}
+- case_id: P05-R07-D07
+  d_facts:
+    worker.topology_complete: {status: unknown, origin: attested, reason: topology_not_attested}
+    worker.official_entrypoint: {value: true, origin: attested}
+    worker.custom_queue_override_present: {value: true, origin: derived}
+    worker.workflow_queue_covered: {status: unknown, origin: derived, reason: topology_incomplete}
+    api_token_last_used_update_enabled: {value: false, origin: declared}
+    worker.api_token_queue_covered: {status: unknown, origin: derived, reason: topology_incomplete}
+- case_id: P05-R07-D08
+  d_facts:
+    worker.topology_complete: {value: true, origin: attested}
+    worker.official_entrypoint: {value: false, origin: attested}
+    worker.custom_queue_override_present: {value: true, origin: derived}
+    worker.workflow_queue_covered: {status: unknown, origin: derived, reason: custom_entrypoint}
+    api_token_last_used_update_enabled: {value: false, origin: declared}
+    worker.api_token_queue_covered: {status: unknown, origin: derived, reason: custom_entrypoint}
+- case_id: P05-R07-H01
+  d_facts: {}
+- case_id: P05-R07-H02
+  d_facts:
+    worker.topology_complete: {value: true, origin: attested}
+    worker.official_entrypoint: {value: true, origin: attested}
+    worker.custom_queue_override_present: {value: true, origin: derived}
+    worker.workflow_queue_covered: {value: true, origin: derived}
+    api_token_last_used_update_enabled: {value: false, origin: declared}
+    worker.api_token_queue_covered: {value: false, origin: derived}
+- case_id: P05-R07-H03
+  d_facts:
+    worker.topology_complete: {value: true, origin: attested}
+    worker.official_entrypoint: {value: true, origin: attested}
+    worker.custom_queue_override_present: {value: true, origin: derived}
+    worker.workflow_queue_covered: {status: unknown, origin: derived, reason: coverage_not_normalizable}
+    api_token_last_used_update_enabled: {value: false, origin: declared}
+    worker.api_token_queue_covered: {status: unknown, origin: derived, reason: coverage_not_normalizable}

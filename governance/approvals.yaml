@@ -1,5 +1,137 @@
 schema_version: '1.0'
 approvals:
+- id: APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T08:33:15Z'
+  message_ref: user_message_2026-09-14_revised_exact_object_approval_confirmed
+  objects:
+  - path: artifacts/P05/20260914T083000Z/R05_REVISED_PROMOTION_OBJECTS.json
+    sha256: 519bcb4f79eeb227e09df15b73ab8a86c00c9bfd8683aa33631732ef041838d4
+    purpose: revised_canonical_object_container
+  - path: catalog/candidates/P05-R05-fixed-sources.yaml
+    sha256: 0ce95dc40c6ecf28e3eeea9ad5a63fe5062846cbec74c891573590330162f645
+    purpose: named_fixed_R05_source_records
+  - path: artifacts/P05/20260914T083000Z/R05_REVISED_PROMOTION_OBJECTS.json#active_set
+    sha256: f9b6d9d8a876dc657c3eba1c076dc9aa93fbff3ea1e227498c191217db374ddf
+    purpose: approved_revised_active_set
+  - path: artifacts/P05/20260914T083000Z/R05_REVISED_PROMOTION_OBJECTS.json#edges/P05-EDGE-A
+    sha256: d58ff32f14ad946a48f0a40ab0dd42f71f16afdde5dacd51a24ac26a6378b8d4
+    purpose: approved_exact_candidate_edge
+  - path: artifacts/P05/20260914T083000Z/R05_REVISED_PROMOTION_OBJECTS.json#edges/P05-EDGE-WORKER-1131-1132
+    sha256: af457f9ceeb36fbf042a68f025b35f3aeebc644f61be8b5ff3e236d0a1d5294a
+    purpose: approved_exact_candidate_edge
+  - path: artifacts/P05/20260914T083000Z/R05_REVISED_PROMOTION_OBJECTS.json#rules/P05-R01
+    sha256: ccb24e6bf1019db53986e05463a0bed16314b51c73bcb37947a280d44f517479
+    purpose: approved_exact_candidate_rule
+  - path: artifacts/P05/20260914T083000Z/R05_REVISED_PROMOTION_OBJECTS.json#rules/P05-R02
+    sha256: 74bc33c8cc4acad63680d8f08d2a35d6b17d5cba467965f53a8091466cac02f4
+    purpose: approved_exact_candidate_rule
+  - path: artifacts/P05/20260914T083000Z/R05_REVISED_PROMOTION_OBJECTS.json#rules/P05-R03
+    sha256: fc954aefadc7e2c3df9de5f9189a22e16f0fe58431c08d61b062138291281523
+    purpose: approved_exact_candidate_rule
+  - path: artifacts/P05/20260914T083000Z/R05_REVISED_PROMOTION_OBJECTS.json#rules/P05-R04
+    sha256: 4f36391dec7101caf26c8c0328515b7e240a4eec6c91ae60855e52a4199bc166
+    purpose: approved_exact_candidate_rule
+  - path: artifacts/P05/20260914T083000Z/R05_REVISED_PROMOTION_OBJECTS.json#rules/P05-R05
+    sha256: b94a851b9219622b8ec6642e3386ee7ea525732368cb617f57531d4246adfb0b
+    purpose: approved_revised_exact_candidate_rule
+  - path: artifacts/P05/20260914T083000Z/R05_REVISED_PROMOTION_OBJECTS.json#rules/P05-R07
+    sha256: e0599fe49c76180bb5ec5fabf11a2930de17e5e459fe9c6d05ef3df258ae319e
+    purpose: approved_exact_candidate_rule
+  scope: Approve the listed revised active two-edge and six-rule canonical objects for a bounded S6 catalog promotion. R06 and P05-EDGE-B remain unapproved historical candidate material. No change to P05 status, P06, Git, release, production, Docker, network or experiment authority is granted by this approval itself.
+- id: APR-P05-R05-EVIDENCE-BINDING-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T08:30:00Z'
+  message_ref: user_message_2026-09-14_r05_evidence_binding_revision_authorization
+  objects:
+  - path: artifacts/P05/20260914T082400Z/ADMISSION_BLOCKER.md
+    sha256: 7dbe23e6df675c669722ba547d2242fdd957a3cab2d992c06d767a580803b157
+    purpose: accepted_R05_evidence_binding_blocker
+  scope: Add named existing immutable R05 source records and bind them to the P05-R05 candidate only. Do not change R05 semantics, severity, phase, facts, cases, active edge membership, R06 history, approved catalog, P05 status, P06, Git, release, production, Docker, network, or experiment authority. A separate exact-object approval is required after digest recomputation.
+- id: APR-P05-ACTIVE-PROMOTION-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T08:19:00Z'
+  message_ref: user_message_2026-09-14_active_two_edge_owner_promotion_decision
+  objects:
+  - path: artifacts/P05/20260914T081151Z/REVIEW_BUNDLE.sha256
+    sha256: bcf6964d4ac19f2a6b6e9f90d74a542e08bd3e12818b781549eb4ebc826289dd
+    purpose: reviewed_active_two_edge_evidence_bundle
+  - path: artifacts/P05/20260914T081900Z/PROMOTION_OBJECTS.json
+    sha256: 0df9047aef6172e67c402d8f109bcc1f5fc241ad2e72635fbec5c6058d93592b
+    purpose: canonical_object_container
+  - path: artifacts/P05/20260914T081900Z/PROMOTION_OBJECTS.json#edges/P05-EDGE-A
+    sha256: d58ff32f14ad946a48f0a40ab0dd42f71f16afdde5dacd51a24ac26a6378b8d4
+    purpose: approved_exact_candidate_edge
+  - path: artifacts/P05/20260914T081900Z/PROMOTION_OBJECTS.json#edges/P05-EDGE-WORKER-1131-1132
+    sha256: af457f9ceeb36fbf042a68f025b35f3aeebc644f61be8b5ff3e236d0a1d5294a
+    purpose: approved_exact_candidate_edge
+  - path: artifacts/P05/20260914T081900Z/PROMOTION_OBJECTS.json#rules/P05-R01
+    sha256: ccb24e6bf1019db53986e05463a0bed16314b51c73bcb37947a280d44f517479
+    purpose: approved_exact_candidate_rule
+  - path: artifacts/P05/20260914T081900Z/PROMOTION_OBJECTS.json#rules/P05-R02
+    sha256: 74bc33c8cc4acad63680d8f08d2a35d6b17d5cba467965f53a8091466cac02f4
+    purpose: approved_exact_candidate_rule
+  - path: artifacts/P05/20260914T081900Z/PROMOTION_OBJECTS.json#rules/P05-R03
+    sha256: fc954aefadc7e2c3df9de5f9189a22e16f0fe58431c08d61b062138291281523
+    purpose: approved_exact_candidate_rule
+  - path: artifacts/P05/20260914T081900Z/PROMOTION_OBJECTS.json#rules/P05-R04
+    sha256: 4f36391dec7101caf26c8c0328515b7e240a4eec6c91ae60855e52a4199bc166
+    purpose: approved_exact_candidate_rule
+  - path: artifacts/P05/20260914T081900Z/PROMOTION_OBJECTS.json#rules/P05-R05
+    sha256: 96392138e79b778c2913a1179b9d69183fd544b1c6c20065868b12714f48d6f5
+    purpose: approved_exact_candidate_rule
+  - path: artifacts/P05/20260914T081900Z/PROMOTION_OBJECTS.json#rules/P05-R07
+    sha256: e0599fe49c76180bb5ec5fabf11a2930de17e5e459fe9c6d05ef3df258ae319e
+    purpose: approved_exact_candidate_rule
+  scope: Approve only the listed active candidate edge and rule canonical objects for the bounded S6 approved-catalog promotion. R06 and P05-EDGE-B remain unapproved historical candidate material. This approval does not itself modify catalog/approved, catalog/support-matrix.yaml, P05 status, P06, Git, release, production, Docker, network, or experiment authority.
+- id: APR-P05-WORKER-CASE-ADJUDICATION-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T07:51:44Z'
+  message_ref: user_message_2026-09-14_worker_queue_case_adjudication_authorization
+  objects:
+  - path: artifacts/P05/20260914T075144Z/REVIEW_BUNDLE.sha256
+    sha256: 469056f23f4d0ba7693cccfca9f173c31a05c46af467721b4621aba1322b0fa2
+    purpose: owner_locked_P05_R07_case_review_bundle
+  scope: Bind only the P05-R07 candidate development expectations and separately sealed heldout input/oracle in the referenced review bundle. Severity remains warning and phase before_upgrade. No candidate rule or edge approval, no approved-catalog change, no P05 status change, no P06, no Git, release, production, Docker, or evaluator-run authority.
+- id: APR-P05-WORKER-SEMANTICS-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T07:44:08Z'
+  message_ref: user_message_2026-09-14_owner_worker_semantic_implementation_authorization
+  objects:
+  - path: artifacts/P05/20260914T070000Z/WORKER_QUEUE_ROOT_PROPOSAL.md
+    sha256: 15f155974c0ccd0e080db8db34cc78c9bbabaed0c0e460bd200e1da4acf647e7
+    purpose: approved_candidate_only_worker_root_proposal
+  - path: artifacts/P05/20260914T073207Z/P05_EDGE_B_REPLACEMENT_CHANGE_REQUEST_DRAFT.md
+    sha256: b095b9ec1d340bb5b5b6af05343a0e8e5d05d2aadfdcf9493316975ddfb18e70
+    purpose: approved_candidate_scope_change_basis
+  scope: Candidate-only implementation of P05-EDGE-WORKER-1131-1132 and P05-R07. Applies only when target D attests a complete topology and official entrypoint and declares a custom queue override; assertion requires workflow_based_app_execution coverage and api_token coverage only when ENABLE_API_TOKEN_LAST_USED_UPDATE_TASK is enabled. Severity warning; phase before_upgrade. Missing topology, unsupported custom entrypoint, or unnormalizable queue coverage is INCOMPLETE. Authorizes synthetic non-adjudicated fixtures and minimal typed fact/attestation support. No approved rule/edge, catalog promotion, P05 state change, P06, Git, release, production or Docker authority.
+- id: APR-P05-SEMANTICS-20260914-01
+  decision: approved
+  owner_role: product_and_rule_owner
+  recorded_at: '2026-09-14T00:00:00Z'
+  message_ref: user_message_2026-09-14_p05_semantic_revision_authorization
+  objects:
+  - path: artifacts/P05/20260913T144409Z/HISTORICAL_COVERAGE_MATRIX.md
+    sha256: faa3eaae36939952d80a5ed1eebb9425565111045713b12770a762528c2bba2f
+    purpose: accepted_historical_traceability
+  - path: artifacts/P05/20260913T144409Z/SOURCE_TRANSPORT_CLOSURE.json
+    sha256: 624e2a4b2dd8b87d8bc05edb9903603c8666e59b676de364cc1a7ce5d2fc8db6
+    purpose: accepted_candidate_transport_provenance
+  - path: artifacts/P05/20260913T144409Z/P05_OWNER_ADJUDICATION_PACK.md
+    sha256: d44a1dc2af49db00bfb3fabb64ddea1beb65f431b8fee7cdc4d2df1494e5aabc
+    purpose: owner_adjudication_basis
+  - path: artifacts/P05/20260913T144409Z/P05_OWNER_ADJUDICATION_CASES.yaml
+    sha256: 97e7b2dca48cffd79a3f67274eb2038fdb5429b9bad1bc819846710a38a33c64
+    purpose: pending_case_basis
+  - path: artifacts/P05/20260913T144409Z/P05_DECISION_READINESS.md
+    sha256: 03cdebfb86a86b939fd82050c9ef29750cd402fdf441c6755d2fd857f1c4df86
+    purpose: scope_decision_basis
+  scope: Retain P05-EDGE-A and P05-EDGE-B as candidate-only P05 scope; retain R01-R06 taxonomy; authorize candidate semantic revisions, target-D fact alignment, local/enterprise/e2b/unknown runtime fact collection, owner-adjudicated development and heldout case objects, candidate behavior tests, source-to-rule applicability and P05 evidence materials. No production rule, support edge, catalog promotion, phase completion, P06, contract/threshold change, Git/release, production or Docker authority.
 - id: APR-PUBLIC-REPOSITORY-20260913-01
   decision: approved
   owner_role: product_and_rule_owner
@@ -18,7 +150,7 @@ approvals:
   - path: artifacts/P05/20260913T125134Z/REVIEW_BUNDLE.sha256
     sha256: 08b0ee8611a56b4e83dcea43836f8e086a5cf253c315609446e9f36569fb4fce
     purpose: bounded_recovery_review_bundle
-  scope: Bounded P00-P04 recovery implementation and tests only: fixed evidence/baselines, fixed-key attestations and private relations, declared topology facts, proposed target D evaluation/provenance, catalog source-digest binding and duplicate-edge rejection, and pending-case repairs; no approval or promotion of support edges, root taxonomy, case outcomes, real rules, P05 completion, production access, experiment, Git, release, or publication authority
+  scope: 'Bounded P00-P04 recovery implementation and tests only: fixed evidence/baselines, fixed-key attestations and private relations, declared topology facts, proposed target D evaluation/provenance, catalog source-digest binding and duplicate-edge rejection, and pending-case repairs; no approval or promotion of support edges, root taxonomy, case outcomes, real rules, P05 completion, production access, experiment, Git, release, or publication authority'
 - id: APR-P00-P04-REVIEW-20260913-01
   decision: approved
   owner_role: product_and_rule_owner

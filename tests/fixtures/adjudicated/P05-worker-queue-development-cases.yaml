@@ -1,0 +1,54 @@
+schema_version: '1.0'
+status: owner_adjudicated_candidate_development
+executable: false
+purpose: P05_R07_candidate_behavior_expectations_not_production_rule
+review_bundle: artifacts/P05/20260914T075144Z/REVIEW_BUNDLE.sha256
+cases:
+- case_id: P05-R07-D01
+  root_cause_id: P05-R07
+  scenario: Complete custom target topology omits workflow_based_app_execution.
+  evaluation_level: finding
+  expected: {result: failed, verdict_effect: warning, report_verdict: NO_KNOWN_BLOCKERS}
+  owner_decision: adjudicated_for_candidate_development
+- case_id: P05-R07-D02
+  root_cause_id: P05-R07
+  scenario: Complete custom target topology enables API-token last-used updates but omits api_token.
+  evaluation_level: finding
+  expected: {result: failed, verdict_effect: warning, report_verdict: NO_KNOWN_BLOCKERS}
+  owner_decision: adjudicated_for_candidate_development
+- case_id: P05-R07-D03
+  root_cause_id: P05-R07
+  scenario: Complete custom target topology covers workflow_based_app_execution and api_token when enabled.
+  evaluation_level: finding
+  expected: {result: passed, verdict_effect: none, report_verdict: NO_KNOWN_BLOCKERS}
+  owner_decision: adjudicated_for_candidate_development
+- case_id: P05-R07-D04
+  root_cause_id: P05-R07
+  scenario: Official default worker topology has no custom queue override.
+  evaluation_level: finding
+  expected: {result: not_applicable, verdict_effect: none, report_verdict: NO_KNOWN_BLOCKERS}
+  owner_decision: adjudicated_for_candidate_development
+- case_id: P05-R07-D05
+  root_cause_id: P05-R07
+  scenario: A higher-priority supported worker override omits workflow_based_app_execution.
+  evaluation_level: finding
+  expected: {result: failed, verdict_effect: warning, report_verdict: NO_KNOWN_BLOCKERS}
+  owner_decision: adjudicated_for_candidate_development
+- case_id: P05-R07-D06
+  root_cause_id: P05-R07
+  scenario: Multiple complete workers have a union that covers all required queues.
+  evaluation_level: finding
+  expected: {result: passed, verdict_effect: none, report_verdict: NO_KNOWN_BLOCKERS}
+  owner_decision: adjudicated_for_candidate_development
+- case_id: P05-R07-D07
+  root_cause_id: P05-R07
+  scenario: Target worker topology completeness is not attested.
+  evaluation_level: finding
+  expected: {result: unknown, verdict_effect: incomplete, report_verdict: INCOMPLETE}
+  owner_decision: adjudicated_for_candidate_development
+- case_id: P05-R07-D08
+  root_cause_id: P05-R07
+  scenario: Target worker uses a custom entrypoint whose effective queue semantics are unsupported.
+  evaluation_level: finding
+  expected: {result: unknown, verdict_effect: incomplete, report_verdict: INCOMPLETE}
+  owner_decision: adjudicated_for_candidate_development

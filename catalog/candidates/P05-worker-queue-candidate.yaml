@@ -1,0 +1,38 @@
+schema_version: '1.0'
+status: owner_scoped_candidate
+executable: false
+approval_ref: APR-P05-WORKER-SEMANTICS-20260914-01
+purpose: candidate_only_worker_queue_replacement_not_product_rule
+candidate_edge:
+  id: P05-EDGE-WORKER-1131-1132
+  source_version: 1.13.1
+  source_commit: f943f1e39bfb357bb0bf4f04204b9efc5cac85dc
+  target_version: 1.13.2
+  target_commit: c8560bacb328ef27a3cdaad2175b11df8338120d
+  deployment_profile: compose
+  scope: static_upgrade_plan
+  approval_ref: null
+root_cause:
+  id: P05-R07
+  candidate_edge_id: P05-EDGE-WORKER-1131-1132
+  title: Complete custom worker topology omits a target-required effective queue
+  independence_claim: Queue coverage can fail independently of authentication, sandbox, plugin-cache, and migration conditions.
+  source_refs: [P00.S002, P00.S026, P00.S027, P00.S028, P00.S030, P00.S031, P00.S057, P00.S058]
+  required_facts:
+  - proposed.worker.topology_complete
+  - proposed.worker.official_entrypoint
+  - proposed.worker.custom_queue_override_present
+  - proposed.worker.workflow_queue_covered
+  - proposed.api_token_last_used_update_enabled
+  - proposed.worker.api_token_queue_covered
+  fact_origins:
+    proposed.worker.topology_complete: attested
+    proposed.worker.official_entrypoint: attested
+    proposed.worker.custom_queue_override_present: derived
+    proposed.worker.workflow_queue_covered: derived
+    proposed.api_token_last_used_update_enabled: declared
+    proposed.worker.api_token_queue_covered: derived
+  missing_fact_behavior: incomplete
+  proposed_severity: warning
+  proposed_phase: before_upgrade
+  approval_ref: null

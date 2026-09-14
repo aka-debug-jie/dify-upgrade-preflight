@@ -1,0 +1,51 @@
+schema_version: '1.0'
+id: P05-R07
+revision: 1
+synthetic: false
+status: approved
+title: Complete custom worker topology omits a target-required effective queue
+scope: static_upgrade_plan
+support_edge_ids:
+- P05-EDGE-WORKER-1131-1132
+applies:
+  all:
+  - fact: proposed.worker.topology_complete
+    op: eq
+    value: true
+  - fact: proposed.worker.official_entrypoint
+    op: eq
+    value: true
+  - fact: proposed.worker.custom_queue_override_present
+    op: eq
+    value: true
+assertion:
+  all:
+  - fact: proposed.worker.workflow_queue_covered
+    op: eq
+    value: true
+  - any:
+    - not:
+        fact: proposed.api_token_last_used_update_enabled
+        op: eq
+        value: true
+    - fact: proposed.worker.api_token_queue_covered
+      op: eq
+      value: true
+severity: warning
+evidence_refs: &id001
+- P00.S002
+- P00.S026
+- P00.S027
+- P00.S028
+- P00.S030
+- P00.S031
+- P00.S057
+- P00.S058
+review_ref: APR-P05-ACTIVE-PROMOTION-R05-REBIND-20260914-01
+supersedes: []
+remediation:
+  phase: before_upgrade
+  summary: Review the documented requirement and update the target plan or record
+    the required manual step.
+  docs_refs: *id001
+  executable: false

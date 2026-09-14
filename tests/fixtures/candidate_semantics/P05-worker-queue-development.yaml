@@ -1,0 +1,21 @@
+schema_version: '1.0'
+status: semantic_implementation_fixture_not_owner_adjudication
+fixture_kind: synthetic
+edge_id: P05-EDGE-WORKER-1131-1132
+cases:
+- case_id: P05-R07-D01
+  scenario: complete custom target topology omits workflow queue
+- case_id: P05-R07-D02
+  scenario: complete custom target topology omits api_token with update task enabled
+- case_id: P05-R07-D03
+  scenario: complete custom target topology covers both required queues
+- case_id: P05-R07-D04
+  scenario: default official worker topology has no custom override
+- case_id: P05-R07-D05
+  scenario: higher-priority worker override omits workflow queue
+- case_id: P05-R07-D06
+  scenario: multi-worker union covers required queues
+- case_id: P05-R07-D07
+  scenario: target worker topology is incomplete
+- case_id: P05-R07-D08
+  scenario: target custom entrypoint cannot be confirmed as official

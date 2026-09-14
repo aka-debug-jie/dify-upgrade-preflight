@@ -48,6 +48,7 @@ def declared_snapshot(
     relations = _agent_relations(services)
     topology = _agent_topology(model, services)
     cache_enabled = _provider_cache_enabled(services)
+    runtime_backend = _agent_runtime_backend(services)
     bundled = "weaviate" in services
     facts: dict[str, Fact] = {
         "dify.declared_version": declared,
@@ -55,6 +56,8 @@ def declared_snapshot(
         "history.earliest_version": _unknown("history_not_observed"),
         "migration.legacy_model_types": _unknown("migration_history_not_observed"),
         "agent_backend.declared": _known(isinstance(services.get("agent_backend"), Mapping), "compose:services.agent_backend"),
+        "agent_runtime.backend": _known(runtime_backend, "compose:agent_runtime_backend")
+        if runtime_backend is not None else _unknown("agent_runtime_backend_not_provable"),
         "agent_auth.wiring_complete": _known(relations["wiring_complete"], "compose:agent_auth_wiring")
         if relations["wiring_complete"] is not None else _unknown("agent_auth_wiring_not_provable"),
         "agent_sandbox.target_network_topology": _known(topology, "compose:agent_networks")
@@ -138,6 +141,22 @@ def _provider_cache_enabled(services: Mapping[str, Any]) -> bool | None:
             return None
         values.append(value.lower() == "true")
     return values[0] if len(set(values)) == 1 else None
+
+
+def _agent_runtime_backend(services: Mapping[str, Any]) -> str | None:
+    markers: set[str] = set()
+    if isinstance(services.get("agent_backend"), Mapping) and isinstance(services.get("local_sandbox"), Mapping):
+        markers.add("local")
+    environments = [
+        _environment(service)
+        for service in services.values()
+        if isinstance(service, Mapping)
+    ]
+    if any(any(key.startswith("E2B_") for key in environment) for environment in environments):
+        markers.add("e2b")
+    if any(environment.get("ENTERPRISE_ENABLED", "").lower() == "true" for environment in environments):
+        markers.add("enterprise")
+    return next(iter(markers)) if len(markers) == 1 else None
 
 
 def _agent_topology(model: Mapping[str, Any], services: Mapping[str, Any]) -> bool | None:

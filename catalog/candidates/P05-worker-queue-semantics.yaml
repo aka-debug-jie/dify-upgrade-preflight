@@ -1,0 +1,21 @@
+schema_version: '1.0'
+status: owner_scoped_candidate
+executable: false
+approval_ref: APR-P05-WORKER-SEMANTICS-20260914-01
+purpose: candidate_only_worker_queue_rule_semantics
+rule:
+  id: P05-R07
+  edge_id: P05-EDGE-WORKER-1131-1132
+  applies:
+    all:
+    - {fact: proposed.worker.topology_complete, op: eq, value: true}
+    - {fact: proposed.worker.official_entrypoint, op: eq, value: true}
+    - {fact: proposed.worker.custom_queue_override_present, op: eq, value: true}
+  assertion:
+    all:
+    - {fact: proposed.worker.workflow_queue_covered, op: eq, value: true}
+    - any:
+      - not: {fact: proposed.api_token_last_used_update_enabled, op: eq, value: true}
+      - {fact: proposed.worker.api_token_queue_covered, op: eq, value: true}
+  severity: warning
+  phase: before_upgrade

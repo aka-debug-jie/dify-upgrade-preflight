@@ -19,13 +19,23 @@ ATTESTED_FACTS = frozenset({
     "migration.legacy_model_types_completed",
     "vector.persisted_data",
     "vector.staged_upgrade_completed",
+    "worker.topology_complete",
+    "worker.official_entrypoint",
 })
 
 
 def build_fact_view(snapshot: DeploymentSnapshot, prefix: str = "") -> dict[str, Fact]:
     view: dict[str, Fact] = {}
     for key, fact in snapshot.facts.items():
-        if fact.origin is FactOrigin.ATTESTED and key not in ATTESTED_FACTS:
+        if key == "worker.official_entrypoint" and fact.status is FactStatus.KNOWN and fact.value is False:
+            view[f"{prefix}{key}"] = Fact(
+                FactStatus.UNKNOWN,
+                None,
+                fact.origin,
+                fact.source_ref,
+                "custom_entrypoint_not_supported_for_worker_queue_candidate",
+            )
+        elif fact.origin is FactOrigin.ATTESTED and key not in ATTESTED_FACTS:
             view[f"{prefix}{key}"] = Fact(FactStatus.UNKNOWN, None, fact.origin, fact.source_ref, "attestation_not_allowed_for_fact")
         else:
             view[f"{prefix}{key}"] = fact

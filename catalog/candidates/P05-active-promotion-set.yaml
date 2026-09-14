@@ -1,0 +1,10 @@
+schema_version: '1.0'
+status: owner_scoped_candidate
+approval_ref: APR-P05-WORKER-SEMANTICS-20260914-01
+purpose: non_destructive_active_promotion_scope_index
+active_candidate_edge_ids: [P05-EDGE-A, P05-EDGE-WORKER-1131-1132]
+active_candidate_root_ids: [P05-R01, P05-R02, P05-R03, P05-R04, P05-R05, P05-R07]
+historical_candidate_edge_ids: [P05-EDGE-B]
+historical_candidate_root_ids: [P05-R06]
+approved_edges: []
+approved_rules: []
